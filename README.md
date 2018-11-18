@@ -8,7 +8,7 @@ Recommended Python version 3
 
 The Rotman Interactive Trading Client which can only be operated in a Windows system.
 
-The full documentation for the Rotman Interactive Trader Client REST API can be found here at swaggerhub https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0.
+The full documentation for the Rotman Interactive Trader Client REST API can be found here at swaggerhub https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0. The documentation is also present in a JSON format in the swagger-client-generated folder.
 
 
 ## Installing
