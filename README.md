@@ -1,6 +1,6 @@
 # RIT-trading-python
 Python trading modules for the Rotman Interactive Trader trading software.
-<!--<img src='https://raw.githubusercontent.com/SamSamhuns/RIT-trading-python/master/ .png'>-->
+<img src='https://raw.githubusercontent.com/SamSamhuns/RIT-trading-python/master/rit_image.PNG'>
 
 
 ## Prerequisites
