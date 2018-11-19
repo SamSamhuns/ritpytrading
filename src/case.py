@@ -47,42 +47,42 @@ def trade_lim_enforce_chk ():
         return True
     return False
 
-def get_limits_gross( ses ):
+def get_gross( ses ):
     if trade_lim_enforce_chk() == True:
         get_case_response( ses, '/limits', 'gross')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
-def get_limits_set( ses ):
+def get_set( ses ):
     if trade_lim_enforce_chk() == True:
         get_case_response( ses, '/limits', 'set')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
-def get_limits_gross_lim( ses ):
+def get_gross_lim( ses ):
     if trade_lim_enforce_chk() == True:
         get_case_response( ses, '/limits', 'gross_limit')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
-def get_limits_set_limit( ses ):
+def get_set_limit( ses ):
     if trade_lim_enforce_chk() == True:
         get_case_response( ses, '/limits', 'set_limit')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
-def get_limits_gross_fine( ses ):
+def get_gross_fine( ses ):
     if trade_lim_enforce_chk() == True:
         get_case_response( ses, '/limits', 'gross_fine')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
-def get_limits_set_fine( ses ):
+def get_set_fine( ses ):
     if trade_lim_enforce_chk() == True:
         get_case_response( ses, '/limits', 'set_fine')
     else:
@@ -91,7 +91,7 @@ def get_limits_set_fine( ses ):
 
 def get_limits_case_all( ses ):
     if trade_lim_enforce_chk() == True:
-        resp_json = get_case_response( ses, '/limits', '', 1)
+        get_case_response( ses, '/limits', '', 1)
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
