@@ -4,7 +4,8 @@ import requests
 host_url = 'http://localhost:9999'          # Make sure the RIT client uses the same 9999 port
 base_path = '/v1'
 
-
+# submitting a market order
+# side = BUY/SELL
 def market_order( ticker, side, quantity, API_KEY_entry ):
     API_KEY = { 'X-API-key': API_KEY_entry }
     with requests.Session() as ses:
@@ -34,7 +35,7 @@ def limit_order( ticker, side, quantity, price, API_KEY_entry ):
 def cancel_order( ticker, quantity, order_id, API_KEY_entry ):
     API_KEY = { 'X-API-key': API_KEY_entry }
     with requests.Session() as ses:
-        s.header.update(API_KEY)
+        ses.header.update(API_KEY)
         response = ses.delete( host_url+base_path+'/orders/{}'.format(order_id))
         if response.ok:
             status = response.json()
@@ -43,15 +44,16 @@ def cancel_order( ticker, quantity, order_id, API_KEY_entry ):
         else:
             print('Error in cancelling order %d' % (order_id))
 
-def cancel_order_bulk( API_KEY_entry, side, price_lim, volume_lim ):
-    cancel_direction = ''
-    if side.upper().strip() = 'SELL':
-        cancel_direction = '<'
-    elif side.upper().strip() = 'BUY':
-        cancel_direction - '>'
+# if all_flag = 1 then all open orders are cancelled
+# set all_flag = 0 to cancel only select orders
+# price_direc and volume_direc has a value of [ <, <=, >, >= or = ]
+def cancel_order_bulk( all_flag, API_KEY_entry, price_direc, price_lim, volume_direc, volume_lim ):
+
     with requests.Session() as ses:
         ses.headers.update(API_KEY_entry )
-        cancel_params = {'all': 0, 'query': 'Price>20.10 AND Volume<0'} # cancel all open sell orders with a price over 20.10
+        # Volume < 0 for cancelling all open sell orders and Volume > 0for cancelling all open buy orders
+        query_gen = 'Price' + price_direc + price_lim +'AND'+'Volume' + volume_direc + volume_lim
+        cancel_params = {'all': all_flag, 'query': query_gen }
         response = ses.post( host_url+base_path+'/commands/cancel',
         params=cancel_params)
         if response.ok:
