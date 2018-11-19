@@ -41,7 +41,7 @@ def limit_order( ses, ticker, side, quantity, price, API_KEY_entry ):
 
 def cancel_order( ses, ticker, quantity, order_id, API_KEY_entry ):
     ses.header.update(API_KEY)
-    response = ses.delete( base_url+'/orders/{}'.format(order_id))
+    response = ses.delete( (base_url+'/orders/{}').format(order_id))
     if response.ok:
         status = response.json()
         success = status['success']
@@ -57,8 +57,7 @@ def cancel_order_bulk( ses, all_flag, API_KEY_entry, price_direc, price_lim, vol
     # Volume < 0 for cancelling all open sell orders and Volume > 0for cancelling all open buy orders
     query_gen = 'Price' + price_direc + price_lim +'AND'+'Volume' + volume_direc + volume_lim
     cancel_params = {'all': all_flag, 'query': query_gen }
-    response = ses.post( base_url+'/commands/cancel',
-    params=cancel_params)
+    response = ses.post( base_url+'/commands/cancel', params=cancel_params)
     if response.ok:
         status = response.json()
         cancelled = status['cancelled_order_ids']
