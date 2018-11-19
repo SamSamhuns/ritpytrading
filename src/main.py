@@ -1,5 +1,8 @@
 import requests
-API_KEY = {'X-API-key':'H8KDL3Q6'}
+API_KEY = {'X-API-key':'H8KDL3Q6'}           # use your RIT API key here
+host_url = 'http://localhost:9999'           # Make sure the RIT client uses the same 9999 port
+base_path = '/v1'
+base_url = host_url + base_path
 
 def main():
     with requests.Session() as ses:

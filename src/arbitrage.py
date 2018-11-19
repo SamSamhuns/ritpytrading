@@ -5,13 +5,14 @@ traded on two different exchanges
 '''
 import signal
 import requests
-from case.py as case_py                     # importing case related functions from case.py
+import case.py as case_py                     # importing case related functions from case.py
 from time import sleep
 
-API_KEY = {'X-API-Key': ''}
+API_KEY = {'X-API-Key': 'H8KDL3Q6'}
 shutdown = False
 host_url = 'http://localhost:9999'          # Make sure the RIT client uses the same 9999 port
 base_path = '/v1'
+base_url = host_url + base_path
 
 # to print error messages and stop the program when needed
 class ApiException(Exception):
