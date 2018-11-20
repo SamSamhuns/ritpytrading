@@ -9,11 +9,11 @@ class ApiException(Exception):
     pass
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
-def get_case_response ( ses, url_end, param, full=0 ):
+def get_case_response ( ses, url_end, param, all=0 ):
     response = ses.get( base_url + url_end )
     if response.ok:
         case = response.json()
-        if full == 1:
+        if all == 1:
             return case
         return case[param]
     raise ApiException('Authorization Error: Please check API key.')
