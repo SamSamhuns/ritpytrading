@@ -1,3 +1,27 @@
+'''
+Sample JSON output formats for the function returns
+Case object return value: JSON formatted
+{
+    "name": "string",
+    "period": 0,
+    "tick": 0,
+    "ticks_per_period": 0,
+    "total_periods": 0,
+    "status": "ACTIVE",
+    "is_enforce_trading_limits": true
+}
+Limits object return values: JSON formatted
+{
+    "name": "string",
+    "gross": 0,
+    "net": 0,
+    "gross_limit": 0,
+    "net_limit": 0,
+    "gross_fine": 0,
+    "net_fine": 0
+}
+'''
+
 import requests
 
 host_url = 'http://localhost:9999'          # Make sure the RIT client uses the same 9999 port
@@ -91,7 +115,7 @@ def get_set_fine( ses ):
 
 def get_limits_case_all( ses ):
     if trade_lim_enforce_chk() == True:
-        get_case_response( ses, '/limits', '', 1)
+        get_case_response( ses, '/limits', None, all=1)
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
