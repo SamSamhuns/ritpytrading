@@ -1,3 +1,14 @@
+'''
+Sample JSON output formats for the function returns
+trader object return value: JSON formatted
+{
+  "trader_id": "string",
+  "first_name": "string",
+  "last_name": "string",
+  "nlv": 0
+}
+'''
+
 import requests
 
 host_url = 'http://localhost:9999'          # Make sure the RIT client uses the same 9999 port
@@ -31,4 +42,4 @@ def get_trader_nlv( ses ):
     get_trader_response( ses, 'nlv')
 
 def get_trader_all( ses ):
-    get_trader_response( ses, '', 1)
+    get_trader_response( ses, None, all=1)
