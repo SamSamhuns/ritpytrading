@@ -37,6 +37,7 @@ def get_case_response ( ses, url_end, param, all=0 ):
     response = ses.get( base_url + url_end )
     if response.ok:
         case = response.json()
+        # returns all attributes of the case json response object
         if all == 1:
             return case
         return case[param]
