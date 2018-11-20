@@ -27,6 +27,8 @@ def market_order( ses, ticker, side, quantity):
         print('%s %s Market order was submitted and has ID %d' % (side, quantity, id) )
     else:
         print('%s %s Market order was not submitted.' % (side, quantity))
+    if response.status_code == 429:
+        print('Error: Orders submitted too frequently.')
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 def limit_order( ses, ticker, side, quantity, price):
@@ -38,6 +40,8 @@ def limit_order( ses, ticker, side, quantity, price):
         print("%s %s Limit order was submitted and has ID %d " % (side, quantity, id) )
     else:
         print('%s %s Limit order was not submitted.' % (side, quantity))
+    if response.status_code == 429:
+        print('Error: Orders submitted too frequently.')
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 def cancel_order( ses, ticker, quantity, order_id ):
