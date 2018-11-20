@@ -9,11 +9,11 @@ class ApiException(Exception):
     pass
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
-def get_trader_response( ses, param, full=0 ):
+def get_trader_response( ses, param, all=0 ):
     response = ses.get(base_url+ '/trader')
     if response.ok:
         trader = response.json()
-        if full == 1:
+        if all == 1:
             return trader
         return trader[param]
     raise ApiException('Authorization Error: Please check API key.')
