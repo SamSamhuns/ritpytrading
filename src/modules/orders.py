@@ -59,10 +59,10 @@ i.e. get_order_response( ses, url_end, param="order_id" )
 # returns one attribute of an order with entered id or of all orders
 def get_order_attribute( ses, param, id=None, status='OPEN'):
     if id == None:
-        get_order_response( ses, '/orders', param, status )
+        return get_order_response( ses, '/orders', param, status )
     elif id != None:
-        get_order_response( ses, '/orders/{}', param, order_id=id, status )
+        return get_order_response( ses, '/orders/{}', param, order_id=id, status )
 
 # returns all the attribs of all orders in a json format
 def get_all_orders( ses, status='OPEN' ):
-    get_order_response( ses, '/orders', None, status, None, all=1 )
+    return get_order_response( ses, '/orders', None, status, None, all=1 )
