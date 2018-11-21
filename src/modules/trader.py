@@ -30,16 +30,16 @@ def get_trader_response( ses, param, all=0 ):
     raise ApiException('Authorization Error: Please check API key.')
 
 def get_trader_id( ses ):
-    get_trader_response( ses, 'trader_id' )
+    return get_trader_response( ses, 'trader_id' )
 
 def get_trader_fname( ses ):
-    get_trader_response( ses, 'first_name')
+    return get_trader_response( ses, 'first_name')
 
 def get_trader_lname( ses ):
-    get_trader_response( ses, 'last_name')
+    return get_trader_response( ses, 'last_name')
 
 def get_trader_nlv( ses ):
-    get_trader_response( ses, 'nlv')
+    return get_trader_response( ses, 'nlv')
 
 def get_trader_all( ses ):
-    get_trader_response( ses, None, all=1)
+    return get_trader_response( ses, None, all=1)
