@@ -49,7 +49,7 @@ class ApiException(Exception):
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 # returns the best bid or ask on the market based on the side entered
-# side = BUY / SELL
+# side = bids/asks
 # the all flag set in four tiers
 # all = 0   securities_book[side][0][param] return one parameter of best bid/ask
 # all = 1   securities_book[side][0]        return all params of best bid/ask
@@ -73,13 +73,13 @@ def get_sec_book_response ( ses, ticker_sym, side, param, all=0 ):
 
 # All possible values for the param parameter are listed at the top
 def get_security_info ( ses, ticker_sym, side, param ):
-    get_sec_book_response( ses, ticker_sym, side, param )
+    return get_sec_book_response( ses, ticker_sym, side, param )
 
 def get_best_bid ( ses, ticker_sym ):
-    get_sec_book_response( ses, ticker_sym, 'BUY', None, all=1 )
+    return get_sec_book_response( ses, ticker_sym, 'bids', None, all=1 )
 
 def get_best_ask ( ses, ticker_sym ):
-    get_sec_book_response( ses, ticker_sym, 'SELL', None, all=1 )
+    return get_sec_book_response( ses, ticker_sym, 'asks', None, all=1 )
 
 def get_bbo ( ses, ticker_sym ):
     best_bid = get_best_bid ( ses, ticker_sym )
@@ -87,10 +87,10 @@ def get_bbo ( ses, ticker_sym ):
     return {'best_bid':best_bid, 'best_ask':best_ask}
 
 def get_all_bids ( ses, ticker_sym ):
-    get_sec_book_response( ses, ticker_sym, 'BUY', None, all=2 )
+    return get_sec_book_response( ses, ticker_sym, 'bids', None, all=2 )
 
 def get_all_asks ( ses, ticker_sym ):
-    get_sec_book_response( ses, ticker_sym, 'SELL', None, all=2 )
+    return get_sec_book_response( ses, ticker_sym, 'asks', None, all=2 )
 
 def get_all_bids_asks ( ses, ticker_sym ):
-    get_sec_book_response( ses, ticker_sym, None, None, all=3 )
+    return get_sec_book_response( ses, ticker_sym, None, None, all=3 )
