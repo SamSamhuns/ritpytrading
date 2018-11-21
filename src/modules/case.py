@@ -44,26 +44,26 @@ def get_case_response ( ses, url_end, param, all=0 ):
     raise ApiException('Authorization Error: Please check API key.')
 
 def get_name( ses ):
-    get_case_response( ses, '/case', 'name')
+    return get_case_response( ses, '/case', 'name')
 
 def get_status( ses ):
-    get_case_response( ses, '/case', 'status')
+    return get_case_response( ses, '/case', 'status')
 
 def get_tick( ses ):
-    get_case_response( ses, '/case', 'tick')
+    return get_case_response( ses, '/case', 'tick')
 
 def get_period( ses ):
-    get_case_response( ses, '/case', 'period')
+    return get_case_response( ses, '/case', 'period')
 
 def get_total_periods( ses ):
-    get_case_response( ses, '/case', 'get_periods')
+    return get_case_response( ses, '/case', 'get_periods')
 
 def get_ticks_per_period( ses ):
-    get_case_response( ses, '/case', 'ticks_per_period')
+    return get_case_response( ses, '/case', 'ticks_per_period')
 
 # returns json object containing full info on case
 def get_case_all( ses ):
-    get_case_response( ses, '/case', '', 1 )
+    return get_case_response( ses, '/case', '', 1 )
 
 # functions for information on case limits
 # checking if a trade_limit is actually enforced
@@ -74,49 +74,49 @@ def trade_lim_enforce_chk ():
 
 def get_gross( ses ):
     if trade_lim_enforce_chk() == True:
-        get_case_response( ses, '/limits', 'gross')
+        return get_case_response( ses, '/limits', 'gross')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_set( ses ):
     if trade_lim_enforce_chk() == True:
-        get_case_response( ses, '/limits', 'set')
+        return get_case_response( ses, '/limits', 'set')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_gross_lim( ses ):
     if trade_lim_enforce_chk() == True:
-        get_case_response( ses, '/limits', 'gross_limit')
+        return get_case_response( ses, '/limits', 'gross_limit')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_set_limit( ses ):
     if trade_lim_enforce_chk() == True:
-        get_case_response( ses, '/limits', 'set_limit')
+        return get_case_response( ses, '/limits', 'set_limit')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_gross_fine( ses ):
     if trade_lim_enforce_chk() == True:
-        get_case_response( ses, '/limits', 'gross_fine')
+        return get_case_response( ses, '/limits', 'gross_fine')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_set_fine( ses ):
     if trade_lim_enforce_chk() == True:
-        get_case_response( ses, '/limits', 'set_fine')
+        return get_case_response( ses, '/limits', 'set_fine')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_limits_case_all( ses ):
     if trade_lim_enforce_chk() == True:
-        get_case_response( ses, '/limits', None, all=1)
+        return get_case_response( ses, '/limits', None, all=1)
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
