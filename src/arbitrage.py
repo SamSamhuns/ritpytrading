@@ -48,10 +48,10 @@ def main():
         tick = case.get_tick(ses)
         while tick > 5 and tick < 295 and not shutdown:
             # get best bid and ask for security in both exchanges
-            sec1_a_bid = book.get_security_info( ses, sec1_a, 'BUY', 'price' )
-            sec1_a_ask = book.get_security_info( ses, sec1_a, 'SELL', 'price' )
-            sec1_b_bid = book.get_security_info( ses, sec1_b, 'BUY', 'price' )
-            sec1_b_ask = book.get_security_info( ses, sec1_b, 'SELL', 'price' )
+            sec1_a_bid = book.get_security_info( ses, sec1_a, 'bids', 'price' )
+            sec1_a_ask = book.get_security_info( ses, sec1_a, 'asks', 'price' )
+            sec1_b_bid = book.get_security_info( ses, sec1_b, 'bids', 'price' )
+            sec1_b_ask = book.get_security_info( ses, sec1_b, 'asks', 'price' )
 
             # checking for crossed markets and arbitraging
             if sec1_a_bid > sec1_b_ask:
