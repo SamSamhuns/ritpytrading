@@ -6,9 +6,9 @@ traded on two different exchanges
 import sys
 import signal
 import requests
-from modules import case                  # importing case related functions from case.py
-from modules import securities_book       # importing securities_book to get bis ask values
-from modules import submit_cancel_orders  # import submit_cancel_orders to submit orders
+from modules import case                           # importing case related functions from case.py
+from modules import securities_book as book        # importing securities_book to get bis ask values
+from modules import submit_cancel_orders as order  # import submit_cancel_orders to submit orders
 from time import sleep
 
 API_KEY = {'X-API-Key': 'H8KDL3Q6'}            # use your unique API key here
