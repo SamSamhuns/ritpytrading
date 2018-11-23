@@ -11,10 +11,10 @@ from modules import securities_book as book        # importing securities_book t
 from modules import submit_cancel_orders as order  # import submit_cancel_orders to submit orders
 from time import sleep
 
-API_KEY = {'X-API-Key': 'H8KDL3Q6'}            # use your unique API key here
+API_KEY = {'X-API-Key': 'H8KDL3Q6'}                # use your unique API key here
 shutdown = False
 
-host_url = 'http://localhost:9999'             # Make sure the RIT client uses the same 9999 port
+host_url = 'http://localhost:9999'                 # Make sure the RIT client uses the same 9999 port
 base_path = '/v1'
 base_url = host_url + base_path
 
@@ -28,12 +28,9 @@ def signal_handler( signum, frame ):
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     shutdown = True
 
-# get_tick
-# get bid ask
-
 def main():
 
-    arbitrage_qty = 1000 # arbitrage qunatity for one order
+    arbitrage_qty = 1000 # arbitrage qunatity for one order by default 1000
 
     # checking for correct number of arguments entered
     if len(sys.argv) != 3:
@@ -54,13 +51,19 @@ def main():
             sec1_b_ask = book.get_security_info( ses, sec1_b, 'asks', 'price' )
 
             # checking for crossed markets and arbitraging
-            if sec1_a_bid > sec1_b_ask:
-            # if a_bid is higher than b_ask then buy at the lower b_ask and sell at the higher a_bid
+            if sec1_a_bid > sec1_b_ask:             # if a_bid is higher than b_ask then buy at the lower b_ask and sell at the higher a_bid
+                # checking for the minumum qty between the two crossed orders not to prevent non-zero positions
+                sec1_b_qty = book.get_security_info( ses, sec1_b, 'bids', 'quantity')
+                sec1_a_qty = book.get_security_info( ses, sec1_a, 'asks', 'quantity')
+                arbitrage_qty = min( sec1_a_qty, sec1_b_qty )
                 order.market_order( ses, sec1_b, 'BUY', arbitrage_qty )
                 order.market_order( ses, sec1_a, 'SELL', arbitrage_qty )
                 sleep(1)
-            if sec1_b_bid > sec1_a_ask:
-            # if b_bid is higher than a_ask then buy at the lower a_ask and sell at the higher b_bid
+            if sec1_b_bid > sec1_a_ask:             # if b_bid is higher than a_ask then buy at the lower a_ask and sell at the higher b_bid
+                # checking for the minumum qty between the two crossed orders not to prevent non-zero positions
+                sec1_b_qty = book.get_security_info( ses, sec1_b, 'asks', 'quantity')
+                sec1_a_qty = book.get_security_info( ses, sec1_a, 'bids', 'quantity')
+                arbitrage_qty = min( sec1_a_qty, sec1_b_qty )
                 order.market_order( ses, sec1_a, 'BUY', arbitrage_qty )
                 order.market_order( ses, sec1_b, 'SELL', arbitrage_qty )
                 sleep(1)
