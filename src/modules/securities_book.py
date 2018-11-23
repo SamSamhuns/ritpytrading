@@ -2,7 +2,7 @@
 functions related to the order book of a security
 securities_book object attribute values: JSON formatted
 {
-  "bid": [
+  "bids": [
     {
       "order_id": 1221,
       "period": 1,
@@ -18,7 +18,7 @@ securities_book object attribute values: JSON formatted
       "status": "OPEN"
     }
   ],
-  "ask": [
+  "asks": [
     {
       "order_id": 1221,
       "period": 1,
