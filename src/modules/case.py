@@ -23,10 +23,6 @@ Limits object return values: JSON formatted
     "net_fine": 0
 }
 
-Parameters for the securities_history GET HTTP request
-
-- ticker* required string   (query)
-- period number             (query)
 '''
 
 import requests
@@ -74,55 +70,55 @@ def get_case_all( ses ):
 
 # functions for information on case limits
 # checking if a trade_limit is actually enforced
-def trade_lim_enforce_chk ():
+def trade_lim_enforce_chk (ses):
     if get_case_response( ses, '/case', 'is_enforce_trading_limits') == True:
         return True
     return False
 
 def get_gross( ses ):
-    if trade_lim_enforce_chk() == True:
+    if trade_lim_enforce_chk(ses) == True:
         return get_case_response( ses, '/limits', 'gross')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_set( ses ):
-    if trade_lim_enforce_chk() == True:
+    if trade_lim_enforce_chk(ses) == True:
         return get_case_response( ses, '/limits', 'set')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_gross_lim( ses ):
-    if trade_lim_enforce_chk() == True:
+    if trade_lim_enforce_chk(ses) == True:
         return get_case_response( ses, '/limits', 'gross_limit')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_set_limit( ses ):
-    if trade_lim_enforce_chk() == True:
+    if trade_lim_enforce_chk(ses) == True:
         return get_case_response( ses, '/limits', 'set_limit')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_gross_fine( ses ):
-    if trade_lim_enforce_chk() == True:
+    if trade_lim_enforce_chk(ses) == True:
         return get_case_response( ses, '/limits', 'gross_fine')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_set_fine( ses ):
-    if trade_lim_enforce_chk() == True:
+    if trade_lim_enforce_chk(ses) == True:
         return get_case_response( ses, '/limits', 'set_fine')
     else:
         no_lim_msg = "No trading limits for the current case"
         return no_lim_msg
 
 def get_limits_case_all( ses ):
-    if trade_lim_enforce_chk() == True:
+    if trade_lim_enforce_chk(ses) == True:
         return get_case_response( ses, '/limits', None, all=1)
     else:
         no_lim_msg = "No trading limits for the current case"
