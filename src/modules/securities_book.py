@@ -1,5 +1,6 @@
 '''
-functions related to the order book of a security
+The  /securities/book HTTP module gets the order book of a security
+
 securities_book object attribute values: JSON formatted
 {
   "bids": [
@@ -35,6 +36,11 @@ securities_book object attribute values: JSON formatted
     }
   ]
 }
+
+Parameters for the securities_book GET HTTP request
+- ticker* required string   (query)
+- period number             (query)
+
 '''
 
 import requests
