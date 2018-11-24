@@ -1,4 +1,6 @@
 '''
+This script contains results for the /case and /limits module
+
 Sample JSON output formats for the function returns
 Case object return value: JSON formatted
 {
@@ -20,6 +22,11 @@ Limits object return values: JSON formatted
     "gross_fine": 0,
     "net_fine": 0
 }
+
+Parameters for the securities_history GET HTTP request
+
+- ticker* required string   (query)
+- period number             (query)
 '''
 
 import requests
