@@ -43,6 +43,8 @@ def main():
     with requests.Session() as ses:
         ses.headers.update(API_KEY)
         tick = case.get_tick(ses)
+        # the order submission limits are a max of 10000 units per order
+        max_arbitrage_qty = min( 10000, case.get_gross_lim(ses))
         while tick > 5 and tick < 295 and not shutdown:
             # get best bid and ask for security in both exchanges
             sec1_a_bid = book.get_security_info( ses, sec1_a, 'bids', 'price' )
@@ -55,7 +57,7 @@ def main():
                 # checking for the minumum qty between the two crossed orders not to prevent non-zero positions
                 sec1_b_qty = book.get_security_info( ses, sec1_b, 'bids', 'quantity')
                 sec1_a_qty = book.get_security_info( ses, sec1_a, 'asks', 'quantity')
-                arbitrage_qty = min( sec1_a_qty, sec1_b_qty ) % 10000
+                arbitrage_qty = min( sec1_a_qty, sec1_b_qty ) % max_arbitrage_qty
                 order.market_order( ses, sec1_b, 'BUY', arbitrage_qty )
                 order.market_order( ses, sec1_a, 'SELL', arbitrage_qty )
                 sleep(1)
@@ -63,7 +65,7 @@ def main():
                 # checking for the minumum qty between the two crossed orders not to prevent non-zero positions
                 sec1_b_qty = book.get_security_info( ses, sec1_b, 'asks', 'quantity')
                 sec1_a_qty = book.get_security_info( ses, sec1_a, 'bids', 'quantity')
-                arbitrage_qty = min( sec1_a_qty, sec1_b_qty ) % 10000
+                arbitrage_qty = min( sec1_a_qty, sec1_b_qty ) % max_arbitrage_qty
                 order.market_order( ses, sec1_a, 'BUY', arbitrage_qty )
                 order.market_order( ses, sec1_b, 'SELL', arbitrage_qty )
                 sleep(1)
