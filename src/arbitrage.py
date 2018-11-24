@@ -55,7 +55,7 @@ def main():
                 # checking for the minumum qty between the two crossed orders not to prevent non-zero positions
                 sec1_b_qty = book.get_security_info( ses, sec1_b, 'bids', 'quantity')
                 sec1_a_qty = book.get_security_info( ses, sec1_a, 'asks', 'quantity')
-                arbitrage_qty = min( sec1_a_qty, sec1_b_qty )
+                arbitrage_qty = min( sec1_a_qty, sec1_b_qty ) % 10000
                 order.market_order( ses, sec1_b, 'BUY', arbitrage_qty )
                 order.market_order( ses, sec1_a, 'SELL', arbitrage_qty )
                 sleep(1)
@@ -63,7 +63,7 @@ def main():
                 # checking for the minumum qty between the two crossed orders not to prevent non-zero positions
                 sec1_b_qty = book.get_security_info( ses, sec1_b, 'asks', 'quantity')
                 sec1_a_qty = book.get_security_info( ses, sec1_a, 'bids', 'quantity')
-                arbitrage_qty = min( sec1_a_qty, sec1_b_qty )
+                arbitrage_qty = min( sec1_a_qty, sec1_b_qty ) % 10000
                 order.market_order( ses, sec1_a, 'BUY', arbitrage_qty )
                 order.market_order( ses, sec1_b, 'SELL', arbitrage_qty )
                 sleep(1)
