@@ -13,16 +13,18 @@ Case object return value: JSON formatted
     "is_enforce_trading_limits": true
 }
 Limits object return values: JSON formatted
-{
-    "name": "string",
-    "gross": 0,
-    "net": 0,
-    "gross_limit": 0,
-    "net_limit": 0,
-    "gross_fine": 0,
-    "net_fine": 0
-}
-
+Returned as a list containing a JSON object
+[
+    {
+        "name": "string",
+        "gross": 0,
+        "net": 0,
+        "gross_limit": 0,
+        "net_limit": 0,
+        "gross_fine": 0,
+        "net_fine": 0
+    }
+]
 '''
 
 import requests
@@ -43,6 +45,9 @@ def get_case_response ( ses, url_end, param, all=0 ):
         # returns all attributes of the case json response object
         if all == 1:
             return case
+        if url_end == '/limits':
+            return case[0][param]
+        # elif url_end == '/case':
         return case[param]
     raise ApiException('Authorization Error: Please check API key.')
 
