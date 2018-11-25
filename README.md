@@ -75,6 +75,8 @@ This project is licensed under the Apahce 2.0 License - see the [LICENSE.md](LIC
 -   Python open source libraries
 -   Joel Hasbrouck, NYU Stern Principles of Securities Trading, FINC-UB.0049, Spring 201. http://people.stern.nyu.edu/jhasbrou/
 
+## Contributions  [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+
 ## Disclaimer
 
-All RIT software and external RIT links are provided by the Rotman School of Management.
+All RIT software and external RIT links are provided by the Rotman School of Management and are their exclusive property.
