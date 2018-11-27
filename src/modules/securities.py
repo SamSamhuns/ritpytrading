@@ -100,15 +100,21 @@ def get_security_response(ses, ticker, json=0):
         if json == 1:
             return sec_info
 
-        order_list = {(security(order)).ticker : security(order) for order in sec_info}
+        order_list = {(security(order)).ticker: security(order)
+                      for order in sec_info}
         # returns a dict of security obj of the security class with ticker ticker names as keys
         return order_list
 
 # By default no specific ticker_sym is None
-# returns the list of available securities dict of security objects
+
+# returns the list of available securities as a dict of security objects with ticker name as keys
+
+
 def securities(ses, ticker_sym=None):
     return get_security_response(ses, ticker_sym)
 
 # returns the list of available securities with all info in a json format
+
+
 def securities_json(ses, ticker_sym=None):
     return get_security_response(ses, ticker_sym, json=1)
