@@ -54,31 +54,33 @@ base_url = host_url + base_path
 class ApiException(Exception):
     pass
 
+# Security class takes a security_response object as its initializing paramenter
+# to extract all relevant information
 
 class Security():
-    def __self__(self, security_response_obj):
-        self.ticker = security_response_obj["ticker"]
-        self.type = security_response_obj["type"]
-        self.size = security_response_obj["size"]
-        self.position = security_response_obj["position"]
-        self.vwap = security_response_obj["vwap"]
-        self.nlv = security_response_obj["nlv"]
-        self.last = security_response_obj["last"]
-        self.bid = security_response_obj["bid"]
-        self.bid_size = security_response_obj["bid_size"]
-        self.ask = security_response_obj["ask"]
-        self.ask_size = security_response_obj["ask_size"]
-        self.volume = security_response_obj["volume"]
-        self.unrealized = security_response_obj["unrealized"]
-        self.realized = security_response_obj["realized"]
-        self.currency = security_response_obj["currency"]
-        self.total_volume = security_response_obj["total_volume"]
-        self.limits = security_response_obj["limits"]
-        self.interest_rate = security_response_obj["interest_rate"]
-        self.is_tradeable = security_response_obj["is_tradeable"]
-        self.is_shortable = security_response_obj["is_shortable"]
-        self.start_period = security_response_obj["start_period"]
-        self.stop_period = security_response_obj["stop_period"]
+    def __self__(self, security_response):
+        self.ticker = security_response["ticker"]
+        self.type = security_response["type"]
+        self.size = security_response["size"]
+        self.position = security_response["position"]
+        self.vwap = security_response["vwap"]
+        self.nlv = security_response["nlv"]
+        self.last = security_response["last"]
+        self.bid = security_response["bid"]
+        self.bid_size = security_response["bid_size"]
+        self.ask = security_response["ask"]
+        self.ask_size = security_response["ask_size"]
+        self.volume = security_response["volume"]
+        self.unrealized = security_response["unrealized"]
+        self.realized = security_response["realized"]
+        self.currency = security_response["currency"]
+        self.total_volume = security_response["total_volume"]
+        self.limits = security_response["limits"]
+        self.interest_rate = security_response["interest_rate"]
+        self.is_tradeable = security_response["is_tradeable"]
+        self.is_shortable = security_response["is_shortable"]
+        self.start_period = security_response["start_period"]
+        self.stop_period = security_response["stop_period"]
 
     def __repr__(self):
         return self.ticker
