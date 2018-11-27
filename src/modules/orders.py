@@ -75,9 +75,8 @@ def get_order_response(ses, url_end, order_status='OPEN', order_id=None, json=0)
             return orders_obj
 
         if url_end == '/orders':
-            if json == 0:
-                orders_dict = {(Order(ord)).order_id: Order(ord)
-                               for ord in orders}
+            orders_dict = {(Order(ord)).order_id: Order(ord)
+                           for ord in orders}
             return orders_list
     raise ApiException('Authorization Error: Please check API key.')
 
