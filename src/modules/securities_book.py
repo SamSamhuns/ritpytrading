@@ -83,7 +83,7 @@ def get_sec_book_response(ses, ticker_sym, side, param, all=0):
 
 # All possible values for the param parameter are listed at the top
 
-
+# Returns the value of the param for the given ticker from the given side
 def get_security_info(ses, ticker_sym, side, param):
     return get_sec_book_response(ses, ticker_sym, side, param)
 
@@ -109,6 +109,6 @@ def get_all_bids(ses, ticker_sym):
 def get_all_asks(ses, ticker_sym):
     return get_sec_book_response(ses, ticker_sym, 'asks', None, all=2)
 
-
+# Returns a list of JSON objects representing all the orders in the Bid and Ask side of the book
 def get_all_bids_asks(ses, ticker_sym):
     return get_sec_book_response(ses, ticker_sym, None, None, all=3)
