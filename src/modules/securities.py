@@ -38,7 +38,6 @@ securities object attribute values: JSON formatted
 
 Parameters for the securities GET HTTP request
 - ticker* required string   (query)
-- period number             (query)
 
 '''
 
@@ -81,12 +80,35 @@ class security():
         self.start_period = security_response_obj["start_period"]
         self.stop_period = security_response_obj["stop_period"]
 
+    def __repr__(self):
+        return self.ticker
+
+# gets the list of all available securities or of a particular
+# security if its ticker is supplied
 
 
-def get_security_response(ses, ticker):
-    payload = {'ticker': ticker}
-    response = ses.get(base_url + '/securities', params=payload)
+def get_security_response(ses, ticker, json=0):
+    if ticker != None:
+        payload = {'ticker': ticker}
+        response = ses.get(base_url + '/securities', params=payload)
+    else:
+        response = ses.get(base_url + '/securities')
 
     if response.ok:
+        # this sets a list of all available securities in a JSON format
         sec_info = response.json()
-        return sec_info
+        if json == 1:
+            return sec_info
+
+        order_list = {(security(order)).ticker : security(order) for order in sec_info}
+        # returns a dict of security obj of the security class with ticker ticker names as keys
+        return order_list
+
+# By default no specific ticker_sym is None
+# returns the list of available securities dict of security objects
+def securities(ses, ticker_sym=None):
+    return get_security_response(ses, ticker_sym)
+
+# returns the list of available securities with all info in a json format
+def securities_json(ses, ticker_sym=None):
+    return get_security_response(ses, ticker_sym, json=1)
