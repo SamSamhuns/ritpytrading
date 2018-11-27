@@ -55,7 +55,7 @@ class ApiException(Exception):
     pass
 
 
-class security():
+class Security():
     def __self__(self, security_response_obj):
         self.ticker = security_response_obj["ticker"]
         self.type = security_response_obj["type"]
@@ -100,7 +100,7 @@ def get_security_response(ses, ticker, json=0):
         if json == 1:
             return sec_info
 
-        order_list = {(security(order)).ticker: security(order)
+        order_list = {(Security(order)).ticker: Security(order)
                       for order in sec_info}
         # returns a dict of security obj of the security class with ticker ticker names as keys
         return order_list
@@ -110,7 +110,7 @@ def get_security_response(ses, ticker, json=0):
 # returns the list of available securities as a dict of security objects with ticker name as keys
 
 
-def securities(ses, ticker_sym=None):
+def securities_dict(ses, ticker_sym=None):
     return get_security_response(ses, ticker_sym)
 
 # returns the list of available securities with all info in a json format
