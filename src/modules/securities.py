@@ -54,8 +54,9 @@ base_url = host_url + base_path
 class ApiException(Exception):
     pass
 
-# Security class takes a security_response object as its initializing paramenter
-# to extract all relevant information
+# Security class takes a security_response object ( a list of json objects )
+# as its initializing paramenter to extract all relevant information
+
 
 class Security():
     def __self__(self, security_response):
