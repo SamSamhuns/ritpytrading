@@ -53,7 +53,7 @@ class Case():
     def __repr__(self):
         return self.name + '_' + self.status
 
-class Case_limits():
+class CaseLimits():
     def __init__(self, limit_response):
         pass
 
