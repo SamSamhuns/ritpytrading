@@ -64,7 +64,7 @@ class CaseLimits():
         self.net_fine =  limit_response['net_fine']
 
     def __repr__(self):
-        pass
+        return self.name + '_case_limit'
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 
