@@ -1,7 +1,9 @@
 # RIT-trading-python
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5412099a50854132801b34e4e65bb327)](https://www.codacy.com/app/samhunsadamant/RIT-trading-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SamSamhuns/RIT-trading-python&amp;utm_campaign=Badge_Grade) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 Python trading modules for the Rotman Interactive Trader trading software.
 <img src='https://raw.githubusercontent.com/SamSamhuns/RIT-trading-python/master/rit_image.PNG'>
-
 
 ## Prerequisites
 Recommended Python version 3
@@ -75,7 +77,9 @@ This project is licensed under the Apahce 2.0 License - see the [LICENSE.md](LIC
 -   Python open source libraries
 -   Joel Hasbrouck, NYU Stern Principles of Securities Trading, FINC-UB.0049, Spring 201. http://people.stern.nyu.edu/jhasbrou/
 
-## Contributions  [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+## Contributions  
+
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 ## Disclaimer
 
