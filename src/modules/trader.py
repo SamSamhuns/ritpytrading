@@ -22,18 +22,32 @@ base_url = host_url + base_path
 class ApiException(Exception):
     pass
 
+# Trader class takes a trader_response object which is a json obj
+# to extract all relevant information
+
+class Trader():
+    def __init__(self, trader_response ):
+        self.trader_id = trader_response['trader_id']
+        self.first_name = trader_response['first_name']
+        self.last_name = trader_response['last_name']
+        self.nlv = trader_response['nlv']
+
+    def __repr__(self):
+        return self.first_name + '_' + self.last_name + '_' + self.trader_id
+
+
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 
 
-def get_trader_response(ses, param, all=0):
+def get_trader_response(ses):
     response = ses.get(base_url + '/trader')
     if response.ok:
-        trader = response.json()
-        if all == 1:
-            return trader
-        return trader[param]
+        trader_json = response.json()
+        return Trader( trader_json )
     raise ApiException('Authorization Error: Please check API key.')
 
+def trader(ses):
+    return get_trader_response(ses)
 
 def get_trader_id(ses):
     return get_trader_response(ses, 'trader_id')
