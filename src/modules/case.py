@@ -55,7 +55,13 @@ class Case():
 
 class CaseLimits():
     def __init__(self, limit_response):
-        pass
+        self.name = limit_response["name"]
+        self.gross = limit_response['gross']
+        self.net = limit_response['net']
+        self.gross_limit = limit_response['gross_limit']
+        self.net_limit = limit_response['net_limit']
+        self.gross_fine = limit_response['gross_fine']
+        self.net_fine =  limit_response['net_fine']
 
     def __repr__(self):
         pass
