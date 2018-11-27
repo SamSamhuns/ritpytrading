@@ -25,8 +25,9 @@ class ApiException(Exception):
 # Trader class takes a trader_response object which is a json obj
 # to extract all relevant information
 
+
 class Trader():
-    def __init__(self, trader_response ):
+    def __init__(self, trader_response):
         self.trader_id = trader_response['trader_id']
         self.first_name = trader_response['first_name']
         self.last_name = trader_response['last_name']
@@ -43,27 +44,9 @@ def get_trader_response(ses):
     response = ses.get(base_url + '/trader')
     if response.ok:
         trader_json = response.json()
-        return Trader( trader_json )
+        return Trader(trader_json)
     raise ApiException('Authorization Error: Please check API key.')
+
 
 def trader(ses):
     return get_trader_response(ses)
-
-def get_trader_id(ses):
-    return get_trader_response(ses, 'trader_id')
-
-
-def get_trader_fname(ses):
-    return get_trader_response(ses, 'first_name')
-
-
-def get_trader_lname(ses):
-    return get_trader_response(ses, 'last_name')
-
-
-def get_trader_nlv(ses):
-    return get_trader_response(ses, 'nlv')
-
-
-def get_trader_all(ses):
-    return get_trader_response(ses, None, all=1)
