@@ -40,6 +40,26 @@ base_url = host_url + base_path
 class ApiException(Exception):
     pass
 
+class Case():
+    def _init__(self, case_response):
+        self.name = case_response["name"]
+        self.period = case_response["period"]
+        self.tick = case_response["tick"]
+        self.ticks_per_period = case_response["ticks_per_period"]
+        self.total_periods = case_response["total_periods"]
+        self.status = case_response["status"]
+        self.is_enforce_trading_limits = case_response["is_enforce_trading_limits"]
+
+    def __repr__(self):
+        return self.name + '_' + self.status
+
+class Case_limits():
+    def __init__(self, limit_response):
+        pass
+
+    def __repr__(self):
+        pass
+
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 
 
@@ -56,35 +76,10 @@ def get_case_response(ses, url_end, param, all=0):
         return case[param]
     raise ApiException('Authorization Error: Please check API key.')
 
+# function that returns the case object
+def case(ses):
+    return get_case_response(ses, '/case')
 
-def get_name(ses):
-    return get_case_response(ses, '/case', 'name')
-
-
-def get_status(ses):
-    return get_case_response(ses, '/case', 'status')
-
-
-def get_tick(ses):
-    return get_case_response(ses, '/case', 'tick')
-
-
-def get_period(ses):
-    return get_case_response(ses, '/case', 'period')
-
-
-def get_total_periods(ses):
-    return get_case_response(ses, '/case', 'get_periods')
-
-
-def get_ticks_per_period(ses):
-    return get_case_response(ses, '/case', 'ticks_per_period')
-
-# returns json object containing full info on case
-
-
-def get_case_all(ses):
-    return get_case_response(ses, '/case', '', 1)
 
 # functions for information on case limits
 # checking if a trade_limit is actually enforced
