@@ -54,3 +54,39 @@ base_url = host_url + base_path
 
 class ApiException(Exception):
     pass
+
+
+class security():
+    def __self__(self, security_response_obj):
+        self.ticker = security_response_obj["ticker"]
+        self.type = security_response_obj["type"]
+        self.size = security_response_obj["size"]
+        self.position = security_response_obj["position"]
+        self.vwap = security_response_obj["vwap"]
+        self.nlv = security_response_obj["nlv"]
+        self.last = security_response_obj["last"]
+        self.bid = security_response_obj["bid"]
+        self.bid_size = security_response_obj["bid_size"]
+        self.ask = security_response_obj["ask"]
+        self.ask_size = security_response_obj["ask_size"]
+        self.volume = security_response_obj["volume"]
+        self.unrealized = security_response_obj["unrealized"]
+        self.realized = security_response_obj["realized"]
+        self.currency = security_response_obj["currency"]
+        self.total_volume = security_response_obj["total_volume"]
+        self.limits = security_response_obj["limits"]
+        self.interest_rate = security_response_obj["interest_rate"]
+        self.is_tradeable = security_response_obj["is_tradeable"]
+        self.is_shortable = security_response_obj["is_shortable"]
+        self.start_period = security_response_obj["start_period"]
+        self.stop_period = security_response_obj["stop_period"]
+
+
+
+def get_security_response(ses, ticker):
+    payload = {'ticker': ticker}
+    response = ses.get(base_url + '/securities', params=payload)
+
+    if response.ok:
+        sec_info = response.json()
+        return sec_info
