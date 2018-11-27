@@ -48,7 +48,7 @@ class Order():
         self.status = ["status"]
 
     def __repr__(self)
-    return self.action + '_' +  self.quantity + '_' + self.ticker + '_' + self.price + '__' + self.order_id
+    return self.action + '_' + self.quantity + '_' + self.ticker + '_' + self.price + '__' + self.order_id
 
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
@@ -59,13 +59,16 @@ def get_order_response(ses, url_end, order_status='OPEN', order_id=None, json=0)
     # to query all orders
     if url_end == '/orders':
         payload = {'status': order_status}
-        response = ses.get((base_url + url_end), params= payload)
+        response = ses.get((base_url + url_end), params=payload)
     # to query just one order
     elif url_end == '/orders/{}':
         response = ses.get((base_url + url_end).format(order_id))
 
     if response.ok:
         orders = response.json()
+        # if the json flag is set to 1, return orders json output unformatted
+        if json == 1:
+            return orders
 
         if url_end == '/orders/{}':
             orders_obj = Order(orders)
@@ -73,9 +76,8 @@ def get_order_response(ses, url_end, order_status='OPEN', order_id=None, json=0)
 
         if url_end == '/orders':
             if json == 0:
-                orders_dict = { (Order(ord)).order_id: Order(ord) for ord in orders }
-            elif json == 1:
-                return orders
+                orders_dict = {(Order(ord)).order_id: Order(ord)
+                               for ord in orders}
             return orders_list
     raise ApiException('Authorization Error: Please check API key.')
 
@@ -85,9 +87,10 @@ def get_order_response(ses, url_end, order_status='OPEN', order_id=None, json=0)
 # returns a Order object of the order class given an order id
 
 def order(ses, id, status='OPEN'):
-    return get_order_response(ses, '/orders/{}', status, order_id=id )
+    return get_order_response(ses, '/orders/{}', status, order_id=id)
 
 # returns all the attribs of all orders in a json type list format
+
 
 def orders_json(ses, status='OPEN'):
     return get_order_response(ses, '/orders', status, order_id=None, json=1)
