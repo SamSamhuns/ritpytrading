@@ -35,8 +35,22 @@ base_url = host_url + base_path
 class ApiException(Exception):
     pass
 
+class Security_History():
+    # sec_history is a json obj returned from the API get request
+    def __init__(self, sec_history):
+        self.tick = sec_history["tick"]
+        self.open = sec_history["open"]
+        self.high = sec_history["high"]
+        self.low = sec_history["low"]
+        self.close = sec_history["close"]
 
-def get_sec_history_response(ses, ticker_sym, param, all=0, period_num=None, lim_num=None):
+    def __repr__(self):
+        return self.tick
+
+# period_num is the period to retrive data from. Defaults to current period.
+# lim_num is the Result set limit, counting backwards from the most recent tick. Defaults to retrieving the entire period.
+
+def get_sec_history_response(ses, ticker_sym, param, period_num=None, lim_num=None, json=0):
     # checking for optional paramaters
     payload = {}
     if period_num == None and lim_num = None:
@@ -53,7 +67,7 @@ def get_sec_history_response(ses, ticker_sym, param, all=0, period_num=None, lim
     if response.ok:
         securities_history = response.json()
         # if the all flag is set to 1 return all parameters in a JSON format
-        if all == 1:
+        if json == 1:
             return securities_history
         return securities_history[0][param]
 
