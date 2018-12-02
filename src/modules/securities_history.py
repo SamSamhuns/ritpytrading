@@ -35,6 +35,7 @@ base_url = host_url + base_path
 class ApiException(Exception):
     pass
 
+
 class Security_History():
     # sec_history is a json obj returned from the API get request
     def __init__(self, sec_history):
@@ -50,7 +51,8 @@ class Security_History():
 # period_num is the period to retrive data from. Defaults to current period.
 # lim_num is the Result set limit, counting backwards from the most recent tick. Defaults to retrieving the entire period.
 
-def get_sec_history_response(ses, ticker_sym, param, period_num=None, lim_num=None, json=0):
+
+def get_sec_history_response(ses, ticker_sym, period_num=None, lim_num=None, json=0):
     # checking for optional paramaters
     payload = {}
     if period_num == None and lim_num = None:
@@ -69,32 +71,22 @@ def get_sec_history_response(ses, ticker_sym, param, period_num=None, lim_num=No
         # if the all flag is set to 1 return all parameters in a JSON format
         if json == 1:
             return securities_history
-        return securities_history[0][param]
+
+        sec_history_dict = {Security_History(sec_hist).tick: Security_History(
+            sec_hist) for sec_hist in securities_history}
+
+        return sec_history_dict
 
 # function to get values of different parameters
 
 
-def get_hist_tick(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return get_sec_history_response(ses, ticker_sym, 'tick', period_num=period_numb, lim_num=lim_numb)
+def security_history_dict(ses, ticker_sym, period_numb=None, lim_numb=None):
+    return get_sec_history_response(ses, ticker_sym, period_num=period_numb, lim_num=lim_numb)
 
 
-def get_hist_open(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return get_sec_history_response(ses, ticker_sym, 'open', period_num=period_numb, lim_num=lim_numb)
-
-
-def get_hist_high(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return get_sec_history_response(ses, ticker_sym, 'high', period_num=period_numb, lim_num=lim_numb)
-
-
-def get_hist_low(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return get_sec_history_response(ses, ticker_sym, 'low', period_num=period_numb, lim_num=lim_numb)
-
-
-def get_hist_close(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return get_sec_history_response(ses, ticker_sym, 'close', period_num=period_numb, lim_num=lim_numb)
 
 # get all full JSON response for the securities history get request
 
 
-def get_sec_hist_all(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return get_sec_history_response(ses, ticker_sym, all=1, period_num=period_numb, lim_num=lim_numb)
+def security_history_json(ses, ticker_sym, period_numb=None, lim_numb=None):
+    return get_sec_history_response(ses, ticker_sym, period_num=period_numb, lim_num=lim_numb, json=1)
