@@ -59,6 +59,7 @@ class ApiException(Exception):
 
 
 class Security():
+    # security_response is a json obj returned from the API get request
     def __self__(self, security_response):
         self.ticker = security_response["ticker"]
         self.type = security_response["type"]
