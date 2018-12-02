@@ -33,19 +33,20 @@ class ApiException(Exception):
 
 
 class Order():
+    # order_response is a json obj returned from the API get request
     def __init__(self, order_response):
-        self.order_id = zz["order_id"]
-        self.period = zz["period"]
-        self.tick = zz["tick"]
-        self.trader_id = zz["trader_id"]
-        self.ticker = zz["ticker"]
-        self.type = zz["type"]
-        self.quantity = zz["quantity"]
-        self.action = zz["action"]
-        self.price = zz["price"]
-        self.quantity_filled = ["quantity_filled"]
-        self.vwap = ["vwap"]
-        self.status = ["status"]
+        self.order_id = order_response["order_id"]
+        self.period = order_response["period"]
+        self.tick = order_response["tick"]
+        self.trader_id = order_response["trader_id"]
+        self.ticker = order_response["ticker"]
+        self.type = order_response["type"]
+        self.quantity = order_response["quantity"]
+        self.action = order_response["action"]
+        self.price = order_response["price"]
+        self.quantity_filled = order_response["quantity_filled"]
+        self.vwap = order_response["vwap"]
+        self.status = order_response["status"]
 
     def __repr__(self)
     return self.action + '_' + self.quantity + '_' + self.ticker + '_' + self.price + '__' + self.order_id
