@@ -64,7 +64,7 @@ def get_news_response(ses, since=None, limit=None, json=0):
     if response.ok:
         news_json = response.json()
 
-        # returns all attributes of the case json response object
+        # returns all attributes of the news json response object
         if json == 1:
             return news_json
 
@@ -75,10 +75,10 @@ def get_news_response(ses, since=None, limit=None, json=0):
     raise ApiException('Authorization Error: Please check API key.')
 
 
-# function that returns the case object
+# function that returns the news object
 def news_dict(ses, since_id=None, limit_itm=None):
     return get_news_response(ses,  since=since_id, limit=limit_itm)
 
-# returns a list of JSON fomratted output for case object
+# returns a list of JSON fomratted output for news object
 def news_json(ses, since_id=None, limit_itm=None):
     return get_news_response(ses,  since=since_id, limit=limit_itm, json=1)
