@@ -104,10 +104,10 @@ def get_security_response(ses, ticker, json=0):
         if json == 1:
             return sec_info
 
-        order_list = {(Security(order)).ticker: Security(order)
+        order_dict = {(Security(order)).ticker: Security(order)
                       for order in sec_info}
         # returns a dict of security obj of the security class with ticker ticker names as keys
-        return order_list
+        return order_dict
     raise ApiException('Authorization Error: Please check API key.')
 
 # By default no specific ticker_sym is None
