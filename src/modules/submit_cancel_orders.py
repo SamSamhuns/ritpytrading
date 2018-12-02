@@ -37,6 +37,8 @@ def market_order(ses, ticker, side, quantity):
         print('%s %s Market order was not submitted.' % (side, quantity))
     if response.status_code == 429:
         print('Error: Orders submitted too frequently.')
+    else:
+        raise ApiException('Authorization Error: Please check API key.')
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 
@@ -54,6 +56,8 @@ def limit_order(ses, ticker, side, quantity, price):
         print('%s %s Limit order was not submitted.' % (side, quantity))
     if response.status_code == 429:
         print('Error: Orders submitted too frequently.')
+    else:
+        raise ApiException('Authorization Error: Please check API key.')
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 
@@ -65,7 +69,8 @@ def cancel_order(ses, ticker, quantity, order_id):
         success = status['success']
         print('Order ' + order_id + ' was successfully cancelled', success)
     else:
-        print('Error in cancelling order %d' % (order_id))
+        raise ApiException('Authorization Error: Please check API key.')
+
 
 # if all_flag = 1 then all open orders are cancelled
 # set all_flag = 0 to cancel only select orders
@@ -84,3 +89,5 @@ def cancel_order_bulk(ses, price_direc, price_lim, volume_direc, volume_lim, all
         status = response.json()
         cancelled = status['cancelled_order_ids']
         print('Cancelled orders:', cancelled)
+    else:
+        raise ApiException('Authorization Error: Please check API key.')
