@@ -41,6 +41,7 @@ class ApiException(Exception):
     pass
 
 class Case():
+    # case_response is a json obj returned from the API get request
     def _init__(self, case_response):
         self.name = case_response["name"]
         self.period = case_response["period"]
@@ -87,6 +88,9 @@ def get_case_response(ses, url_end, json=0):
 def case(ses):
     return get_case_response(ses, '/case')
 
+# returns a list of JSON fomratted output for case object
+def case_json(ses):
+    return get_case_response(ses, '/case', json=1)
 
 # functions for information on case limits
 # checking if a trade_limit is actually enforced
