@@ -27,6 +27,7 @@ class ApiException(Exception):
 
 
 class Trader():
+    # trader_response is a json obj returned from the API get request
     def __init__(self, trader_response):
         self.trader_id = trader_response['trader_id']
         self.first_name = trader_response['first_name']
