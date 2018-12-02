@@ -84,7 +84,6 @@ def security_history_dict(ses, ticker_sym, period_numb=None, lim_numb=None):
     return get_sec_history_response(ses, ticker_sym, period_num=period_numb, lim_num=lim_numb)
 
 
-
 # get all full JSON response for the securities history get request
 
 
