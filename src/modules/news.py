@@ -80,7 +80,5 @@ def news_dict(ses, since_id=None, limit_itm=None):
     return get_news_response(ses,  since=since_id, limit=limit_itm)
 
 # returns a list of JSON fomratted output for case object
-
-
 def news_json(ses, since_id=None, limit_itm=None):
     return get_news_response(ses,  since=since_id, limit=limit_itm, json=1)
