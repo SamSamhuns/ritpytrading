@@ -33,8 +33,6 @@ def market_order(ses, ticker, side, quantity):
         id = mkt_order['order_id']
         print('%s %s Market order was submitted and has ID %d' %
               (side, quantity, id))
-    else:
-        print('%s %s Market order was not submitted.' % (side, quantity))
     if response.status_code == 429:
         print('Error: Orders submitted too frequently.')
     else:
@@ -52,9 +50,7 @@ def limit_order(ses, ticker, side, quantity, price):
         id = lim_order['order_id']
         print("%s %s Limit order was submitted and has ID %d " %
               (side, quantity, id))
-    else:
-        print('%s %s Limit order was not submitted.' % (side, quantity))
-    if response.status_code == 429:
+    elif response.status_code == 429:
         print('Error: Orders submitted too frequently.')
     else:
         raise ApiException('Authorization Error: Please check API key.')
@@ -67,7 +63,10 @@ def cancel_order(ses, ticker, quantity, order_id):
     if response.ok:
         status = response.json()
         success = status['success']
-        print('Order ' + order_id + ' was successfully cancelled', success)
+        if success:
+            print('Order ' + order_id + ' was successfully cancelled.')
+        else:
+            print('Order ' + order_id + ' was not successfully cancelled.')
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
