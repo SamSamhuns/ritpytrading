@@ -40,7 +40,6 @@ def market_order(ses, ticker, side, quantity):
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 
-
 def limit_order(ses, ticker, side, quantity, price):
     lim_order_params = {'ticker': ticker, 'type': 'LIMIT',
                         'quantity': quantity, 'price': price, 'action': side}
