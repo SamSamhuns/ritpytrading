@@ -75,7 +75,7 @@ def post_tender_response(ses, tender_id, price=None):
     if price != None:
         payload = {"price":price}
 
-    response = ses.post(base_url + "/tenders/{}", params=payload).format(tender_id_parm)
+    response = ses.post(base_url + "/tenders/" + str(tender_id_parm), params=payload)
     if response.ok:
         tenders_json = response.json()
         tenders_return = tenders_json["success"]
@@ -116,6 +116,7 @@ def accept_tender(ses, tender_iden, price_tender=None):
     tender_dict = tenders_dict(ses)
     if tender_dict[tender_iden].is_fixed_bid:
         post_tender_response(ses, tender_iden, price=price_tender )
+    # if the tender is not fixed bid, price must be supplied
     elif:
         if price == None:
             print("Price is required since tender is not fixed bid.")
