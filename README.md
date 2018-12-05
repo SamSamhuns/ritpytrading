@@ -79,7 +79,7 @@ This project is licensed under the Apahce 2.0 License - see the [LICENSE.md](LIC
 
 ## Contributions  
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/SamSamhuns)
 
 ## Disclaimer
 
