@@ -1,4 +1,5 @@
-# RIT-trading-python
+# ritpytrading
+## RIT-trading-python
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5412099a50854132801b34e4e65bb327)](https://www.codacy.com/app/samhunsadamant/RIT-trading-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SamSamhuns/RIT-trading-python&amp;utm_campaign=Badge_Grade) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
