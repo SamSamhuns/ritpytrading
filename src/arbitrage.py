@@ -53,9 +53,11 @@ def main():
 
     with requests.Session() as ses:
         ses.headers.update(API_KEY)
-        tick = case.get_tick(ses)
+        current_case = case.case(ses)
+        current_case_lim = case.case_limits(ses)
+        tick = current_case.tick
         # the order submission limits are a max of 10000 units per order
-        max_arbitrage_qty = min(10000, case.get_gross_lim(ses))
+        max_arbitrage_qty = min(10000, current_case_lim.gross_limit )
         while tick > 5 and tick < 295 and not shutdown:
             # get best bid and ask for security in both exchanges
             sec1_a_bid = book.get_security_info(ses, sec1_a, 'bids', 'price')
@@ -86,7 +88,8 @@ def main():
                 sleep(1)
 
             # updating ticks to make sure the session is active
-            tick = case.get_tick(ses)
+            current_case = case.case(ses)
+            tick = current_case.tick
 
 
 if __name__ == '__main__':
