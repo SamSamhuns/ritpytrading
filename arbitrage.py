@@ -8,11 +8,11 @@ import signal
 import requests
 from time import sleep
 # importing case related functions from case.py
-from modules import case
+from ritpytrading import case
 # importing securities_book to get bis ask values
-from modules import securities_book as book
+from ritpytrading import securities_book as book
 # import submit_cancel_orders to submit orders
-from modules import submit_cancel_orders as order
+from ritpytrading import submit_cancel_orders as order
 
 
 # use your unique API key here
