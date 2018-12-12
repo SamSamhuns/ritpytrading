@@ -46,6 +46,9 @@ class News():
     def __repr__(self):
         return self.news_id + ' ' + self.headline
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 # since = Retrieves only news items after a particular news id.
 # limit = Result set limit, counting backwards from the most recent news item. Defaults to 20.
