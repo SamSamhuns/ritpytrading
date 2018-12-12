@@ -72,14 +72,14 @@ class Asset():
         self.stop_period = asset_response["stop_period"]
 
     def __repr__(self):
-        return self.ticker + ' ' + self.type
+        return self.ticker + ' ' + self.type + ' Asset'
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 # ticker = ticker sumbol
 # returns a JSON obj with params given at the top
 
 
-def get_assets_json(ses, ticker=None):
+def _get_assets_json(ses, ticker=None):
     payload = {}
     if ticker != None:
         payload = {'ticker': ticker}
@@ -105,12 +105,12 @@ def assets_response_handle(assets_json, ticker=None):
 
 # function that returns a single asset object given for a given ticker
 def asset(ses, ticker_sym):
-    return assets_response_handle(get_assets_json(ses, ticker=ticker_sym), ticker=ticker_sym)
+    return assets_response_handle(_get_assets_json(ses, ticker=ticker_sym), ticker=ticker_sym)
 
 # function that returns a dictionary of the assets object
 def assets_dict(ses):
-    return assets_response_handle(get_assets_json(ses))
+    return assets_response_handle(_get_assets_json(ses))
 
 # returns a list of JSON fomratted output for assets object
 def assets_json(ses):
-    return get_assets_json(ses)
+    return _get_assets_json(ses)
