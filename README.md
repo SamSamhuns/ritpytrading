@@ -48,11 +48,11 @@ Once python has been added to the `PATH` system variable in Windows, the code fo
 
 From the main directory, run:
 ```
-$ python -m unittest test
+$ python -m unittest
 ```
 Verbose mode
 ```
-$ python -m unittest -v test
+$ python -m unittest discover -v 
 ```
 
 
