@@ -37,6 +37,8 @@ class Trader():
     def __repr__(self):
         return self.first_name + '_' + self.last_name + '_' + self.trader_id
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 
