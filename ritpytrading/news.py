@@ -35,7 +35,7 @@ class ApiException(Exception):
 
 class News():
     # case_response is a json obj returned from the API get request
-    def _init__(self, news_response):
+    def __init__(self, news_response):
         self.news_id = news_response["news_id"]
         self.period = news_response["period"]
         self.tick = news_response["tick"]
