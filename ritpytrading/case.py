@@ -42,7 +42,7 @@ class ApiException(Exception):
 
 class Case():
     # case_response is a json obj returned from the API get request
-    def _init__(self, case_response):
+    def __init__(self, case_response):
         self.name = case_response["name"]
         self.period = case_response["period"]
         self.tick = case_response["tick"]
