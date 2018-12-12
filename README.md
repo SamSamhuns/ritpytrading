@@ -38,20 +38,17 @@ Open the anaconda prompt and use the following command to install all modules fr
 
 After cloning the repository, install the required python packages using pip.
 ```
-git clone https://github.com/SamSamhuns/RIT-trading-python
-pip install -r requirements.txt
+$ git clone https://github.com/SamSamhuns/RIT-trading-python
+$ pip install -r requirements.txt
 ```
 
-## Running the tests
+## Running the tests with python unittest module
 
 Once python has been added to the `PATH` system variable in Windows, the code for running the scripts on Windows and Linux/BSD based systems are the same.
 
-
-In the command line:
-
-To run the `main.py` script to get an interactive program to submit or cancel orders.
+From the main directory, run:
 ```
-python main.py
+$ python -m unittest test
 ```
 
 
@@ -72,7 +69,7 @@ Version tracked online with GitHub
 This project is licensed under the Apahce 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-  
+
 -   Rotman School of Manangement, University of Toronto http://www.rotman.utoronto.ca/
 -   Rotman Interactive Trader http://rit.rotman.utoronto.ca/
 -   Python open source libraries
