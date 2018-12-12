@@ -76,6 +76,7 @@ class Asset():
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 # ticker = ticker sumbol
+# returns a JSON obj with params given at the top
 
 
 def get_assets_response(ses, ticker=None):
