@@ -87,6 +87,9 @@ class Security():
     def __repr__(self):
         return self.ticker
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
 # gets the list of all available securities or of a particular
 # security if its ticker is supplied
 
