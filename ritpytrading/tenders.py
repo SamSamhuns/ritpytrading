@@ -48,6 +48,9 @@ class Tender():
     def __repr__(self):
         return self.tender_id + ' ' + self.caption
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 def get_tender_response(ses, json=0):
 
