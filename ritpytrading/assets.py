@@ -90,10 +90,7 @@ def get_assets_response(ses, ticker=None):
     raise ApiException('Authorization Error: Please check API key.')
 
 
-def assets_response_handle(assets_json, json=0):
-    # returns all attributes of the asset json response object
-    if json == 1:
-        return assets_json
+def assets_response_handle(assets_json, ticker=None):
     # if no ticker is given, return a dict of asset objects
     if ticker == None:
         assets_dict = {Asset(asset_obj).news_id: Asset(asset_obj)
@@ -107,16 +104,12 @@ def assets_response_handle(assets_json, json=0):
 
 # function that returns a single asset object given for a given ticker
 def asset(ses, ticker_sym):
-    return assets_response_handle(get_assets_response(ses, ticker=ticker_sym))
+    return assets_response_handle(get_assets_response(ses, ticker=ticker_sym), ticker=ticker_sym)
 
 # function that returns a dictionary of the assets object
-
-
 def assets_dict(ses):
-    return get_assets_response(ses)
+    return assets_response_handle(get_assets_response(ses))
 
 # returns a list of JSON fomratted output for assets object
-
-
 def assets_json(ses):
-    return get_assets_response(ses, ticker=None, json=1)
+    return get_assets_response(ses)
