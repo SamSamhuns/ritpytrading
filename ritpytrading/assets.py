@@ -55,7 +55,7 @@ class ApiException(Exception):
 
 class Asset():
     # case_response is a json obj returned from the API get request
-    def _init__(self, asset_response):
+    def __init__(self, asset_response):
         self.ticker = asset_response["ticker"]
         self.type = asset_response["type"]
         self.description = asset_response["description"]
