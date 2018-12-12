@@ -1,8 +1,5 @@
 import unittest
-
-# import the correct module
-# import assets
-# from ritpytrading import assets
+from ritpytrading import assets
 
 
 _sample_json_resp = [
