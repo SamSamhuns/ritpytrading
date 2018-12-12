@@ -47,6 +47,9 @@ class Security_History():
 
     def __repr__(self):
         return self.tick
+        
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
 
 # period_num is the period to retrive data from. Defaults to current period.
 # lim_num is the Result set limit, counting backwards from the most recent tick. Defaults to retrieving the entire period.
