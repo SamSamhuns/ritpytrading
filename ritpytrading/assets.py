@@ -74,6 +74,9 @@ class Asset():
     def __repr__(self):
         return self.ticker + ' ' + self.type + ' Asset'
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 # ticker = ticker sumbol
 # returns a JSON obj with params given at the top
