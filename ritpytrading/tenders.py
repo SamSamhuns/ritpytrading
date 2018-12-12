@@ -34,7 +34,7 @@ class ApiException(Exception):
 
 class Tender():
     # case_response is a json obj returned from the API get request
-    def _init__(self, tender_response):
+    def __init__(self, tender_response):
         self.tender_id = tender_response["tender_id"]
         self.period = tender_response["period"]
         self.tick = tender_response["tick"]
