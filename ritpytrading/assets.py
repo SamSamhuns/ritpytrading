@@ -97,7 +97,7 @@ def _get_assets_json(ses, ticker=None):
 def assets_response_handle(assets_json, ticker=None):
     # if no ticker is given, return a dict of asset objects
     if ticker == None:
-        assets_dict = {Asset(asset_obj).news_id: Asset(asset_obj)
+        assets_dict = {Asset(asset_obj).ticker: Asset(asset_obj)
                        for asset_obj in assets_json}
     # if ticker sumbol is given
     elif ticker != None:
