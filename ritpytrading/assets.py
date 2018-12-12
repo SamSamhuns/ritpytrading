@@ -78,7 +78,7 @@ class Asset():
 # ticker = ticker sumbol
 
 
-def get_assets_response(ses, ticker=None, json=0):
+def get_assets_response(ses, ticker=None):
     payload = {}
     if ticker != None:
         payload = {'ticker': ticker}
@@ -86,29 +86,37 @@ def get_assets_response(ses, ticker=None, json=0):
     response = ses.get(base_url + "/assets", params=payload)
     if response.ok:
         assets_json = response.json()
-
-        # returns all attributes of the asset json response object
-        if json == 1:
-            return assets_json
-        # if no ticker is given, return a dict of asset objects
-        if ticker == None:
-            assets_dict = {Asset(asset_obj).news_id: Asset(asset_obj)
-                           for asset_obj in assets_json}
-        # if ticker sumbol is given
-        elif ticker != None:
-            assets_dict = Asset(assets_json[0])
-
-        return assets_dict
+        return assets_json
     raise ApiException('Authorization Error: Please check API key.')
 
+
+def assets_response_handle(assets_json, json=0):
+    # returns all attributes of the asset json response object
+    if json == 1:
+        return assets_json
+    # if no ticker is given, return a dict of asset objects
+    if ticker == None:
+        assets_dict = {Asset(asset_obj).news_id: Asset(asset_obj)
+                       for asset_obj in assets_json}
+    # if ticker sumbol is given
+    elif ticker != None:
+        assets_dict = Asset(assets_json[0])
+
+    return assets_dict
+
+
 # function that returns a single asset object given for a given ticker
-def asset( ses, ticker_sym ):
-    return get_assets_response(ses, ticker=ticker_sym)
+def asset(ses, ticker_sym):
+    return assets_response_handle(get_assets_response(ses, ticker=ticker_sym))
 
 # function that returns a dictionary of the assets object
+
+
 def assets_dict(ses):
     return get_assets_response(ses)
 
 # returns a list of JSON fomratted output for assets object
+
+
 def assets_json(ses):
     return get_assets_response(ses, ticker=None, json=1)
