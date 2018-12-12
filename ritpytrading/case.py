@@ -54,6 +54,9 @@ class Case():
     def __repr__(self):
         return self.name + '_' + self.status
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
 class CaseLimits():
     def __init__(self, limit_response):
         self.name = limit_response["name"]
@@ -67,9 +70,10 @@ class CaseLimits():
     def __repr__(self):
         return self.name + '_case_limit'
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
-
-
 def get_case_response(ses, url_end, json=0):
     response = ses.get(base_url + url_end)
     if response.ok:
@@ -94,8 +98,6 @@ def case_json(ses):
 
 # functions for information on case limits
 # checking if a trade_limit is actually enforced
-
-
 def trade_lim_enforce_chk(ses):
     current_case = case(ses)
     if current_case.is_enforce_trading_limits == True:
@@ -103,7 +105,6 @@ def trade_lim_enforce_chk(ses):
     return False
 
 # returns  a CaseLimits obj from the CaseLimits class
-
 def case_limits(ses):
     if trade_lim_enforce_chk(ses) == True:
         return get_case_response(ses, '/limits')
@@ -113,7 +114,6 @@ def case_limits(ses):
         return msg
 
 # returns a list of JSON fomratted output for case limits
-
 def case_limits_json(ses):
     if trade_lim_enforce_chk(ses) == True:
         return get_case_response(ses, '/limits', json=1)
