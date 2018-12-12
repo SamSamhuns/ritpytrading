@@ -1,5 +1,9 @@
-from ..ritpytrading import assets
 import unittest
+
+# import the correct module
+# import assets
+# from ritpytrading import assets
+
 
 _sample_json_resp = [
     {
@@ -36,15 +40,14 @@ _sample_json_resp = [
 class TestAssetsMethods(unittest.TestCase):
 
     def test_asset(self):
-        self.assertEqual(_sample_json_resp, assets.assets_response_handle(
-            _sample_json_resp, ticker='AAPL'))
+        method_obj = assets.assets_response_handle(_sample_json_resp, ticker='AAPL')
+        class_obj = assets.Asset( _sample_json_resp[0] )
+        self.assertEqual( method_obj, class_obj )
 
     def test_assets_dict(self):
-        pass
-
-    def test_assets_json(self):
-        pass
-        # self.assertEqual( )
+        method_dict = assets.assets_response_handle(_sample_json_resp)
+        class_dict = { _sample_json_resp[0]["ticker"]: assets.Asset(_sample_json_resp[0]) }
+        self.assertEqual( method_dict, class_dict )
 
 
 if __name__ == "__main__":
