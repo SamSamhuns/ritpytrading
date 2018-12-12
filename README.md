@@ -50,6 +50,10 @@ From the main directory, run:
 ```
 $ python -m unittest test
 ```
+Verbose mode
+```
+$ python -m unittest -v test
+```
 
 
 ## Built With
