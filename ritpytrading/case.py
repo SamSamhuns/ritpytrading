@@ -10,7 +10,7 @@ Case object return value: JSON formatted
     "ticks_per_period": 0,
     "total_periods": 0,
     "status": "ACTIVE",
-    "is_enforce_trading_limits": true
+    "is_enforce_trading_limits": True
 }
 Limits object return values: JSON formatted
 Returned as a list containing a JSON object
