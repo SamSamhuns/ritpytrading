@@ -43,13 +43,15 @@ class Trader():
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
 
 
-def get_trader_response(ses):
+def _get_trader_json(ses):
     response = ses.get(base_url + '/trader')
     if response.ok:
         trader_json = response.json()
-        return Trader(trader_json)
+        return trader_json
     raise ApiException('Authorization Error: Please check API key.')
 
+def trader_response_handle(trader_json):
+    return Trader(trader_json)
 
 def trader(ses):
-    return get_trader_response(ses)
+    return trader_response_handle(_get_trader_json(ses))
