@@ -54,7 +54,7 @@ class News():
 # limit = Result set limit, counting backwards from the most recent news item. Defaults to 20.
 
 
-def get_news_response(ses, since=None, limit=None, json=0):
+def _get_news_json(ses, since=None, limit=None):
     payload = {}
     if since != None and limit != None:
         payload = {'since': since, 'limit': limit}
@@ -68,20 +68,20 @@ def get_news_response(ses, since=None, limit=None, json=0):
         news_json = response.json()
 
         # returns all attributes of the news json response object
-        if json == 1:
-            return news_json
-
-        news_dict = {News(news_obj).news_id: News(news_obj)
-                     for news_obj in news_json}
-
-        return news_dict
+        return news_json
     raise ApiException('Authorization Error: Please check API key.')
+
+def news_response_handle(news_json):
+    news_dict = {News(news_obj).news_id: News(news_obj)
+                 for news_obj in news_json}
+
+    return news_dict
 
 
 # function that returns the news object
 def news_dict(ses, since_id=None, limit_itm=None):
-    return get_news_response(ses,  since=since_id, limit=limit_itm)
+    return news_response_handle(_get_news_json(ses,  since=since_id, limit=limit_itm))
 
 # returns a list of JSON fomratted output for news object
 def news_json(ses, since_id=None, limit_itm=None):
-    return get_news_response(ses,  since=since_id, limit=limit_itm, json=1)
+    return _get_news_json(ses,  since=since_id, limit=limit_itm)
