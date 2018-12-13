@@ -86,7 +86,7 @@ def _get_case_json(ses, url_end):
 
 def case_response_handle(case_json, url_end):
     if url_end == '/limits':
-        return Case(case_json[0])
+        return CaseLimits(case_json[0])
     #elif url_end == '/case':
     return Case(case_json)
 
