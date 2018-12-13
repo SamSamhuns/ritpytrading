@@ -58,6 +58,7 @@ class Case():
         return self.__dict__ == other.__dict__
 
 class CaseLimits():
+    # limit_response is a json obj returned from the API get request
     def __init__(self, limit_response):
         self.name = limit_response["name"]
         self.gross = limit_response['gross']
