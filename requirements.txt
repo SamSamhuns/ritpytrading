@@ -5,7 +5,7 @@ cycler==0.10.0
 Cython==0.29.1
 idna==2.8
 kiwisolver==1.0.1
-matplotlib==2.2.3
+matplotlib==3.0.2
 numpy==1.15.4
 pandas==0.23.4
 pyparsing==2.3.0
