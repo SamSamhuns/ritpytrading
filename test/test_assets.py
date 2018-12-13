@@ -4,7 +4,7 @@ from ritpytrading import assets
 
 class TestAssetsMethods(unittest.TestCase):
     def setUp(self):
-        self._sample_json_resp = [
+        self._sample_assets_resp = [
             {
                 "ticker": "AAPL",
                 "type": "equity",
@@ -38,14 +38,14 @@ class TestAssetsMethods(unittest.TestCase):
 
     def test_asset(self):
         method_obj = assets.assets_response_handle(
-            self._sample_json_resp, ticker='AAPL')
-        class_obj = assets.Asset(self._sample_json_resp[0])
+            self._sample_assets_resp, ticker='AAPL')
+        class_obj = assets.Asset(self._sample_assets_resp[0])
         self.assertEqual(method_obj, class_obj)
 
     def test_assets_dict(self):
-        method_dict = assets.assets_response_handle(self._sample_json_resp)
-        class_dict = {self._sample_json_resp[0]["ticker"]: assets.Asset(
-            self._sample_json_resp[0])}
+        method_dict = assets.assets_response_handle(self._sample_assets_resp)
+        class_dict = {self._sample_assets_resp[0]["ticker"]: assets.Asset(
+            self._sample_assets_resp[0])}
         self.assertEqual(method_dict, class_dict)
 
 
