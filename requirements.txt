@@ -1,5 +1,5 @@
 backports.functools-lru-cache==1.5
-certifi==2018.10.15
+certifi==2018.11.29
 chardet==3.0.4
 cycler==0.10.0
 Cython==0.29
