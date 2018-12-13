@@ -2,7 +2,7 @@ import unittest
 from ritpytrading import case
 
 
-class TestCaseMethods( unittest.TestCase ):
+class TestCaseMethods(unittest.TestCase):
     def setUp(self):
         self._sample_case_resp = {
             "name": "string",
@@ -32,7 +32,8 @@ class TestCaseMethods( unittest.TestCase ):
         self.assertEqual(method_obj, class_obj)
 
     def test_case_limits(self):
-        method_obj = case.case_response_handle(self._sample_limits_resp, '/limits')
+        method_obj = case.case_response_handle(
+            self._sample_limits_resp, '/limits')
         class_obj = case.CaseLimits(self._sample_limits_resp[0])
         self.assertEqual(method_obj, class_obj)
 
