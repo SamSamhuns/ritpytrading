@@ -48,8 +48,8 @@ class Order():
         self.vwap = order_response["vwap"]
         self.status = order_response["status"]
 
-    def __repr__(self)
-    return self.action + '_' + self.quantity + '_' + self.ticker + '_' + self.price + '__' + self.order_id
+    def __repr__(self):
+        return self.action + '_' + self.quantity + '_' + self.ticker + '_' + self.price + '__' + self.order_id
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
@@ -82,7 +82,7 @@ def orders_response_handle( orders_json, url_end ):
         if url_end == '/orders':
             orders_dict = {(Order(ord)).order_id: Order(ord)
                            for ord in orders_json}
-            return orders_list
+            return orders_dict
 
 
 # status can be OPEN, TRANSACTED or CLOSED
