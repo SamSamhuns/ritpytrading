@@ -58,7 +58,7 @@ class Order():
 # order status can be OPEN, TRANSACTED or CANCELLED
 # Json return mode is set to 0/Off by default
 
-def get_order_response(ses, url_end, order_status='OPEN', order_id=None, json=0):
+def _get_orders_json(ses, url_end, order_status='OPEN', order_id=None):
     # to query all orders
     if url_end == '/orders':
         payload = {'status': order_status}
@@ -68,37 +68,33 @@ def get_order_response(ses, url_end, order_status='OPEN', order_id=None, json=0)
         response = ses.get((base_url + url_end).format(order_id))
 
     if response.ok:
-        orders = response.json()
-        # if the json flag is set to 1, return orders json output unformatted
-        if json == 1:
-            return orders
+        orders_json = response.json()
+        # Return orders json output unformatted
+        return orders_json
+    raise ApiException('Authorization Error: Please check API key.')
 
+
+def orders_response_handle( orders_json, url_end ):
         if url_end == '/orders/{}':
-            orders_obj = Order(orders)
+            orders_obj = Order(orders_json)
             return orders_obj
 
         if url_end == '/orders':
             orders_dict = {(Order(ord)).order_id: Order(ord)
-                           for ord in orders}
+                           for ord in orders_json}
             return orders_list
-    raise ApiException('Authorization Error: Please check API key.')
 
 
 # status can be OPEN, TRANSACTED or CLOSED
 # status OPEN by default
 # returns a Order object of the order class given an order id
-
 def order(ses, id, status='OPEN'):
-    return get_order_response(ses, '/orders/{}', status, order_id=id)
+    return orders_response_handle(_get_orders_json(ses, '/orders/{}', status, order_id=id), '/orders/{}')
 
 # returns all the attribs of all orders in a json type list format
-
-
 def orders_json(ses, status='OPEN'):
-    return get_order_response(ses, '/orders', status, order_id=None, json=1)
-
+    return _get_orders_json(ses, '/orders', status, order_id=None)
 
 # returns all the orders as a dict with the order_ids as key
-
 def orders_dict(ses, status='OPEN'):
-    return get_order_response(ses, '/orders', status, order_id=None)
+    return orders_response_handle(_get_orders_json(ses, '/orders', status, order_id=None), '/orders')
