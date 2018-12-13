@@ -100,7 +100,7 @@ def case_json(ses):
 # functions for information on case limits
 # checking if a trade_limit is actually enforced
 def trade_lim_enforce_chk(ses):
-    current_case = case(ses)
+    current_case = case(ses)    # calling the case func not the class instance
     if current_case.is_enforce_trading_limits == True:
         return True
     return False
@@ -108,7 +108,7 @@ def trade_lim_enforce_chk(ses):
 # returns  a CaseLimits obj from the CaseLimits class
 def case_limits(ses):
     if trade_lim_enforce_chk(ses) == True:
-        return get_case_response(ses, '/limits')
+        return case_response_handle( _get_case_json(ses, '/limits'), '/limits')
     else:
         msg = "Case has no trading limits"
         print(msg)
@@ -117,7 +117,7 @@ def case_limits(ses):
 # returns a list of JSON fomratted output for case limits
 def case_limits_json(ses):
     if trade_lim_enforce_chk(ses) == True:
-        return get_case_response(ses, '/limits', json=1)
+        return _get_case_json(ses, '/limits')
     else:
         msg = "Case has no trading limits"
         print(msg)
