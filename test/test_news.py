@@ -4,7 +4,7 @@ from ritpytrading import news
 
 class TestNewsMethods(unittest.TestCase):
     def setUp(self):
-        self._sample_news_response = [
+        self._sample_news_resp = [
           {
             "news_id": 0,
             "period": 0,
@@ -16,8 +16,8 @@ class TestNewsMethods(unittest.TestCase):
         ]
 
     def test_news_dict(self):
-        method_dict = news.news_response_handle(self._sample_news_response)
-        class_dict = { self._sample_news_response[0]["news_id"]: news.News(self._sample_news_response[0]) }
+        method_dict = news.news_response_handle(self._sample_news_resp)
+        class_dict = { self._sample_news_resp[0]["news_id"]: news.News(self._sample_news_resp[0]) }
         self.assertEqual(method_dict, class_dict)
 
 if __name__ == "__main__":
