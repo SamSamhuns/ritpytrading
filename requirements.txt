@@ -3,7 +3,7 @@ certifi==2018.11.29
 chardet==3.0.4
 cycler==0.10.0
 Cython==0.29.1
-idna==2.7
+idna==2.8
 kiwisolver==1.0.1
 matplotlib==2.2.3
 numpy==1.15.4
