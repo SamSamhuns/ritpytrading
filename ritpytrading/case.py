@@ -74,19 +74,20 @@ class CaseLimits():
         return self.__dict__ == other.__dict__
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
-def get_case_response(ses, url_end, json=0):
+def _get_case_json(ses, url_end):
     response = ses.get(base_url + url_end)
     if response.ok:
         case_json = response.json()
 
         # returns all attributes of the case json response object
-        if json == 1:
-            return case_json
+        return case_json
+    raise ApiException('Authorization Error: Please check API key.')
+
+def case_response_handle(case_json, url_end):
         if url_end == '/limits':
             return Case(case_json[0])
         #if url_end == '/case':
         return Case(case_json)
-    raise ApiException('Authorization Error: Please check API key.')
 
 # function that returns the case object
 def case(ses):
