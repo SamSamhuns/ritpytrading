@@ -28,8 +28,8 @@ class TestSecuritiesMethods(unittest.TestCase):
               }
             ],
             "interest_rate": 0,
-            "is_tradeable": true,
-            "is_shortable": true,
+            "is_tradeable": True,
+            "is_shortable": True,
             "start_period": 0,
             "stop_period": 0
           }
