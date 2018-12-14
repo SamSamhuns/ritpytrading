@@ -41,8 +41,6 @@ class Trader():
         return self.__dict__ == other.__dict__
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
-
-
 def _get_trader_json(ses):
     response = ses.get(base_url + '/trader')
     if response.ok:
@@ -50,6 +48,7 @@ def _get_trader_json(ses):
         return trader_json
     raise ApiException('Authorization Error: Please check API key.')
 
+# function to return a Trader class obj
 def trader_response_handle(trader_json):
     return Trader(trader_json)
 
