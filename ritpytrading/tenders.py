@@ -123,7 +123,7 @@ def accept_tender(ses, tender_iden, price_tender=None):
     if tender_dict[tender_iden].is_fixed_bid:
         _post_tender_response(ses, tender_iden, price=price_tender )
     # if the tender is not fixed bid, price must be supplied
-    elif:
+    else:
         if price_tender == None:
             print("Price is required since tender is not fixed bid.")
         else:
