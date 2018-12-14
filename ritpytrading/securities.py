@@ -92,9 +92,7 @@ class Security():
 
 # gets the list of all available securities or of a particular
 # security if its ticker is supplied
-
-
-def get_security_response(ses, ticker, json=0):
+def _get_security_json(ses, ticker):
     if ticker != None:
         payload = {'ticker': ticker}
         response = ses.get(base_url + '/securities', params=payload)
@@ -103,26 +101,22 @@ def get_security_response(ses, ticker, json=0):
 
     if response.ok:
         # this sets a list of all available securities in a JSON format
-        sec_info = response.json()
-        if json == 1:
-            return sec_info
+        return response.json()
+    raise ApiException('Authorization Error: Please check API key.')
 
-        order_dict = {(Security(order)).ticker: Security(order)
-                      for order in sec_info}
+# return a order_dict dict of Security class objects
+def security_response_handle(sec_info_json)
+        order_dict = {Security(order).ticker: Security(order)
+                      for order in sec_info_json}
         # returns a dict of security obj of the security class with ticker ticker names as keys
         return order_dict
-    raise ApiException('Authorization Error: Please check API key.')
 
 # By default no specific ticker_sym is None
 
 # returns the list of available securities as a dict of security objects with ticker name as keys
-
-
 def security_dict(ses, ticker_sym=None):
-    return get_security_response(ses, ticker_sym)
+    return security_response_handle(_get_security_json(ses, ticker_sym))
 
 # returns the list of available securities with all info in a json format
-
-
 def security_json(ses, ticker_sym=None):
-    return get_security_response(ses, ticker_sym, json=1)
+    return _get_security_json(ses, ticker_sym)
