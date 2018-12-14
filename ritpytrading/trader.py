@@ -17,15 +17,11 @@ base_path = '/v1'
 base_url = host_url + base_path
 
 # to print error messages and stop the program when needed
-
-
 class ApiException(Exception):
     pass
 
 # Trader class takes a trader_response object which is a json obj
 # to extract all relevant information
-
-
 class Trader():
     # trader_response is a json obj returned from the API get request
     def __init__(self, trader_response):
