@@ -66,7 +66,7 @@ class ApiException(Exception):
 # all = 3   securities_book                 return all orders from both sides
 
 
-def get_sec_book_response(ses, ticker_sym, side, param, all=0):
+def _get_sec_book_response(ses, ticker_sym, side, param, all=0):
     payload = {'ticker': ticker_sym}
     response = ses.get(base_url + '/securities/book', params=payload)
     if response.ok:
@@ -86,15 +86,15 @@ def get_sec_book_response(ses, ticker_sym, side, param, all=0):
 # Returns the value of the param for the given ticker from the given side
 # side = bids / asks
 def get_security_info(ses, ticker_sym, side, param):
-    return get_sec_book_response(ses, ticker_sym, side, param)
+    return _get_sec_book_response(ses, ticker_sym, side, param)
 
 
 def get_best_bid(ses, ticker_sym):
-    return get_sec_book_response(ses, ticker_sym, 'bids', None, all=1)
+    return _get_sec_book_response(ses, ticker_sym, 'bids', None, all=1)
 
 
 def get_best_ask(ses, ticker_sym):
-    return get_sec_book_response(ses, ticker_sym, 'asks', None, all=1)
+    return _get_sec_book_response(ses, ticker_sym, 'asks', None, all=1)
 
 
 def get_bbo(ses, ticker_sym):
@@ -104,12 +104,12 @@ def get_bbo(ses, ticker_sym):
 
 
 def get_all_bids(ses, ticker_sym):
-    return get_sec_book_response(ses, ticker_sym, 'bids', None, all=2)
+    return _get_sec_book_response(ses, ticker_sym, 'bids', None, all=2)
 
 
 def get_all_asks(ses, ticker_sym):
-    return get_sec_book_response(ses, ticker_sym, 'asks', None, all=2)
+    return _get_sec_book_response(ses, ticker_sym, 'asks', None, all=2)
 
 # Returns a list of JSON objects representing all the orders in the Bid and Ask side of the book
 def get_all_bids_asks(ses, ticker_sym):
-    return get_sec_book_response(ses, ticker_sym, None, None, all=3)
+    return _get_sec_book_response(ses, ticker_sym, None, None, all=3)
