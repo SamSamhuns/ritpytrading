@@ -52,6 +52,8 @@ class Tender():
         return self.__dict__ == other.__dict__
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
+
+
 def _get_tender_json(ses):
 
     response = ses.get(base_url + "/tenders")
@@ -64,11 +66,12 @@ def _get_tender_json(ses):
 
 # function to return a tenders_dict dict with Tender objects as values
 
-def tender_response_handle(tenders_json):
-        tenders_dict = {Tender(tender_obj).tender_id: Tender(tender_obj)
-                     for tender_obj in tenders_json}
 
-        return tenders_dict
+def tender_response_handle(tenders_json):
+    tenders_dict = {Tender(tender_obj).tender_id: Tender(tender_obj)
+                    for tender_obj in tenders_json}
+
+    return tenders_dict
 
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
@@ -79,9 +82,10 @@ def _post_tender_response(ses, tender_id, price=None):
     tender_id_parm = tender_id
 
     if price != None:
-        payload = {"price":price}
+        payload = {"price": price}
 
-    response = ses.post(base_url + "/tenders/" + str(tender_id_parm), params=payload)
+    response = ses.post(base_url + "/tenders/" +
+                        str(tender_id_parm), params=payload)
     if response.ok:
         tenders_json = response.json()
         tenders_return = tenders_json["success"]
@@ -93,6 +97,7 @@ def _post_tender_response(ses, tender_id, price=None):
         raise ApiException('Authorization Error: Please check API key.')
 
 # function requires a requests.Session() object as the ses argument with a loaded API_KEY
+
 
 def _delete_tender_response(ses, tender_id):
 
@@ -115,19 +120,23 @@ def tenders_dict(ses):
     return tender_response_handle(_get_tender_json(ses))
 
 # returns a list of JSON fomratted output for tender object
+
+
 def tenders_json(ses):
     return _get_tender_json(ses)
+
 
 def accept_tender(ses, tender_iden, price_tender=None):
     tender_dict = tenders_dict(ses)
     if tender_dict[tender_iden].is_fixed_bid:
-        _post_tender_response(ses, tender_iden, price=price_tender )
+        _post_tender_response(ses, tender_iden, price=price_tender)
     # if the tender is not fixed bid, price must be supplied
     else:
         if price_tender == None:
             print("Price is required since tender is not fixed bid.")
         else:
             _post_tender_response(ses, tender_iden, price=price_tender)
+
 
 def decline_tender(ses, tender_iden):
     _delete_tender_response(ses, tender_iden)

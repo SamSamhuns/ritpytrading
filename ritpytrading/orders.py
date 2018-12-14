@@ -58,6 +58,7 @@ class Order():
 # order status can be OPEN, TRANSACTED or CANCELLED
 # Json return mode is set to 0/Off by default
 
+
 def _get_orders_json(ses, url_end, order_status='OPEN', order_id=None):
     # to query all orders
     if url_end == '/orders':
@@ -74,15 +75,15 @@ def _get_orders_json(ses, url_end, order_status='OPEN', order_id=None):
     raise ApiException('Authorization Error: Please check API key.')
 
 
-def orders_response_handle( orders_json, url_end ):
-        if url_end == '/orders/{}':
-            orders_obj = Order(orders_json)
-            return orders_obj
+def orders_response_handle(orders_json, url_end):
+    if url_end == '/orders/{}':
+        orders_obj = Order(orders_json)
+        return orders_obj
 
-        if url_end == '/orders':
-            orders_dict = {(Order(ord)).order_id: Order(ord)
-                           for ord in orders_json}
-            return orders_dict
+    if url_end == '/orders':
+        orders_dict = {(Order(ord)).order_id: Order(ord)
+                       for ord in orders_json}
+        return orders_dict
 
 
 # status can be OPEN, TRANSACTED or CLOSED
@@ -92,9 +93,13 @@ def order(ses, id, status='OPEN'):
     return orders_response_handle(_get_orders_json(ses, '/orders/{}', status, order_id=id), '/orders/{}')
 
 # returns all the attribs of all orders in a json type list format
+
+
 def orders_json(ses, status='OPEN'):
     return _get_orders_json(ses, '/orders', status, order_id=None)
 
 # returns all the orders as a dict with the order_ids as key
+
+
 def orders_dict(ses, status='OPEN'):
     return orders_response_handle(_get_orders_json(ses, '/orders', status, order_id=None), '/orders')

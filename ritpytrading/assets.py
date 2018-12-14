@@ -111,9 +111,13 @@ def asset(ses, ticker_sym):
     return assets_response_handle(_get_assets_json(ses, ticker=ticker_sym), ticker=ticker_sym)
 
 # function that returns a dictionary of the assets object
+
+
 def assets_dict(ses):
     return assets_response_handle(_get_assets_json(ses))
 
 # returns a list of JSON fomratted output for assets object
+
+
 def assets_list(ses):
     return _get_assets_json(ses)

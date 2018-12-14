@@ -1,13 +1,14 @@
 import unittest
-from ritpytrading  import trader
+from ritpytrading import trader
+
 
 class TestTraderMethods(unittest.TestCase):
     def setUp(self):
         self._sample_trader_resp = {
-          "trader_id": "string",
-          "first_name": "string",
-          "last_name": "string",
-          "nlv": 0
+            "trader_id": "string",
+            "first_name": "string",
+            "last_name": "string",
+            "nlv": 0
         }
 
     def test_trader(self):
