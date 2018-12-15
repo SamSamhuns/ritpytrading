@@ -59,11 +59,11 @@ class Security_History():
 def _get_sec_history_json(ses, ticker_sym, period_num=None, lim_num=None):
     # checking for optional paramaters
     payload = {}
-    if period_num == None and lim_num == None:
+    if period_num is None and lim_num is None:
         payload = {'ticker': ticker_sym}
-    elif lim_num == None:
+    elif lim_num is None:
         payload = {'ticker': ticker_sym, 'period number': period_num}
-    elif period_num == None:
+    elif period_num is None:
         payload = {'ticker': ticker_sym, 'limit number': lim_num}
     else:
         payload = {'ticker': ticker_sym,
