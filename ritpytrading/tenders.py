@@ -83,7 +83,7 @@ def _post_tender_response(ses, tender_id, price=None):
     payload = {}
     tender_id_parm = tender_id
 
-    if price != None:
+    if price is not None:
         payload = {"price": price}
 
     response = ses.post(base_url + "/tenders/" +
@@ -135,7 +135,7 @@ def accept_tender(ses, tender_iden, price_tender=None):
         _post_tender_response(ses, tender_iden, price=price_tender)
     # if the tender is not fixed bid, price must be supplied
     else:
-        if price_tender == None:
+        if price_tender is None:
             print("Price is required since tender is not fixed bid.")
         else:
             _post_tender_response(ses, tender_iden, price=price_tender)
