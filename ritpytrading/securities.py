@@ -95,7 +95,7 @@ class Security():
 
 
 def _get_security_json(ses, ticker):
-    if ticker != None:
+    if ticker is not None:
         payload = {'ticker': ticker}
         response = ses.get(base_url + '/securities', params=payload)
     else:
