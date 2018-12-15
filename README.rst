@@ -146,7 +146,7 @@ To test out the ritpytrading package, install using pip inside a virtual environ
 
    $ pip install ritpytrading
 
-Examples scripts are present inside the ``example`` folder. 
+Examples scripts are present inside the ``examples`` folder. 
 
 Built With
 ----------
