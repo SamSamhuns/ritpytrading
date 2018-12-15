@@ -56,14 +56,15 @@ base_url = host_url + base_path
 class ApiException(Exception):
     pass
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object
+# as the ses argument with a loaded API_KEY
 # returns the best bid or ask on the market based on the side entered
 # side = bids/asks
 # the all flag set in four tiers
-# all = 0   securities_book[side][0][param] return one parameter of best bid/ask
-# all = 1   securities_book[side][0]        return all params of best bid/ask
-# all = 2   securities_book[side]           return all orders in the bid/ask side
-# all = 3   securities_book                 return all orders from both sides
+# all = 0 securities_book[side][0][param] return one params of best bid/ask
+# all = 1 securities_book[side][0]        return all params of best bid/ask
+# all = 2 securities_book[side]           return all orders in the bid/ask side
+# all = 3 securities_book                 return all orders from both sides
 
 
 def _get_sec_book_response(ses, ticker_sym, side, param, all=0):
@@ -112,7 +113,8 @@ def get_all_bids(ses, ticker_sym):
 def get_all_asks(ses, ticker_sym):
     return _get_sec_book_response(ses, ticker_sym, 'asks', None, all=2)
 
-# Returns a list of JSON objects representing all the orders in the Bid and Ask side of the book
+# Returns a list of JSON objects representing all the orders in the
+# Bid and Ask side of the book
 
 
 def get_all_bids_asks(ses, ticker_sym):
