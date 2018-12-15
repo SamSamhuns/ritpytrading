@@ -13,7 +13,7 @@ software.
     :width: 400px
     :align: left
     :height: 300px
-    :alt: alternate text
+    :alt: Image not displayed.
 
 Prerequisites
 -------------
@@ -24,7 +24,7 @@ The Rotman Interactive Trading Client which can only be operated in a
 Windows system.
 
 The full documentation for the Rotman Interactive Trader Client REST API
-can be found at 
+can be found at
 `Swaggerhub <https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0>`_. The
 documentation is also present in a JSON format in the
 swagger-client-generated folder.
@@ -83,12 +83,20 @@ Run the following command to get a list of all Makefile command options.
 ::
 
   $ make help
-  
+
 To run tests
+
 ::
-  $ make test 
+
+  $ make test
   $ make test-all
-  
+
+To ensure the README.rst will be rendered in PyPI
+
+::
+
+  $ python setup.py check --restructuredtext
+
 Running the tests with python unittest module
 ---------------------------------------------
 
