@@ -23,7 +23,8 @@ the API_KEY in the main function
 
 # submitting a market order
 # side = BUY/SELL
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object as
+# the ses argument with a loaded API_KEY
 
 
 def market_order(ses, ticker, side, quantity):
@@ -40,7 +41,8 @@ def market_order(ses, ticker, side, quantity):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object as the
+# ses argument with a loaded API_KEY
 
 
 def limit_order(ses, ticker, side, quantity, price):
@@ -57,7 +59,8 @@ def limit_order(ses, ticker, side, quantity, price):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object as the
+# ses argument with a loaded API_KEY
 
 
 def cancel_order(ses, ticker, quantity, order_id):
@@ -79,8 +82,10 @@ def cancel_order(ses, ticker, quantity, order_id):
 # price_direc and volume_direc has a value of [ <, <=, >, >= or = ]
 
 
-def cancel_order_bulk(ses, price_direc, price_lim, volume_direc, volume_lim, all_flag=0):
-    # Volume < 0 for cancelling all open sell orders and Volume > 0 for cancelling all open buy orders
+def cancel_order_bulk( \
+    ses, price_direc, price_lim, volume_direc, volume_lim, all_flag=0):
+    # Volume < 0 for cancelling all open sell orders and Volume > 0
+    # for cancelling all open buy orders
     # query_gen example 'Price < 20.0 AND Volume > 0'
     query_gen = 'Price ' + price_direc + ' ' + price_lim + \
         ' AND ' + ' Volume ' + ' ' + volume_direc + ' ' + volume_lim
