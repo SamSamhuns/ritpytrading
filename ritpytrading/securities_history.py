@@ -19,7 +19,8 @@ Parameters for the securities_history GET HTTP request
 - period number             (query)
 Period to retrieve data from. Defaults to the current period.
 - limit number              (query)
-Result set limit, counting backwards from the most recent tick. Defaults to retrieving the entire period.
+Result set limit, counting backwards from the most recent tick.
+Defaults to retrieving the entire period.
 '''
 
 import requests
@@ -53,7 +54,8 @@ class Security_History():
 
 
 # period_num is the period to retrive data from. Defaults to current period.
-# lim_num is the Result set limit, counting backwards from the most recent tick. Defaults to retrieving the entire period.
+# lim_num = Result set limit, counting backwards from the most recent tick.
+# Defaults to retrieving the entire period.
 def _get_sec_history_json(ses, ticker_sym, period_num=None, lim_num=None):
     # checking for optional paramaters
     payload = {}
@@ -74,7 +76,8 @@ def _get_sec_history_json(ses, ticker_sym, period_num=None, lim_num=None):
         return response.json()
 
 
-# function to return a sec_history_dict dict with Security_History obj as values
+# function to return a sec_history_dict dict
+# with Security_History obj as values
 def sec_history_response_handle(sec_history_json):
         sec_history_dict = {Security_History(sec_hist).tick: Security_History(
             sec_hist) for sec_hist in sec_history_json}
@@ -84,9 +87,11 @@ def sec_history_response_handle(sec_history_json):
 
 # function to get values of different parameters
 def security_history_dict(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return sec_history_response_handle(_get_sec_history_json(ses, ticker_sym, period_num=period_numb, lim_num=lim_numb))
+    return sec_history_response_handle(_get_sec_history_json(ses, ticker_sym,
+        period_num=period_numb, lim_num=lim_numb))
 
 
 # get all full JSON response for the securities history get request
 def security_history_json(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return _get_sec_history_json(ses, ticker_sym, period_num=period_numb, lim_num=lim_numb)
+    return _get_sec_history_json(ses, ticker_sym, period_num=period_numb,
+        lim_num=lim_numb)
