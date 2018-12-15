@@ -141,6 +141,7 @@ Acknowledgments
    FINC-UB.0049, Spring 201. http://people.stern.nyu.edu/jhasbrou/
 -  This project directory was created based on Cookiecutter_ and
    the `audreyr/cookiecutter-pypackage`_ project template.
+-  README conversion for PyPI. `Pandoc.org <https://pandoc.org/>`_
 
 Contributions
 -------------
