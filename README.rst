@@ -134,6 +134,20 @@ Verbose mode
 
    $ python -m unittest discover -v
 
+Usage (Only on Windows)
+---------------------------------------------
+
+**IMPORTANT:** The RIT Trading client must also be running to make sure the REST RIT API Client requests can be made.
+In each script your **RIT Client API key** must be entered and the **requests** module be imported to make API calls.
+
+To test out the ritpytrading package, install using pip inside a virtual environment:
+
+::
+
+   $ pip install ritpytrading
+
+Examples scripts are present inside the ``example`` folder. 
+
 Built With
 ----------
 
