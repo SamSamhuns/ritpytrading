@@ -51,7 +51,8 @@ class Tender():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object
+# as the ses argument with a loaded API_KEY
 
 
 def _get_tender_json(ses):
@@ -74,7 +75,8 @@ def tender_response_handle(tenders_json):
     return tenders_dict
 
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object
+# as the ses argument with a loaded API_KEY
 # price Required if the tender is not fixed-bid.
 
 def _post_tender_response(ses, tender_id, price=None):
@@ -96,7 +98,8 @@ def _post_tender_response(ses, tender_id, price=None):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object
+# as the ses argument with a loaded API_KEY
 
 
 def _delete_tender_response(ses, tender_id):

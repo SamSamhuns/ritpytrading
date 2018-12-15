@@ -1,5 +1,6 @@
 # module to include different types of orders that can be submitted
-# The API key can be found at lower right corner in the API section of the RIT client
+# The API key can be found at lower right corner
+# in the API section of the RIT client
 import requests
 
 # Make sure the RIT client uses the same 9999 port
@@ -15,8 +16,9 @@ class ApiException(Exception):
 
 
 '''
-A requests.Session() object must be passed as the ses argument for each order type function
-The requests.Session() object should deal with registering the API_KEY in the main function
+A requests.Session() object must be passed as the ses argument for each order
+type function. The requests.Session() object should deal with registering
+the API_KEY in the main function
 '''
 
 # submitting a market order

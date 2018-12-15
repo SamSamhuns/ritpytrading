@@ -112,11 +112,13 @@ def _get_security_json(ses, ticker):
 def security_response_handle(sec_info_json):
     order_dict = {(Security(order)).ticker: Security(order)
                   for order in sec_info_json}
-    # returns a dict of security obj of the security class with ticker ticker names as keys
+    # returns a dict of security obj of the security class
+    # with ticker ticker names as keys
     return order_dict
 
 # By default no specific ticker_sym is None
-# returns the list of available securities as a dict of security objects with ticker name as keys
+# returns the list of available securities as a
+# dict of security objects with ticker name as keys
 
 
 def security_dict(ses, ticker_sym=None):
