@@ -24,8 +24,8 @@ The Rotman Interactive Trading Client which can only be operated in a
 Windows system.
 
 The full documentation for the Rotman Interactive Trader Client REST API
-can be found here at swaggerhub
-https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0. The
+can be found at 
+`Swaggerhub <https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0>`_. The
 documentation is also present in a JSON format in the
 swagger-client-generated folder.
 
@@ -42,8 +42,8 @@ Instructions for setting up an RIT demonstration client account for the
 Liability Trading 3 case file can be found at RIT’s website at
 http://rit.rotman.utoronto.ca/demo.asp.
 
-Virtual environment packages with ``virtualenv`` or ``anaconda`` are
-recommended for both Windows and Linux/BSD based systems.
+Virtual environment packages with ``virtualenv`` or ``anaconda`` should
+be used for both Windows and Linux/BSD based systems.
 
 Windows
 ~~~~~~~
@@ -70,8 +70,25 @@ pip.
 ::
 
    $ git clone https://github.com/SamSamhuns/RIT-trading-python
+   $ pip install virtualenv
+   $ virtualenv venv
+   $ source venv/bin/activate
    $ pip install -r requirements.txt
 
+Running the tests using makefile
+---------------------------------------------
+
+Run the following command to get a list of all Makefile command options.
+
+::
+
+  $ make help
+  
+To run tests
+::
+  $ make test 
+  $ make test-all
+  
 Running the tests with python unittest module
 ---------------------------------------------
 
@@ -94,13 +111,13 @@ Verbose mode
 Built With
 ----------
 
--  `Python 3.6 <https://www.python.org/downloads/release/python-360/>`__
+-  `Python 3 <https://www.python.org/downloads/release/python-360/>`__
    - The Programming tool used
 
 Versioning
 ----------
 
-Version tracked online with GitHub
+Version tracked online with Git
 
 Authors
 -------
@@ -122,6 +139,8 @@ Acknowledgments
 -  Python open source libraries
 -  Joel Hasbrouck, NYU Stern Principles of Securities Trading,
    FINC-UB.0049, Spring 201. http://people.stern.nyu.edu/jhasbrou/
+-  This project directory was created based on Cookiecutter_ and
+   the `audreyr/cookiecutter-pypackage`_ project template.
 
 Contributions
 -------------
@@ -146,3 +165,5 @@ School of Management and are their exclusive property.
    :target: https://opensource.org/licenses/Apache-2.0
 .. |contributions welcome| image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
    :target: https://github.com/SamSamhuns
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
