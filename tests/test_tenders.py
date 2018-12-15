@@ -22,6 +22,7 @@ class TestTendersMethods(unittest.TestCase):
         method_dict = tenders.tender_response_handle(self._sample_tender_resp)
         class_dict = {self._sample_tender_resp[0]["tender_id"]: tenders.Tender(
             self._sample_tender_resp[0])}
+        self.assertEqual(method_dict, class_dict)
 
 
 if __name__ == "__main__":
