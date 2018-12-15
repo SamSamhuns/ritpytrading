@@ -50,7 +50,8 @@ class Case():
         self.ticks_per_period = case_response["ticks_per_period"]
         self.total_periods = case_response["total_periods"]
         self.status = case_response["status"]
-        self.is_enforce_trading_limits = case_response["is_enforce_trading_limits"]
+        self.is_enforce_trading_limits = (
+            case_response["is_enforce_trading_limits"])
 
     def __repr__(self):
         return self.name + '_' + self.status
@@ -76,7 +77,8 @@ class CaseLimits():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object
+# as the ses argument with a loaded API_KEY
 
 
 def _get_case_json(ses, url_end):
