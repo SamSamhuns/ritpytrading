@@ -87,11 +87,11 @@ def sec_history_response_handle(sec_history_json):
 
 # function to get values of different parameters
 def security_history_dict(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return sec_history_response_handle(_get_sec_history_json(ses, ticker_sym,
-        period_num=period_numb, lim_num=lim_numb))
+    return sec_history_response_handle(_get_sec_history_json(
+        ses, ticker_sym, period_num=period_numb, lim_num=lim_numb))
 
 
 # get all full JSON response for the securities history get request
 def security_history_json(ses, ticker_sym, period_numb=None, lim_numb=None):
-    return _get_sec_history_json(ses, ticker_sym, period_num=period_numb,
-        lim_num=lim_numb)
+    return _get_sec_history_json(
+        ses, ticker_sym, period_num=period_numb,lim_num=lim_numb)
