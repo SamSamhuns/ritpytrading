@@ -115,7 +115,7 @@ def case_json(ses):
 
 def trade_lim_enforce_chk(ses):
     current_case = case(ses)    # calling the case func not the class instance
-    if current_case.is_enforce_trading_limits == True:
+    if current_case.is_enforce_trading_limits:
         return True
     return False
 
@@ -123,7 +123,7 @@ def trade_lim_enforce_chk(ses):
 
 
 def case_limits(ses):
-    if trade_lim_enforce_chk(ses) == True:
+    if trade_lim_enforce_chk(ses):
         return case_response_handle(_get_case_json(ses, '/limits'), '/limits')
     else:
         msg = "Case has no trading limits"
@@ -134,7 +134,7 @@ def case_limits(ses):
 
 
 def case_limits_json(ses):
-    if trade_lim_enforce_chk(ses) == True:
+    if trade_lim_enforce_chk(ses):
         return _get_case_json(ses, '/limits')
     else:
         msg = "Case has no trading limits"
