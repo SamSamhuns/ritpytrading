@@ -33,9 +33,9 @@ def market_order(ses, ticker, side, quantity):
     response = ses.post(base_url + '/orders', params=mkt_order_params)
     if response.ok:
         mkt_order = response.json()
-        id = mkt_order['order_id']
+        orderId = mkt_order['order_id']
         print('%s %s Market order was submitted and has ID %d' %
-              (side, quantity, id))
+              (side, quantity, orderId))
     if response.status_code == 429:
         print('Error: Orders submitted too frequently.')
     else:
@@ -51,9 +51,9 @@ def limit_order(ses, ticker, side, quantity, price):
     response = ses.post(base_url + '/orders', params=lim_order_params)
     if response.ok:
         lim_order = response.json()
-        id = lim_order['order_id']
+        orderId = lim_order['order_id']
         print("%s %s Limit order was submitted and has ID %d " %
-              (side, quantity, id))
+              (side, quantity, orderId))
     elif response.status_code == 429:
         print('Error: Orders submitted too frequently.')
     else:
