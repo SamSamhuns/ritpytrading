@@ -90,9 +90,9 @@ def orders_response_handle(orders_json, url_end):
 # status can be OPEN, TRANSACTED or CLOSED
 # status OPEN by default
 # returns a Order object of the order class given an order id
-def order(ses, id, status='OPEN'):
+def order(ses, orderId, status='OPEN'):
     return orders_response_handle(_get_orders_json(
-        ses, '/orders/{}', status, order_id=id), '/orders/{}')
+        ses, '/orders/{}', status, order_id=orderId), '/orders/{}')
 
 # returns all the attribs of all orders in a json type list format
 
