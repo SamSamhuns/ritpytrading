@@ -49,12 +49,14 @@ class Order():
         self.status = order_response["status"]
 
     def __repr__(self):
-        return self.action + '_' + self.quantity + '_' + self.ticker + '_' + self.price + '__' + self.order_id
+        return ( self.action + '_' + self.quantity + '_'
+            + self.ticker + '_' + self.price + '__' + self.order_id )
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object
+# as the ses argument with a loaded API_KEY
 # order status can be OPEN, TRANSACTED or CANCELLED
 # Json return mode is set to 0/Off by default
 
@@ -90,7 +92,8 @@ def orders_response_handle(orders_json, url_end):
 # status OPEN by default
 # returns a Order object of the order class given an order id
 def order(ses, id, status='OPEN'):
-    return orders_response_handle(_get_orders_json(ses, '/orders/{}', status, order_id=id), '/orders/{}')
+    return orders_response_handle(_get_orders_json(
+        ses, '/orders/{}', status, order_id=id), '/orders/{}')
 
 # returns all the attribs of all orders in a json type list format
 
@@ -102,4 +105,5 @@ def orders_json(ses, status='OPEN'):
 
 
 def orders_dict(ses, status='OPEN'):
-    return orders_response_handle(_get_orders_json(ses, '/orders', status, order_id=None), '/orders')
+    return orders_response_handle(_get_orders_json(
+        ses, '/orders', status, order_id=None), '/orders')
