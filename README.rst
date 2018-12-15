@@ -18,10 +18,11 @@ software.
 Prerequisites
 -------------
 
-Recommended Python version 3
+Python version 3
 
 The Rotman Interactive Trading Client which can only be operated in a
-Windows system.
+**Windows system**. However, development of the PyPI ritpytrading package 
+can be in done in Linux/BSD envrionment as well.
 
 The full documentation for the Rotman Interactive Trader Client REST API
 can be found at
@@ -48,18 +49,29 @@ be used for both Windows and Linux/BSD based systems.
 Windows
 ~~~~~~~
 
-Download a copy of this github repository at
-https://github.com/SamSamhuns/RIT-trading-python. Two options are
-available after this:
+Initialize the repository with git.
+Detailed instructions to download git for windows can be found at `atlassian <https://www.atlassian.com/git/tutorials/install-git#windows>`_.  The repository can then be initialized with git using:
 
--  Anaconda is recommended for Windows system. Open the anaconda prompt
-   and use the following command to install all modules from
-   requirements.txt. ``conda install --yes --file requirements.txt``
+::
+
+   $  git clone https://github.com/SamSamhuns/RIT-trading-python
+
+Two options are available after this:
+
+-  Anaconda is recommended for Windows system. Set up up a virtual conda environment first.
+   Then open the anaconda prompt and use the command ``conda install --yes --file requirements.txt``
+   to install all modules from requirements.txt. 
 
 -  Install \ ``python``\  and add it to your ``PATH`` system variable.
-   Then install the \ ``pip``\  package. The
-   ``pip install -r requirements.txt`` command now be used in the
-   command prompt.
+   Then install the \ ``pip``\  package if not installed already.
+   Then follow the following commands.
+
+::
+
+   $ pip install virtualenv
+   $ virtualenv venv
+   $ venv\Scripts\activate
+   $ pip install -r requirements.txt
 
 Linux/BSD
 ~~~~~~~~~
@@ -91,11 +103,17 @@ To run tests
   $ make test
   $ make test-all
 
-To ensure the README.rst will be rendered in PyPI
+To ensure the README.rst will be rendered in PyPI [might be outdated. Check twine check below]
 
 ::
 
   $ python setup.py check --restructuredtext
+  
+To report any problems rendering your README. If your markup renders fine, the command will output Checking distribution FILENAME: Passed. To run the check on sdist and wheel.
+
+::
+
+  $ twine check dist/*
 
 Running the tests with python unittest module
 ---------------------------------------------
