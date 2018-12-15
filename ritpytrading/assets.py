@@ -77,14 +77,15 @@ class Asset():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object
+# as the ses argument with a loaded API_KEY
 # ticker = ticker sumbol
 # returns a JSON obj with params given at the top
 
 
 def _get_assets_json(ses, ticker=None):
     payload = {}
-    if ticker != None:
+    if ticker is not None:
         payload = {'ticker': ticker}
 
     response = ses.get(base_url + "/assets", params=payload)
@@ -96,11 +97,11 @@ def _get_assets_json(ses, ticker=None):
 
 def assets_response_handle(assets_json, ticker=None):
     # if no ticker is given, return a dict of asset objects
-    if ticker == None:
+    if ticker is None:
         assets_dict = {Asset(asset_obj).ticker: Asset(asset_obj)
                        for asset_obj in assets_json}
     # if ticker sumbol is given
-    elif ticker != None:
+    elif ticker is not None:
         assets_dict = Asset(assets_json[0])
 
     return assets_dict
@@ -108,7 +109,8 @@ def assets_response_handle(assets_json, ticker=None):
 
 # function that returns a single asset object given for a given ticker
 def asset(ses, ticker_sym):
-    return assets_response_handle(_get_assets_json(ses, ticker=ticker_sym), ticker=ticker_sym)
+    return assets_response_handle(_get_assets_json(
+        ses, ticker=ticker_sym), ticker=ticker_sym)
 
 # function that returns a dictionary of the assets object
 
