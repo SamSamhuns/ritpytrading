@@ -1,12 +1,41 @@
+# Config file for automatic testing at travis-ci.org
+
 language: python
 python:
-  - "3.6"
-install:
-  - pip install -r requirements.txt
-script:
-  python -m unittest
-before_install:
-  - pip install codecov
-  - pip install coverage
-after_success:
-  - codecov
+  - 3.6
+  - 3.5
+  - 3.4
+
+# Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
+install: pip install -U tox-travis
+
+# Command to run tests, e.g. python setup.py test
+script: tox
+
+### alternative instructions for testing
+# install:
+#   - pip install -r requirements.txt
+# script:
+#   python -m unittest
+# before_install:
+#   - pip install codecov
+#   - pip install coverage
+# after_success:
+#   - codecov
+
+### code for deploying to pyup
+
+# Assuming you have installed the travis-ci CLI tool, after you
+# create the Github repo and add it to Travis, run the
+# following command to finish PyPI deployment setup:
+# $ travis encrypt --add deploy.password
+# deploy:
+#   provider: pypi
+#   distributions: sdist bdist_wheel
+#   user: SamSamhuns
+#   password:
+#     secure: PLEASE_REPLACE_ME
+#   on:
+#     tags: true
+#     repo: SamSamhuns/ritpytrading
+#     python: 3.6
