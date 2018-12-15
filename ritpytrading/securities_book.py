@@ -59,23 +59,23 @@ class ApiException(Exception):
 # as the ses argument with a loaded API_KEY
 # returns the best bid or ask on the market based on the side entered
 # side = bids/asks
-# the all flag set in four tiers
+# the all_flag flag set in four tiers
 # all = 0 securities_book[side][0][param] return one params of best bid/ask
 # all = 1 securities_book[side][0]        return all params of best bid/ask
 # all = 2 securities_book[side]           return all orders in the bid/ask side
 # all = 3 securities_book                 return all orders from both sides
 
 
-def _get_sec_book_response(ses, ticker_sym, side, param, all=0):
+def _get_sec_book_response(ses, ticker_sym, side, param, all_flag=0):
     payload = {'ticker': ticker_sym}
     response = ses.get(base_url + '/securities/book', params=payload)
     if response.ok:
         securities_book = response.json()
-        if all == 1:
+        if all_flag == 1:
             return securities_book[side][0]
-        if all == 2:
+        if all_flag == 2:
             return securities_book[side]
-        if all == 3:
+        if all_flag == 3:
             return securities_book
         # this returns only one attrb of the best bid/ask offer i.e. 'quantity'
         return securities_book[side][0][param]
@@ -92,11 +92,11 @@ def get_security_info(ses, ticker_sym, side, param):
 
 
 def get_best_bid(ses, ticker_sym):
-    return _get_sec_book_response(ses, ticker_sym, 'bids', None, all=1)
+    return _get_sec_book_response(ses, ticker_sym, 'bids', None, all_flag=1)
 
 
 def get_best_ask(ses, ticker_sym):
-    return _get_sec_book_response(ses, ticker_sym, 'asks', None, all=1)
+    return _get_sec_book_response(ses, ticker_sym, 'asks', None, all_flag=1)
 
 
 def get_bbo(ses, ticker_sym):
@@ -106,15 +106,15 @@ def get_bbo(ses, ticker_sym):
 
 
 def get_all_bids(ses, ticker_sym):
-    return _get_sec_book_response(ses, ticker_sym, 'bids', None, all=2)
+    return _get_sec_book_response(ses, ticker_sym, 'bids', None, all_flag=2)
 
 
 def get_all_asks(ses, ticker_sym):
-    return _get_sec_book_response(ses, ticker_sym, 'asks', None, all=2)
+    return _get_sec_book_response(ses, ticker_sym, 'asks', None, all_flag=2)
 
-# Returns a list of JSON objects representing all the orders in the
+# Returns a list of JSON objects representing all_flag the orders in the
 # Bid and Ask side of the book
 
 
 def get_all_bids_asks(ses, ticker_sym):
-    return _get_sec_book_response(ses, ticker_sym, None, None, all=3)
+    return _get_sec_book_response(ses, ticker_sym, None, None, all_flag=3)
