@@ -49,18 +49,20 @@ class News():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-# function requires a requests.Session() object as the ses argument with a loaded API_KEY
+# function requires a requests.Session() object
+# as the ses argument with a loaded API_KEY
 # since = Retrieves only news items after a particular news id.
-# limit = Result set limit, counting backwards from the most recent news item. Defaults to 20.
+# limit = Result set limit, counting backwards from the most recent news item.
+# Defaults to 20.
 
 
 def _get_news_json(ses, since=None, limit=None):
     payload = {}
-    if since != None and limit != None:
+    if since is not None and limit is not None:
         payload = {'since': since, 'limit': limit}
-    elif since != None:
+    elif since is not None:
         payload = {'since': since}
-    elif limit != None:
+    elif limit is not None:
         payload = {'limit': limit}
 
     response = ses.get(base_url + "/news", params=payload)
@@ -81,10 +83,11 @@ def news_response_handle(news_json):
 
 # function that returns the news object
 def news_dict(ses, since_id=None, limit_itm=None):
-    return news_response_handle(_get_news_json(ses,  since=since_id, limit=limit_itm))
+    return news_response_handle(_get_news_json(
+        ses, since=since_id, limit=limit_itm))
 
 # returns a list of JSON fomratted output for news object
 
 
 def news_json(ses, since_id=None, limit_itm=None):
-    return _get_news_json(ses,  since=since_id, limit=limit_itm)
+    return _get_news_json(ses, since=since_id, limit=limit_itm)
