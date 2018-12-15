@@ -82,8 +82,8 @@ def cancel_order(ses, ticker, quantity, order_id):
 # price_direc and volume_direc has a value of [ <, <=, >, >= or = ]
 
 
-def cancel_order_bulk( \
-    ses, price_direc, price_lim, volume_direc, volume_lim, all_flag=0):
+def cancel_order_bulk(
+        ses, price_direc, price_lim, volume_direc, volume_lim, all_flag=0):
     # Volume < 0 for cancelling all open sell orders and Volume > 0
     # for cancelling all open buy orders
     # query_gen example 'Price < 20.0 AND Volume > 0'
