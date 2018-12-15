@@ -43,7 +43,6 @@ Parameters for the securities_book GET HTTP request
 
 '''
 
-import requests
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'

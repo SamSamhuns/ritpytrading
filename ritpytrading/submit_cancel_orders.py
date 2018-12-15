@@ -1,7 +1,7 @@
 # module to include different types of orders that can be submitted
 # The API key can be found at lower right corner
 # in the API section of the RIT client
-import requests
+
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'

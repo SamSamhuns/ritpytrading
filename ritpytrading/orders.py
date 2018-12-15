@@ -18,7 +18,6 @@ i.e. get_order_response( ses, url_end, param="order_id" )
 }
 '''
 
-import requests
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'

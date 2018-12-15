@@ -23,7 +23,6 @@ Result set limit, counting backwards from the most recent tick.
 Defaults to retrieving the entire period.
 '''
 
-import requests
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
