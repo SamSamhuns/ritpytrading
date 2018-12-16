@@ -62,9 +62,9 @@ Two options are available after this:
    Then open the anaconda prompt and use the command ``conda install --yes --file requirements.txt``
    to install all modules from requirements.txt. 
 
--  Install \ ``python``\  and add it to your ``PATH`` system variable.
+-  Or Install \ ``python``\  and add it to your ``PATH`` system variable.
    Then install the \ ``pip``\  package if not installed already.
-   Then follow the following commands.
+   Then run the following commands.
 
 ::
 
@@ -157,7 +157,7 @@ Built With
 Versioning
 ----------
 
-Version tracked online with Git
+Version tracked with Git
 
 Authors
 -------
@@ -181,7 +181,7 @@ Acknowledgments
    FINC-UB.0049, Spring 201. http://people.stern.nyu.edu/jhasbrou/
 -  This project directory was created based on Cookiecutter_ and
    the `audreyr/cookiecutter-pypackage`_ project template.
--  README conversion for PyPI. `Pandoc.org <https://pandoc.org/>`_
+-  README conversion for PyPI. `Pandoc.org`_.
 
 Contributions
 -------------
@@ -208,3 +208,4 @@ School of Management and are their exclusive property.
    :target: https://github.com/SamSamhuns
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+.. _`Pandoc.org`: https://pandoc.org/
