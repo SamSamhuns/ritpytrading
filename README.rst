@@ -6,8 +6,10 @@ RIT-trading-python
 
 |Build Status| |Updates| |Python 3| |Codacy Badge| |License|
 
-Python trading modules for the Rotman Interactive Trader trading
-software.
+Python trading module for the Rotman Interactive Trader trading
+software. `PyPI`_ page.
+
+Full documentation available here.
 
 .. image:: rit_image.PNG
     :width: 400px
@@ -146,7 +148,7 @@ To test out the ritpytrading package, install using pip inside a virtual environ
 
    $ pip install ritpytrading
 
-Examples scripts are present inside the ``examples`` folder. 
+Examples scripts are present inside the ``examples`` folder. Documentation for usage available here.
 
 Built With
 ----------
@@ -209,3 +211,4 @@ School of Management and are their exclusive property.
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 .. _`Pandoc.org`: https://pandoc.org/
+.. _`PyPI`: https://pypi.org/project/ritpytrading/
