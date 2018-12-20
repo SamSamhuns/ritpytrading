@@ -57,7 +57,7 @@ def main():
         current_case_lim = case.case_limits(ses)
         tick = current_case.tick
         # the order submission limits are a max of 10000 units per order
-        max_arbitrage_qty = min(10000, current_case_lim.gross_limit )
+        max_arbitrage_qty = min(10000, current_case_lim.gross_limit)
         while tick > 5 and tick < 295 and not shutdown:
             # get best bid and ask for security in both exchanges
             sec1_a_bid = book.get_security_info(ses, sec1_a, 'bids', 'price')
