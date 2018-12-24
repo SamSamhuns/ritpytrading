@@ -65,7 +65,7 @@ Two options are available after this:
    to install all modules from requirements.txt. 
 
 -  Or Install \ ``python``\  and add it to your ``PATH`` system variable.
-   Then install the \ ``pip``\  package if not installed already.
+   Then install the \ ``pip``\  package if not installed already also adding it to the ``PATH`` system variable.
    Then run the following commands.
 
 ::
