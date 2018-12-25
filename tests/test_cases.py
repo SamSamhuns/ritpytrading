@@ -1,5 +1,5 @@
 import unittest
-from ritpytrading import case
+from ritpytrading import cases
 
 
 class TestCaseMethods(unittest.TestCase):
@@ -27,14 +27,14 @@ class TestCaseMethods(unittest.TestCase):
         ]
 
     def test_case(self):
-        method_obj = case.case_response_handle(self._sample_case_resp, '/case')
-        class_obj = case.Case(self._sample_case_resp)
+        method_obj = cases._case_response_handle(self._sample_case_resp, '/case')
+        class_obj = cases.Case(self._sample_case_resp)
         self.assertEqual(method_obj, class_obj)
 
     def test_case_limits(self):
-        method_obj = case.case_response_handle(
+        method_obj = cases._case_response_handle(
             self._sample_limits_resp, '/limits')
-        class_obj = case.CaseLimits(self._sample_limits_resp[0])
+        class_obj = cases.CaseLimits(self._sample_limits_resp[0])
         self.assertEqual(method_obj, class_obj)
 
 

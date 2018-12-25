@@ -1,5 +1,5 @@
 import unittest
-from ritpytrading import trader
+from ritpytrading import traders
 
 
 class TestTraderMethods(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestTraderMethods(unittest.TestCase):
         }
 
     def test_trader(self):
-        method_obj = trader.trader_response_handle(self._sample_trader_resp)
+        method_obj = trader._trader_response_handle(self._sample_trader_resp)
         class_obj = trader.Trader(self._sample_trader_resp)
         self.assertEqual(method_obj, class_obj)
 
