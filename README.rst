@@ -117,7 +117,7 @@ To report any problems rendering your README. If your markup renders fine, the c
 
   $ twine check dist/*
 
-Running the tests with python unittest module
+Running the tests with python module (For testing in Windows)
 ---------------------------------------------
 
 Once python has been added to the ``PATH`` system variable in Windows,
@@ -129,6 +129,8 @@ From the main directory, run:
 ::
 
    $ python -m unittest
+
+If no tests are run from the above cmd, run the verbose mode.
 
 Verbose mode
 
