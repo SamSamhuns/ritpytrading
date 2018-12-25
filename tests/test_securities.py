@@ -37,7 +37,7 @@ class TestSecuritiesMethods(unittest.TestCase):
         ]
 
     def test_security_dict(self):
-        method_dict = securities.security_response_handle(
+        method_dict = securities._security_response_handle(
             self._sample_securities_resp)
         class_dict = {self._sample_securities_resp[0]["ticker"]:
                       securities.Security(

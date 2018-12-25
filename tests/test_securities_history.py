@@ -15,7 +15,7 @@ class TestSecHistoryMethods(unittest.TestCase):
         ]
 
     def test_sec_history_dict(self):
-        method_dict = securities_history.sec_history_response_handle(
+        method_dict = securities_history._sec_history_response_handle(
             self._sample_sec_history_resp)
         class_dict = {self._sample_sec_history_resp[0]["tick"]:
                       securities_history.Security_History(
