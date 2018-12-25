@@ -90,7 +90,7 @@ def _get_case_json(ses, url_end):
     raise ApiException('Authorization Error: Please check API key.')
 
 
-def case_response_handle(case_json, url_end):
+def _case_response_handle(case_json, url_end):
     if url_end == '/limits':
         return CaseLimits(case_json[0])
     # elif url_end == '/case':
@@ -100,7 +100,7 @@ def case_response_handle(case_json, url_end):
 
 
 def case(ses):
-    return case_response_handle(_get_case_json(ses, '/case'), '/case')
+    return _case_response_handle(_get_case_json(ses, '/case'), '/case')
 
 # returns a list of JSON fomratted output for case object
 
@@ -123,7 +123,7 @@ def trade_lim_enforce_chk(ses):
 
 def case_limits(ses):
     if trade_lim_enforce_chk(ses):
-        return case_response_handle(_get_case_json(ses, '/limits'), '/limits')
+        return _case_response_handle(_get_case_json(ses, '/limits'), '/limits')
     else:
         msg = "Case has no trading limits"
         print(msg)
