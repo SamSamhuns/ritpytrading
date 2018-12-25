@@ -89,8 +89,13 @@ pip.
    $ source venv/bin/activate
    $ pip install -r requirements.txt
 
-Running the tests using makefile
+Building dists and running tests using makefile
 ---------------------------------------------
+
+For **Windows**, different options are available for using makefile. `GnuWin's make`_
+provides a native port for Windows (without requiring a full runtime environment like Cygwin).
+After installing GnuWin, add ``C:\Program Files (x86)\GnuWin32\bin`` 
+to your system ``PATH`` variable to run makefiles from any directory. 
 
 Run the following command to get a list of all Makefile command options.
 
@@ -117,7 +122,12 @@ To report any problems rendering your README. If your markup renders fine, the c
 
   $ twine check dist/*
 
-Running the tests with python module (For testing in Windows)
+To build the source and wheel package.
+::
+    
+  $ make build
+
+Running tests with the python unittest module
 ---------------------------------------------
 
 Once python has been added to the ``PATH`` system variable in Windows,
@@ -130,7 +140,7 @@ From the main directory, run:
 
    $ python -m unittest
 
-If no tests are run from the above cmd, run the verbose mode.
+If no tests are run from the command above, run the verbose mode.
 
 Verbose mode
 
@@ -214,3 +224,4 @@ School of Management and are their exclusive property.
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 .. _`Pandoc.org`: https://pandoc.org/
 .. _`PyPI`: https://pypi.org/project/ritpytrading/
+.. _`GnuWin's make`:  http://gnuwin32.sourceforge.net/packages/make.htm
