@@ -53,9 +53,9 @@ def _get_trader_json(ses):
 # function to return a Trader class obj
 
 
-def trader_response_handle(trader_json):
+def _trader_response_handle(trader_json):
     return Trader(trader_json)
 
 
 def trader(ses):
-    return trader_response_handle(_get_trader_json(ses))
+    return _trader_response_handle(_get_trader_json(ses))

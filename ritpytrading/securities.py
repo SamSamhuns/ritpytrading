@@ -108,7 +108,7 @@ def _get_security_json(ses, ticker):
 # return a order_dict dict of Security class objects
 
 
-def security_response_handle(sec_info_json):
+def _security_response_handle(sec_info_json):
     order_dict = {(Security(order)).ticker: Security(order)
                   for order in sec_info_json}
     # returns a dict of security obj of the security class
@@ -121,7 +121,7 @@ def security_response_handle(sec_info_json):
 
 
 def security_dict(ses, ticker_sym=None):
-    return security_response_handle(_get_security_json(ses, ticker_sym))
+    return _security_response_handle(_get_security_json(ses, ticker_sym))
 
 # returns the list of available securities with all info in a json format
 

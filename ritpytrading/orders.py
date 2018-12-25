@@ -76,7 +76,7 @@ def _get_orders_json(ses, url_end, order_status='OPEN', order_id=None):
     raise ApiException('Authorization Error: Please check API key.')
 
 
-def orders_response_handle(orders_json, url_end):
+def _orders_response_handle(orders_json, url_end):
     if url_end == '/orders/{}':
         orders_obj = Order(orders_json)
         return orders_obj
@@ -91,7 +91,7 @@ def orders_response_handle(orders_json, url_end):
 # status OPEN by default
 # returns a Order object of the order class given an order id
 def order(ses, orderId, status='OPEN'):
-    return orders_response_handle(_get_orders_json(
+    return _orders_response_handle(_get_orders_json(
         ses, '/orders/{}', status, order_id=orderId), '/orders/{}')
 
 # returns all the attribs of all orders in a json type list format
@@ -104,5 +104,5 @@ def orders_json(ses, status='OPEN'):
 
 
 def orders_dict(ses, status='OPEN'):
-    return orders_response_handle(_get_orders_json(
+    return _orders_response_handle(_get_orders_json(
         ses, '/orders', status, order_id=None), '/orders')

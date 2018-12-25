@@ -73,7 +73,7 @@ def _get_news_json(ses, since=None, limit=None):
     raise ApiException('Authorization Error: Please check API key.')
 
 
-def news_response_handle(news_json):
+def _news_response_handle(news_json):
     news_dict = {News(news_obj).news_id: News(news_obj)
                  for news_obj in news_json}
 
@@ -82,7 +82,7 @@ def news_response_handle(news_json):
 
 # function that returns the news object
 def news_dict(ses, since_id=None, limit_itm=None):
-    return news_response_handle(_get_news_json(
+    return _news_response_handle(_get_news_json(
         ses, since=since_id, limit=limit_itm))
 
 # returns a list of JSON fomratted output for news object

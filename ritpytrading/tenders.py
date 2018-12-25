@@ -67,7 +67,7 @@ def _get_tender_json(ses):
 # function to return a tenders_dict dict with Tender objects as values
 
 
-def tender_response_handle(tenders_json):
+def _tender_response_handle(tenders_json):
     tenders_dict = {Tender(tender_obj).tender_id: Tender(tender_obj)
                     for tender_obj in tenders_json}
 
@@ -119,7 +119,7 @@ def _delete_tender_response(ses, tender_id):
 
 # function that returns the tender object
 def tenders_dict(ses):
-    return tender_response_handle(_get_tender_json(ses))
+    return _tender_response_handle(_get_tender_json(ses))
 
 # returns a list of JSON fomratted output for tender object
 
