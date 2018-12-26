@@ -30,7 +30,7 @@ The full documentation for the Rotman Interactive Trader Client REST API
 can be found at
 `Swaggerhub <https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0>`_. The
 documentation is also present in a JSON format in the
-swagger-client-generated folder.
+swagger_client_generated folder.
 
 Installing
 ----------
