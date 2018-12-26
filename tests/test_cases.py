@@ -27,7 +27,8 @@ class TestCaseMethods(unittest.TestCase):
         ]
 
     def test_case(self):
-        method_obj = cases._case_response_handle(self._sample_case_resp, '/case')
+        method_obj = cases._case_response_handle(
+            self._sample_case_resp, '/case')
         class_obj = cases.Case(self._sample_case_resp)
         self.assertEqual(method_obj, class_obj)
 
