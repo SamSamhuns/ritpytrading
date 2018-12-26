@@ -97,6 +97,9 @@ provides a native port for Windows (without requiring a full runtime environment
 After installing GnuWin, add ``C:\Program Files (x86)\GnuWin32\bin`` 
 to your system ``PATH`` variable to run makefiles from any directory. 
 
+-  For **Windows**, run makefile commands with ``make -f Makefile.win <directive>``. Example ``make -f Makefile.win help``
+-  For **Linux/BSD**, run makefile commands with ``make <drective>``. 
+
 Run the following command to get a list of all Makefile command options.
 
 ::
