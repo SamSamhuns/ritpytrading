@@ -52,7 +52,7 @@ def limit_order(ses, ticker, side, quantity, price):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
-def cancel_order(ses, ticker, quantity, order_id):
+def cancel_order(ses, order_id):
     """ function requires a requests.Session() object as the
     ses argument with a loaded API_KEY
     """
