@@ -56,7 +56,7 @@ Detailed instructions to download git for windows can be found at `atlassian <ht
 
 ::
 
-   $  git clone https://github.com/SamSamhuns/RIT-trading-python
+   $ git clone https://github.com/SamSamhuns/RIT-trading-python
 
 Two options are available after this:
 
