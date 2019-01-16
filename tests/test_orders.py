@@ -22,13 +22,13 @@ class TestOrderMethods(unittest.TestCase):
         ]
 
     def test_order(self):
-        method_obj = orders.orders_response_handle(
+        method_obj = orders._orders_response_handle(
             self._sample_order_resp[0], '/orders/{}')
         class_obj = orders.Order(self._sample_order_resp[0])
         self.assertEqual(method_obj, class_obj)
 
     def test_orders_dict(self):
-        method_dict = orders.orders_response_handle(
+        method_dict = orders._orders_response_handle(
             self._sample_order_resp, '/orders')
         class_dict = {self._sample_order_resp[0]["order_id"]: orders.Order(
             self._sample_order_resp[0])}

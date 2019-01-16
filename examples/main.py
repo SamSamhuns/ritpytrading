@@ -1,5 +1,5 @@
 import requests
-API_KEY = {'X-API-key': 'H8KDL3Q6'}           # use your RIT API key here
+API_KEY = {'X-API-key': 'TY0Y1KE9'}           # use your RIT API key here
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'

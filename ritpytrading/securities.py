@@ -35,30 +35,25 @@ securities object attribute values: JSON formatted
   }
 ]
 
-
 Parameters for the securities GET HTTP request
 - ticker* required string   (query)
 
 '''
-
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
-# to print error messages and stop the program when needed
-
-
 class ApiException(Exception):
+    """ to print error messages and stop the program when needed """
     pass
 
-# Security class takes a security_response object ( a list of json objects )
-# as its initializing paramenter to extract all relevant information
-
-
 class Security():
-    # security_response is a json obj returned from the API get request
+    """ Security class takes a security_response object ( a list of json objects )
+    as its initializing paramenter to extract all relevant information
+    security_response is a json obj returned from the API get request
+    """
     def __init__(self, security_response):
         self.ticker = security_response["ticker"]
         self.type = security_response["type"]
@@ -89,11 +84,10 @@ class Security():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-# gets the list of all available securities or of a particular
-# security if its ticker is supplied
-
-
 def _get_security_json(ses, ticker):
+    """ gets the list of all available securities or of a particular
+    security if its ticker is supplied
+    """
     if ticker is not None:
         payload = {'ticker': ticker}
         response = ses.get(base_url + '/securities', params=payload)
@@ -105,26 +99,23 @@ def _get_security_json(ses, ticker):
         return response.json()
     raise ApiException('Authorization Error: Please check API key.')
 
-# return a order_dict dict of Security class objects
-
-
-def security_response_handle(sec_info_json):
+def _security_response_handle(sec_info_json):
+    """ return a order_dict dict of Security class objects """
     order_dict = {(Security(order)).ticker: Security(order)
                   for order in sec_info_json}
     # returns a dict of security obj of the security class
     # with ticker ticker names as keys
     return order_dict
 
-# By default no specific ticker_sym is None
-# returns the list of available securities as a
-# dict of security objects with ticker name as keys
-
-
 def security_dict(ses, ticker_sym=None):
-    return security_response_handle(_get_security_json(ses, ticker_sym))
-
-# returns the list of available securities with all info in a json format
-
+    """ By default no specific ticker_sym is None
+    returns the list of available securities as a
+    dict of security objects with ticker name as keys
+    """
+    return _security_response_handle(_get_security_json(ses, ticker_sym))
 
 def security_json(ses, ticker_sym=None):
+    """ returns the list of available securities
+    with all info in a json format
+    """
     return _get_security_json(ses, ticker_sym)

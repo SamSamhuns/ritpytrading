@@ -18,21 +18,17 @@ i.e. get_order_response( ses, url_end, param="order_id" )
 }
 '''
 
-
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
-# to print error messages and stop the program when needed
-
-
 class ApiException(Exception):
+    """ to print error messages and stop the program when needed """
     pass
 
-
 class Order():
-    # order_response is a json obj returned from the API get request
+    """ order_response is a json obj returned from the API get request """
     def __init__(self, order_response):
         self.order_id = order_response["order_id"]
         self.period = order_response["period"]
@@ -54,13 +50,13 @@ class Order():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-# function requires a requests.Session() object
-# as the ses argument with a loaded API_KEY
-# order status can be OPEN, TRANSACTED or CANCELLED
-# Json return mode is set to 0/Off by default
-
-
 def _get_orders_json(ses, url_end, order_status='OPEN', order_id=None):
+    """ function requires a requests.Session() object
+    as the ses argument with a loaded API_KEY
+    order status can be OPEN, TRANSACTED or CANCELLED
+    Json return mode is set to 0/Off by default
+    """
+
     # to query all orders
     if url_end == '/orders':
         payload = {'status': order_status}
@@ -75,8 +71,7 @@ def _get_orders_json(ses, url_end, order_status='OPEN', order_id=None):
         return orders_json
     raise ApiException('Authorization Error: Please check API key.')
 
-
-def orders_response_handle(orders_json, url_end):
+def _orders_response_handle(orders_json, url_end):
     if url_end == '/orders/{}':
         orders_obj = Order(orders_json)
         return orders_obj
@@ -86,23 +81,19 @@ def orders_response_handle(orders_json, url_end):
                        for ord in orders_json}
         return orders_dict
 
-
-# status can be OPEN, TRANSACTED or CLOSED
-# status OPEN by default
-# returns a Order object of the order class given an order id
 def order(ses, orderId, status='OPEN'):
-    return orders_response_handle(_get_orders_json(
+    """ status can be OPEN, TRANSACTED or CLOSED
+    status OPEN by default
+    returns a Order object of the order class given an order id
+    """
+    return _orders_response_handle(_get_orders_json(
         ses, '/orders/{}', status, order_id=orderId), '/orders/{}')
 
-# returns all the attribs of all orders in a json type list format
-
-
 def orders_json(ses, status='OPEN'):
+    """ returns all the attribs of all orders in a json type list format """
     return _get_orders_json(ses, '/orders', status, order_id=None)
 
-# returns all the orders as a dict with the order_ids as key
-
-
 def orders_dict(ses, status='OPEN'):
-    return orders_response_handle(_get_orders_json(
+    """ returns all the orders as a dict with the order_ids as key """
+    return _orders_response_handle(_get_orders_json(
         ses, '/orders', status, order_id=None), '/orders')

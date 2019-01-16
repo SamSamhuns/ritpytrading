@@ -4,7 +4,9 @@ ritpytrading
 RIT-trading-python
 ------------------
 
-|Build Status| |Updates| |Python 3| |Codacy Badge| |License|
+|PyPI pyversions| |Build Status| |Updates| |PyPI version fury.io|
+
+|Python 3| |Codacy Badge| |License|
 
 Python trading module for the Rotman Interactive Trader trading
 software. `PyPI`_ page.
@@ -30,7 +32,7 @@ The full documentation for the Rotman Interactive Trader Client REST API
 can be found at
 `Swaggerhub <https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0>`_. The
 documentation is also present in a JSON format in the
-swagger-client-generated folder.
+swagger_client_generated folder.
 
 Installing
 ----------
@@ -56,7 +58,7 @@ Detailed instructions to download git for windows can be found at `atlassian <ht
 
 ::
 
-   $  git clone https://github.com/SamSamhuns/RIT-trading-python
+   $ git clone https://github.com/SamSamhuns/RIT-trading-python
 
 Two options are available after this:
 
@@ -65,7 +67,7 @@ Two options are available after this:
    to install all modules from requirements.txt. 
 
 -  Or Install \ ``python``\  and add it to your ``PATH`` system variable.
-   Then install the \ ``pip``\  package if not installed already.
+   Then install the \ ``pip``\  package if not installed already also adding it to the ``PATH`` system variable.
    Then run the following commands.
 
 ::
@@ -89,8 +91,16 @@ pip.
    $ source venv/bin/activate
    $ pip install -r requirements.txt
 
-Running the tests using makefile
+Building dists and running tests using makefile
 ---------------------------------------------
+
+For **Windows**, different options are available for using makefile. `GnuWin's make`_
+provides a native port for Windows (without requiring a full runtime environment like Cygwin).
+After installing GnuWin, add ``C:\Program Files (x86)\GnuWin32\bin`` 
+to your system ``PATH`` variable to run makefiles from any directory. 
+
+-  For **Windows**, run makefile commands with ``make -f Makefile.win <directive>``. Example ``make -f Makefile.win help``
+-  For **Linux/BSD**, run makefile commands with ``make <drective>``. 
 
 Run the following command to get a list of all Makefile command options.
 
@@ -117,7 +127,12 @@ To report any problems rendering your README. If your markup renders fine, the c
 
   $ twine check dist/*
 
-Running the tests with python unittest module
+To build the source and wheel package.
+::
+    
+  $ make build
+
+Running tests with the python unittest module
 ---------------------------------------------
 
 Once python has been added to the ``PATH`` system variable in Windows,
@@ -129,6 +144,8 @@ From the main directory, run:
 ::
 
    $ python -m unittest
+
+If no tests are run from the command above, run the verbose mode.
 
 Verbose mode
 
@@ -148,7 +165,7 @@ To test out the ritpytrading package, install using pip inside a virtual environ
 
    $ pip install ritpytrading
 
-Examples scripts are present inside the ``examples`` folder. Documentation for usage available here.
+Examples scripts are present inside the ``examples`` folder. Documentation for usage available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_
 
 Built With
 ----------
@@ -208,7 +225,12 @@ School of Management and are their exclusive property.
    :target: https://opensource.org/licenses/Apache-2.0
 .. |contributions welcome| image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
    :target: https://github.com/SamSamhuns
+.. |PyPI pyversions| image:: https://img.shields.io/pypi/pyversions/ritpytrading.svg
+   :target: https://pypi.python.org/pypi/ritpytrading/
+.. |PyPI version fury.io| image:: https://badge.fury.io/py/ritpytrading.svg
+   :target: https://pypi.python.org/pypi/ritpytrading/
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 .. _`Pandoc.org`: https://pandoc.org/
 .. _`PyPI`: https://pypi.org/project/ritpytrading/
+.. _`GnuWin's make`:  http://gnuwin32.sourceforge.net/packages/make.htm

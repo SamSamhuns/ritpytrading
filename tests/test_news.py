@@ -16,7 +16,7 @@ class TestNewsMethods(unittest.TestCase):
         ]
 
     def test_news_dict(self):
-        method_dict = news.news_response_handle(self._sample_news_resp)
+        method_dict = news._news_response_handle(self._sample_news_resp)
         class_dict = {self._sample_news_resp[0]["news_id"]: news.News(
             self._sample_news_resp[0])}
         self.assertEqual(method_dict, class_dict)

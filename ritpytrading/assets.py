@@ -39,21 +39,17 @@ Parameters for the news GET HTTP request
 
 '''
 
-
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
-# to print error messages and stop the program when needed
-
-
 class ApiException(Exception):
+    """ to print error messages and stop the program when needed """
     pass
 
-
 class Asset():
-    # case_response is a json obj returned from the API get request
+    """ case_response is a json obj returned from the API get request """
     def __init__(self, asset_response):
         self.ticker = asset_response["ticker"]
         self.type = asset_response["type"]
@@ -76,13 +72,12 @@ class Asset():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-# function requires a requests.Session() object
-# as the ses argument with a loaded API_KEY
-# ticker = ticker sumbol
-# returns a JSON obj with params given at the top
-
-
 def _get_assets_json(ses, ticker=None):
+    """ function requires a requests.Session() object
+    as the ses argument with a loaded API_KEY
+    ticker = ticker sumbol
+    returns a JSON obj with params given at the top
+    """
     payload = {}
     if ticker is not None:
         payload = {'ticker': ticker}
@@ -93,8 +88,7 @@ def _get_assets_json(ses, ticker=None):
         return assets_json
     raise ApiException('Authorization Error: Please check API key.')
 
-
-def assets_response_handle(assets_json, ticker=None):
+def _assets_response_handle(assets_json, ticker=None):
     # if no ticker is given, return a dict of asset objects
     if ticker is None:
         assets_dict = {Asset(asset_obj).ticker: Asset(asset_obj)
@@ -105,20 +99,16 @@ def assets_response_handle(assets_json, ticker=None):
 
     return assets_dict
 
-
-# function that returns a single asset object given for a given ticker
 def asset(ses, ticker_sym):
-    return assets_response_handle(_get_assets_json(
+    """ function that returns a single asset object given for a given ticker
+    """
+    return _assets_response_handle(_get_assets_json(
         ses, ticker=ticker_sym), ticker=ticker_sym)
 
-# function that returns a dictionary of the assets object
-
-
 def assets_dict(ses):
-    return assets_response_handle(_get_assets_json(ses))
-
-# returns a list of JSON fomratted output for assets object
-
+    """ function that returns a dictionary of the assets object """
+    return _assets_response_handle(_get_assets_json(ses))
 
 def assets_list(ses):
+    """ returns a list of JSON fomratted output for assets object """
     return _get_assets_json(ses)

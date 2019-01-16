@@ -19,7 +19,7 @@ class TestTendersMethods(unittest.TestCase):
         ]
 
     def test_tenders_dict(self):
-        method_dict = tenders.tender_response_handle(self._sample_tender_resp)
+        method_dict = tenders._tender_response_handle(self._sample_tender_resp)
         class_dict = {self._sample_tender_resp[0]["tender_id"]: tenders.Tender(
             self._sample_tender_resp[0])}
         self.assertEqual(method_dict, class_dict)

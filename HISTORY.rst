@@ -15,3 +15,8 @@ History
 ------------------
 
 * Third release on PyPI with correctly rendering README.
+
+0.1.3 (2019-01-11)
+------------------
+
+* Fourth release with major corrections.
