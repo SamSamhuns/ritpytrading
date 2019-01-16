@@ -13,7 +13,7 @@ software. `PyPI`_ page.
 
 Full documentation available here.
 
-.. image:: rit_image.PNG
+.. image:: https://raw.githubusercontent.com/SamSamhuns/ritpytrading/master/images/rit_image.PNG?sanitize=true
     :width: 400px
     :align: left
     :height: 300px
@@ -25,7 +25,7 @@ Prerequisites
 Python version 3
 
 The Rotman Interactive Trading Client which can only be operated in a
-**Windows system**. However, development of the PyPI ritpytrading package 
+**Windows system**. However, development of the PyPI ritpytrading package
 can be in done in Linux/BSD envrionment as well.
 
 The full documentation for the Rotman Interactive Trader Client REST API
@@ -64,7 +64,7 @@ Two options are available after this:
 
 -  Anaconda is recommended for Windows system. Set up up a virtual conda environment first.
    Then open the anaconda prompt and use the command ``conda install --yes --file requirements.txt``
-   to install all modules from requirements.txt. 
+   to install all modules from requirements.txt.
 
 -  Or Install \ ``python``\  and add it to your ``PATH`` system variable.
    Then install the \ ``pip``\  package if not installed already also adding it to the ``PATH`` system variable.
@@ -96,11 +96,11 @@ Building dists and running tests using makefile
 
 For **Windows**, different options are available for using makefile. `GnuWin's make`_
 provides a native port for Windows (without requiring a full runtime environment like Cygwin).
-After installing GnuWin, add ``C:\Program Files (x86)\GnuWin32\bin`` 
-to your system ``PATH`` variable to run makefiles from any directory. 
+After installing GnuWin, add ``C:\Program Files (x86)\GnuWin32\bin``
+to your system ``PATH`` variable to run makefiles from any directory.
 
 -  For **Windows**, run makefile commands with ``make -f Makefile.win <directive>``. Example ``make -f Makefile.win help``
--  For **Linux/BSD**, run makefile commands with ``make <drective>``. 
+-  For **Linux/BSD**, run makefile commands with ``make <drective>``.
 
 Run the following command to get a list of all Makefile command options.
 
@@ -120,7 +120,7 @@ To ensure the README.rst will be rendered in PyPI [might be outdated. Check twin
 ::
 
   $ python setup.py check --restructuredtext
-  
+
 To report any problems rendering your README. If your markup renders fine, the command will output Checking distribution FILENAME: Passed. To run the check on sdist and wheel.
 
 ::
@@ -129,7 +129,7 @@ To report any problems rendering your README. If your markup renders fine, the c
 
 To build the source and wheel package.
 ::
-    
+
   $ make build
 
 Running tests with the python unittest module
