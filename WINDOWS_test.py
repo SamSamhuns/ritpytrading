@@ -1,7 +1,7 @@
 from __future__ import print_function
 import sys
 import requests
-import unittest
+# import unittest
 import contextlib
 from io import StringIO
 from ritpytrading import news
