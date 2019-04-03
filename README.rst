@@ -13,7 +13,7 @@ software. `PyPI`_ page.
 
 Full documentation available here.
 
-.. image:: https://raw.githubusercontent.com/SamSamhuns/ritpytrading/master/images/rit_image.PNG?sanitize=true
+.. image:: https://github.com/SamSamhuns/ritpytrading/blob/master/images/rit_image.PNG
     :width: 400px
     :align: left
     :height: 300px
