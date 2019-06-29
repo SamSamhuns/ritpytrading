@@ -9,7 +9,9 @@ RIT-trading-python
 |Python 3| |Codacy Badge| |License|
 
 Python trading module for the Rotman Interactive Trader trading
-software. `PyPI`_ page.
+software. `PyPI`_ page. 
+
+Installation with pip: ``pip install ritpytrading``
 
 Full documentation available here.
 
@@ -100,7 +102,7 @@ After installing GnuWin, add ``C:\Program Files (x86)\GnuWin32\bin``
 to your system ``PATH`` variable to run makefiles from any directory.
 
 -  For **Windows**, run makefile commands with ``make -f Makefile.win <directive>``. Example ``make -f Makefile.win help``
--  For **Linux/BSD**, run makefile commands with ``make <drective>``.
+-  For **Linux/BSD**, run makefile commands with ``make <directive>``.
 
 Run the following command to get a list of all Makefile command options.
 
