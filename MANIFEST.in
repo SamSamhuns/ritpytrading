@@ -3,8 +3,7 @@ include CONTRIBUTING.rst
 include HISTORY.rst
 include LICENSE
 include README.rst
-include README.rst
-include rit_image.PNG
+recursive-include images rit_image.PNG
 
 recursive-include tests *
 recursive-exclude * __pycache__
