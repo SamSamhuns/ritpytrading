@@ -1,35 +1,36 @@
-'''
-This script contains results for the /news module
+# This script contains results for the /news module
+#
+# Sample JSON output formats for the function returns
+# News object return value: JSON formatted
+# [
+#   {
+#     "news_id": 0,
+#     "period": 0,
+#     "tick": 0,
+#     "ticker": "string",
+#     "headline": "string",
+#     "body": "string"
+#   }
+# ]
+# Parameters for the news GET HTTP request
+# - since     number        (query)
+# - limit     number        (query)
 
-Sample JSON output formats for the function returns
-News object return value: JSON formatted
-[
-  {
-    "news_id": 0,
-    "period": 0,
-    "tick": 0,
-    "ticker": "string",
-    "headline": "string",
-    "body": "string"
-  }
-]
-Parameters for the news GET HTTP request
-- since     number        (query)
-- limit     number        (query)
-
-'''
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
+
 class ApiException(Exception):
     """ to print error messages and stop the program when needed """
     pass
 
+
 class News():
     """ case_response is a json obj returned from the API get request """
+
     def __init__(self, news_response):
         self.news_id = news_response["news_id"]
         self.period = news_response["period"]
@@ -43,6 +44,7 @@ class News():
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
+
 
 def _get_news_json(ses, since=None, limit=None):
     """ function requires a requests.Session() object
@@ -67,16 +69,19 @@ def _get_news_json(ses, since=None, limit=None):
         return news_json
     raise ApiException('Authorization Error: Please check API key.')
 
+
 def _news_response_handle(news_json):
     news_dict = {News(news_obj).news_id: News(news_obj)
                  for news_obj in news_json}
 
     return news_dict
 
+
 def news_dict(ses, since_id=None, limit_itm=None):
     """ function that returns the news object """
     return _news_response_handle(_get_news_json(
         ses, since=since_id, limit=limit_itm))
+
 
 def news_json(ses, since_id=None, limit_itm=None):
     """ returns a list of JSON fomratted output for news object """

@@ -1,55 +1,56 @@
-'''
-This script contains results for the /assets module
+# This script contains results for the / assets module
+#
+# Sample JSON output formats for the function returns
+# Assets object return value: JSON formatted
+# [
+#     {
+#         "ticker": "string",
+#         "type": "CONTAINER",
+#         "description": "string",
+#         "total_quantity": 0,
+#         "available_quantity": 0,
+#         "lease_price": 0,
+#         "convert_from": [
+#             {
+#                 "ticker": "string",
+#                 "quantity": 0
+#             }
+#         ],
+#         "convert_to": [
+#             {
+#                 "ticker": "string",
+#                 "quantity": 0
+#             }
+#         ],
+#         "containment": {
+#             "ticker": "string",
+#             "quantity": 0
+#         },
+#         "ticks_per_conversion": 0,
+#         "ticks_per_lease": 0,
+#         "is_available": true,
+#         "start_period": 0,
+#         "stop_period": 0
+#     }
+# ]
+# Parameters for the news GET HTTP request
+# - ticker    string(query)
 
-Sample JSON output formats for the function returns
-News object return value: JSON formatted
-[
-  {
-    "ticker": "string",
-    "type": "CONTAINER",
-    "description": "string",
-    "total_quantity": 0,
-    "available_quantity": 0,
-    "lease_price": 0,
-    "convert_from": [
-      {
-        "ticker": "string",
-        "quantity": 0
-      }
-    ],
-    "convert_to": [
-      {
-        "ticker": "string",
-        "quantity": 0
-      }
-    ],
-    "containment": {
-      "ticker": "string",
-      "quantity": 0
-    },
-    "ticks_per_conversion": 0,
-    "ticks_per_lease": 0,
-    "is_available": true,
-    "start_period": 0,
-    "stop_period": 0
-  }
-]
-Parameters for the news GET HTTP request
-- ticker    string        (query)
-
-'''
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
+
 class ApiException(Exception):
     """ to print error messages and stop the program when needed """
     pass
 
+
 class Asset():
     """ case_response is a json obj returned from the API get request """
+
     def __init__(self, asset_response):
         self.ticker = asset_response["ticker"]
         self.type = asset_response["type"]
@@ -72,6 +73,7 @@ class Asset():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+
 def _get_assets_json(ses, ticker=None):
     """ function requires a requests.Session() object
     as the ses argument with a loaded API_KEY
@@ -88,6 +90,7 @@ def _get_assets_json(ses, ticker=None):
         return assets_json
     raise ApiException('Authorization Error: Please check API key.')
 
+
 def _assets_response_handle(assets_json, ticker=None):
     # if no ticker is given, return a dict of asset objects
     if ticker is None:
@@ -99,16 +102,19 @@ def _assets_response_handle(assets_json, ticker=None):
 
     return assets_dict
 
+
 def asset(ses, ticker_sym):
     """ function that returns a single asset object given for a given ticker
     """
     return _assets_response_handle(_get_assets_json(
         ses, ticker=ticker_sym), ticker=ticker_sym)
 
+
 def assets_dict(ses):
     """ function that returns a dictionary of the assets object """
     return _assets_response_handle(_get_assets_json(ses))
 
+
 def assets_list(ses):
-    """ returns a list of JSON fomratted output for assets object """
+    """ returns a list of JSON formatted output for assets object """
     return _get_assets_json(ses)

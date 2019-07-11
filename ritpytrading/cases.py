@@ -1,43 +1,45 @@
-'''
-This script contains results for the /case and /limits module
+# This script contains results for the /case and /limits module
+#
+# Sample JSON output formats for the function returns
+# Case object return value: JSON formatted
+# {
+#     "name": "string",
+#     "period": 0,
+#     "tick": 0,
+#     "ticks_per_period": 0,
+#     "total_periods": 0,
+#     "status": "ACTIVE",
+#     "is_enforce_trading_limits": True
+# }
+# Limits object return values: JSON formatted
+# Returned as a list containing a JSON object
+# [
+#     {
+#         "name": "string",
+#         "gross": 0,
+#         "net": 0,
+#         "gross_limit": 0,
+#         "net_limit": 0,
+#         "gross_fine": 0,
+#         "net_fine": 0
+#     }
+# ]
 
-Sample JSON output formats for the function returns
-Case object return value: JSON formatted
-{
-    "name": "string",
-    "period": 0,
-    "tick": 0,
-    "ticks_per_period": 0,
-    "total_periods": 0,
-    "status": "ACTIVE",
-    "is_enforce_trading_limits": True
-}
-Limits object return values: JSON formatted
-Returned as a list containing a JSON object
-[
-    {
-        "name": "string",
-        "gross": 0,
-        "net": 0,
-        "gross_limit": 0,
-        "net_limit": 0,
-        "gross_fine": 0,
-        "net_fine": 0
-    }
-]
-'''
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
+
 class ApiException(Exception):
     """ to print error messages and stop the program when needed """
     pass
 
+
 class Case():
     """ case_response is a json obj returned from the API get request """
+
     def __init__(self, case_response):
         self.name = case_response["name"]
         self.period = case_response["period"]
@@ -54,8 +56,10 @@ class Case():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+
 class CaseLimits():
     """ limit_response is a json obj returned from the API get request """
+
     def __init__(self, limit_response):
         self.name = limit_response["name"]
         self.gross = limit_response['gross']
@@ -71,6 +75,7 @@ class CaseLimits():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+
 def _get_case_json(ses, url_end):
     """ function requires a requests.Session() object
     as the ses argument with a loaded API_KEY
@@ -83,19 +88,23 @@ def _get_case_json(ses, url_end):
         return case_json
     raise ApiException('Authorization Error: Please check API key.')
 
+
 def _case_response_handle(case_json, url_end):
     if url_end == '/limits':
         return CaseLimits(case_json[0])
     # elif url_end == '/case':
     return Case(case_json)
 
+
 def case(ses):
     """ function that returns the case object """
     return _case_response_handle(_get_case_json(ses, '/case'), '/case')
 
+
 def case_json(ses):
-    """ returns a list of JSON fomratted output for case object """
+    """ returns a list of JSON formatted output for case object """
     return _get_case_json(ses, '/case')
+
 
 def trade_lim_enforce_chk(ses):
     """ functions for information on case limits
@@ -106,6 +115,7 @@ def trade_lim_enforce_chk(ses):
         return True
     return False
 
+
 def case_limits(ses):
     """ returns  a CaseLimits obj from the CaseLimits class """
     if trade_lim_enforce_chk(ses):
@@ -114,6 +124,7 @@ def case_limits(ses):
         msg = "Case has no trading limits"
         print(msg)
         return msg
+
 
 def case_limits_json(ses):
     """ returns a list of JSON fomratted output for case limits """

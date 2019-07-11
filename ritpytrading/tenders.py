@@ -1,34 +1,35 @@
-'''
-This script contains results for the /tenders module
-
-Sample JSON output formats for the function returns
-Tender object return value: JSON formatted
-[
-  {
-    "tender_id": 0,
-    "period": 0,
-    "tick": 0,
-    "expires": 0,
-    "caption": "string",
-    "quantity": 0,
-    "action": "BUY",
-    "is_fixed_bid": true,
-    "price": 0
-  }
-]
-'''
+# This script contains results for the /tenders module
+#
+# Sample JSON output formats for the function returns
+# Tender object return value: JSON formatted
+# [
+#   {
+#     "tender_id": 0,
+#     "period": 0,
+#     "tick": 0,
+#     "expires": 0,
+#     "caption": "string",
+#     "quantity": 0,
+#     "action": "BUY",
+#     "is_fixed_bid": true,
+#     "price": 0
+#   }
+# ]
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
+
 class ApiException(Exception):
     """ to print error messages and stop the program when needed """
     pass
 
+
 class Tender():
     """ case_response is a json obj returned from the API get request """
+
     def __init__(self, tender_response):
         self.tender_id = tender_response["tender_id"]
         self.period = tender_response["period"]
@@ -46,6 +47,7 @@ class Tender():
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+
 def _get_tender_json(ses):
     """ function requires a requests.Session() object
     as the ses argument with a loaded API_KEY
@@ -58,6 +60,7 @@ def _get_tender_json(ses):
         return tenders_json
     raise ApiException('Authorization Error: Please check API key.')
 
+
 def _tender_response_handle(tenders_json):
     """ function to return a tenders_dict dict with Tender objects as values
     """
@@ -65,6 +68,7 @@ def _tender_response_handle(tenders_json):
                     for tender_obj in tenders_json}
 
     return tenders_dict
+
 
 def _post_tender_response(ses, tender_id, price=None):
     """ function requires a requests.Session() object
@@ -89,6 +93,7 @@ def _post_tender_response(ses, tender_id, price=None):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def _delete_tender_response(ses, tender_id):
     """ function requires a requests.Session() object
     as the ses argument with a loaded API_KEY
@@ -106,13 +111,24 @@ def _delete_tender_response(ses, tender_id):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def tenders_dict(ses):
     """ function that returns the tender object """
     return _tender_response_handle(_get_tender_json(ses))
 
+
 def tenders_json(ses):
     """ returns a list of JSON fomratted output for tender object """
     return _get_tender_json(ses)
+
+
+def is_tender_fixed_bid(ses, tender_iden):
+    """ check if the given tender is fixed bid """
+    tender_dict = tenders_dict(ses)
+    if tender_dict[tender_iden].is_fixed_bid:
+        return True
+    return False
+
 
 def accept_tender(ses, tender_iden, price_tender=None):
     tender_dict = tenders_dict(ses)
@@ -124,6 +140,7 @@ def accept_tender(ses, tender_iden, price_tender=None):
             print("Price is required since tender is not fixed bid.")
         else:
             _post_tender_response(ses, tender_iden, price=price_tender)
+
 
 def decline_tender(ses, tender_iden):
     _delete_tender_response(ses, tender_iden)

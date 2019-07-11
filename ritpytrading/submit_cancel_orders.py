@@ -7,6 +7,7 @@ host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
+
 class ApiException(Exception):
     """ to print error messages and stop the program when needed """
     pass
@@ -15,6 +16,7 @@ class ApiException(Exception):
 # A requests.Session() object must be passed as the ses argument for each order
 # type function. The requests.Session() object should deal with registering
 # the API_KEY in the main function
+
 
 def market_order(ses, ticker, side, quantity):
     """ submitting a market order
@@ -35,6 +37,7 @@ def market_order(ses, ticker, side, quantity):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def limit_order(ses, ticker, side, quantity, price):
     """ function requires a requests.Session() object as the
     ses argument with a loaded API_KEY
@@ -51,6 +54,7 @@ def limit_order(ses, ticker, side, quantity, price):
         print('Error: Orders submitted too frequently.')
     else:
         raise ApiException('Authorization Error: Please check API key.')
+
 
 def cancel_order(ses, order_id):
     """ function requires a requests.Session() object as the
@@ -71,6 +75,12 @@ def cancel_order(ses, order_id):
 # set all_flag = 0 to cancel only select orders
 # By default all_flag is set to 0
 # price_direc and volume_direc has a value of [ <, <=, >, >= or = ]
+
+
+def cancel_all_open_orders(ses):
+    """Cancels all open orders"""
+    cancel_order_bulk(ses, '', '', '', '', all_flag=1)
+
 
 def cancel_order_bulk(
         ses, price_direc, price_lim, volume_direc, volume_lim, all_flag=0):

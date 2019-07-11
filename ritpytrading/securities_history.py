@@ -1,39 +1,41 @@
-'''
-The /securities/history module gets the OHLC history for a security.
+# The /securities/history module gets the OHLC history for a security.
+#
+# functions related to the history of a security
+# securities_history object attribute values: JSON formatted
+# [
+#   {
+#     "tick": 11,
+#     "open": 4.12,
+#     "high": 4.21,
+#     "low": 4.1,
+#     "close": 4.15
+#   }
+# ]
+#
+# Parameters for the securities_history GET HTTP request
+#
+# - ticker* required string   (query)
+# - period number             (query)
+# Period to retrieve data from. Defaults to the current period.
+# - limit number              (query)
+# Result set limit, counting backwards from the most recent tick.
+# Defaults to retrieving the entire period.
 
-functions related to the history of a security
-securities_history object attribute values: JSON formatted
-[
-  {
-    "tick": 11,
-    "open": 4.12,
-    "high": 4.21,
-    "low": 4.1,
-    "close": 4.15
-  }
-]
-
-Parameters for the securities_history GET HTTP request
-
-- ticker* required string   (query)
-- period number             (query)
-Period to retrieve data from. Defaults to the current period.
-- limit number              (query)
-Result set limit, counting backwards from the most recent tick.
-Defaults to retrieving the entire period.
-'''
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
+
 class ApiException(Exception):
     """ to print error messages and stop the program when needed """
     pass
 
+
 class Security_History():
     """ sec_history is a json obj returned from the API get request """
+
     def __init__(self, sec_history):
         self.tick = sec_history["tick"]
         self.open = sec_history["open"]
@@ -46,6 +48,7 @@ class Security_History():
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
+
 
 def _get_sec_history_json(ses, ticker_sym, period_num=None, lim_num=None):
     """ period_num is the period to retrive data from. Defaults to current period.
@@ -70,6 +73,7 @@ def _get_sec_history_json(ses, ticker_sym, period_num=None, lim_num=None):
         # sec_history_json
         return response.json()
 
+
 def _sec_history_response_handle(sec_history_json):
     """ function to return a sec_history_dict dict
     with Security_History obj as values
@@ -79,12 +83,15 @@ def _sec_history_response_handle(sec_history_json):
 
     return sec_history_dict
 
+
 def security_history_dict(ses, ticker_sym, period_numb=None, lim_numb=None):
     """ function to get values of different parameters """
     return _sec_history_response_handle(_get_sec_history_json(
         ses, ticker_sym, period_num=period_numb, lim_num=lim_numb))
 
+
 def security_history_json(ses, ticker_sym, period_numb=None, lim_numb=None):
-    """ get all full JSON response for the securities history get request """
+    """ get all full JSON response for the securities history get request
+    as a list of JSON objects"""
     return _get_sec_history_json(
         ses, ticker_sym, period_num=period_numb, lim_num=lim_numb)
