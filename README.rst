@@ -4,9 +4,7 @@ ritpytrading
 RIT-trading-python
 ------------------
 
-|PyPI pyversions| |Build Status| |Updates| |PyPI version fury.io|
-
-|Python 3| |Codacy Badge| |License|
+|PyPI pyversions| |Build Status| |Updates| |PyPI version fury.io| |Python 3| |Codacy Badge| |License|
 
 Python trading module for the Rotman Interactive Trader trading
 software. `PyPI`_ page.
