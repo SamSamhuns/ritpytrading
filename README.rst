@@ -9,11 +9,11 @@ RIT-trading-python
 |Python 3| |Codacy Badge| |License|
 
 Python trading module for the Rotman Interactive Trader trading
-software. `PyPI`_ page. 
+software. `PyPI`_ page.
 
 Installation with pip: ``pip install ritpytrading``
 
-Full documentation available here.
+Full documentation available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_. Or can be found inside documentation/documentation.md.
 
 .. image:: https://github.com/SamSamhuns/ritpytrading/blob/master/images/rit_image.PNG
     :width: 400px
@@ -94,7 +94,7 @@ pip.
    $ pip install -r requirements.txt
 
 Building dists and running tests using makefile
----------------------------------------------
+-----------------------------------------------
 
 For **Windows**, different options are available for using makefile. `GnuWin's make`_
 provides a native port for Windows (without requiring a full runtime environment like Cygwin).
