@@ -13,7 +13,7 @@ software. `PyPI`_ page.
 
 Installation with pip: ``pip install ritpytrading``
 
-Full documentation available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_
+Full documentation available `online.  <https://samsamhuns.github.io/docs/html/index.html>`_
 
 A GitHub markdown flavor documentation can be found at documentation/README.md.
 
