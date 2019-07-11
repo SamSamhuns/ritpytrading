@@ -20,3 +20,8 @@ History
 ------------------
 
 * Fourth release with major corrections.
+
+0.1.4 (2019-01-11)
+------------------
+
+* Fifth release with full documentation added.
