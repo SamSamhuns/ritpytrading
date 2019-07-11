@@ -13,7 +13,9 @@ software. `PyPI`_ page.
 
 Installation with pip: ``pip install ritpytrading``
 
-Full documentation available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_. Or can be found inside documentation/documentation.md.
+Full documentation available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_
+
+A GitHub markdown flavor documentation can be found at documentation/README.md.
 
 .. image:: https://github.com/SamSamhuns/ritpytrading/blob/master/images/rit_image.PNG
     :width: 400px
