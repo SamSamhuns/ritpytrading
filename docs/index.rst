@@ -1,5 +1,5 @@
 Welcome to ritpytrading's documentation!
-======================================
+========================================
 
 .. toctree::
    :maxdepth: 2
@@ -7,7 +7,7 @@ Welcome to ritpytrading's documentation!
 
    readme
    installation
-   usage
+   documentation and usage
    modules
    contributing
    authors
