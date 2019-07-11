@@ -21,7 +21,12 @@ History
 
 * Fourth release with major corrections.
 
-0.1.4 (2019-01-11)
+0.1.4 (2019-03-11)
 ------------------
 
-* Fifth release with full documentation added.
+* Fifth release with proper rst readme.
+
+0.1.5 (2019-07-11)
+------------------
+
+* Sixth release with full documentation added.

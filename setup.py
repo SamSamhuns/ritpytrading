@@ -26,7 +26,7 @@ setup(
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
-        "Operating System :: Windows XP",
+        "Operating System :: Microsoft :: Windows",
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
@@ -46,6 +46,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/SamSamhuns/ritpytrading',
-    version='0.1.4',
+    version='0.1.5',
     zip_safe=False,
 )
