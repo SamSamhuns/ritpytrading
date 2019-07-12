@@ -16,7 +16,7 @@ To use ritpytrading in a project:
 
 -   [orders](#orders)
 
--   [securities_book ](#securities_book)
+-   [securities_book](#securities_book)
 
 -   [securities_history](#securities_history)
 
