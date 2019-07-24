@@ -226,7 +226,7 @@ School of Management and are their exclusive property.
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
 .. |contributions welcome| image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
-   :target: https://github.com/SamSamhuns
+   :target: https://github.com/SamSamhuns/ritpytrading/pulls
 .. |PyPI pyversions| image:: https://img.shields.io/pypi/pyversions/ritpytrading.svg
    :target: https://pypi.python.org/pypi/ritpytrading/
 .. |PyPI version fury.io| image:: https://badge.fury.io/py/ritpytrading.svg
