@@ -24,13 +24,14 @@ A GitHub markdown flavor documentation can be found at documentation/README.md.
 Prerequisites
 -------------
 
-Python version 3
+-   Python 3.x
 
-The Rotman Interactive Trading Client which can only be operated in a
-**Windows system**. However, development of the PyPI ritpytrading package
-can be in done in Linux/BSD envrionment as well.
+-   `The Rotman Interactive Trading Client <http://rit.rotman.utoronto.ca/software.asp>`_
 
-The full documentation for the Rotman Interactive Trader Client REST API
+The RIT Client only supports **Windows OS**. However, development of the PyPI ritpytrading package
+can be in done in Linux/BSD environments as well.
+
+The full documentation for the RIT Client REST API
 can be found at
 `Swaggerhub <https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0>`_. The
 documentation is also present in a JSON format in the
@@ -42,7 +43,7 @@ Installing
 RIT Client Software
 ~~~~~~~~~~~~~~~~~~~
 
-The RIT Client for Windows system can be downloaded at
+The RIT Client for Windows can be downloaded at
 http://rit.rotman.utoronto.ca/software.asp.
 
 Instructions for setting up an RIT demonstration client account for the
