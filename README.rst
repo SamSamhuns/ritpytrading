@@ -77,8 +77,10 @@ Two options are available after this:
 
    $ pip install virtualenv
    $ virtualenv venv
-   $ venv\Scripts\activate
+   $ .\venv\Scripts\activate
    $ pip install -r requirements.txt
+
+Note: When using **PowerShell** in Windows, the virtual environment has to be activated with ``.\venv\Scripts\activate.ps1``
 
 Linux/BSD
 ~~~~~~~~~
@@ -133,7 +135,7 @@ To report any problems rendering your README. If your markup renders fine, the c
 To build the source and wheel package.
 ::
 
-  $ make build
+  $ make dist
 
 Running tests with the python unittest module
 ---------------------------------------------
@@ -159,8 +161,13 @@ Verbose mode
 Usage (Only on Windows)
 ---------------------------------------------
 
-**IMPORTANT:** The RIT Trading client must also be running to make sure the REST RIT API Client requests can be made.
-In each script your **RIT Client API key** must be entered and the **requests** module be imported to make API calls.
+**IMPORTANT:**
+
+* The RIT Trading client must also be running to make sure the REST RIT API Client requests can be made.
+
+* In each script your **RIT Client API key** must be entered and the **requests** module be imported to make API calls.
+
+* The **API** and **API Orders** mode must be enabled in the RIT Client for the python module to send order requests.
 
 To test out the ritpytrading package, install using pip inside a virtual environment:
 
