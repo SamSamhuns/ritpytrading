@@ -25,16 +25,12 @@
 #     }
 # ]
 
+from ._validate_response import validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
-
-
-class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
-    pass
 
 
 class Case():
@@ -81,12 +77,11 @@ def _get_case_json(ses, url_end):
     as the ses argument with a loaded API_KEY
     """
     response = ses.get(base_url + url_end)
-    if response.ok:
-        case_json = response.json()
+    validate_response(response)
+    case_json = response.json()
 
-        # returns all attributes of the case json response object
-        return case_json
-    raise ApiException('Authorization Error: Please check API key.')
+    # returns all attributes of the case json response object
+    return case_json
 
 
 def _case_response_handle(case_json, url_end):

@@ -16,16 +16,12 @@
 #     "status": "OPEN"
 # }
 
+from ._validate_response import validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
-
-
-class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
-    pass
 
 
 class Order():
@@ -68,11 +64,10 @@ def _get_orders_json(ses, url_end, order_status='OPEN', order_id=None):
     elif url_end == '/orders/{}':
         response = ses.get((base_url + url_end).format(order_id))
 
-    if response.ok:
-        orders_json = response.json()
-        # Return orders json output unformatted
-        return orders_json
-    raise ApiException('Authorization Error: Please check API key.')
+    validate_response(response)
+    orders_json = response.json()
+    # Return orders json output unformatted
+    return orders_json
 
 
 def _orders_response_handle(orders_json, url_end):

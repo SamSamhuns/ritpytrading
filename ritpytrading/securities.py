@@ -37,16 +37,12 @@
 # Parameters for the securities GET HTTP request
 # - ticker* required string   (query)
 
+from ._validate_response import validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
-
-
-class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
-    pass
 
 
 class Security():
@@ -96,10 +92,9 @@ def _get_security_json(ses, ticker):
     else:
         response = ses.get(base_url + '/securities')
 
-    if response.ok:
-        # this sets a list of all available securities in a JSON format
-        return response.json()
-    raise ApiException('Authorization Error: Please check API key.')
+    validate_response(response)
+    # this sets a list of all available securities in a JSON format
+    return response.json()
 
 
 def _security_response_handle(sec_info_json):

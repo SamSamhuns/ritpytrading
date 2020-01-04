@@ -7,6 +7,7 @@
 #   "nlv": 0
 # }
 
+from ._validate_response import validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -43,10 +44,10 @@ def _get_trader_json(ses):
     as the ses argument with a loaded API_KEY
     """
     response = ses.get(base_url + '/trader')
-    if response.ok:
-        trader_json = response.json()
-        return trader_json
-    raise ApiException('Authorization Error: Please check API key.')
+
+    validate_response(response)
+    trader_json = response.json()
+    return trader_json
 
 
 def _trader_response_handle(trader_json):

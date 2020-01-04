@@ -36,16 +36,12 @@
 # Parameters for the news GET HTTP request
 # - ticker    string(query)
 
+from ._validate_response import validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
-
-
-class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
-    pass
 
 
 class Asset():
@@ -85,10 +81,9 @@ def _get_assets_json(ses, ticker=None):
         payload = {'ticker': ticker}
 
     response = ses.get(base_url + "/assets", params=payload)
-    if response.ok:
-        assets_json = response.json()
-        return assets_json
-    raise ApiException('Authorization Error: Please check API key.')
+    validate_response(response)
+    assets_json = response.json()
+    return assets_json
 
 
 def _assets_response_handle(assets_json, ticker=None):

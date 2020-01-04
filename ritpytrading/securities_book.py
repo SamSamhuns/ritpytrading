@@ -40,16 +40,12 @@
 # - ticker* required string   (query)
 # - period number             (query)
 
+from ._validate_response import validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
-
-
-class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
-    pass
 
 
 def _get_sec_book_response(ses, ticker_sym, side, param, all_flag=0):
@@ -65,17 +61,17 @@ def _get_sec_book_response(ses, ticker_sym, side, param, all_flag=0):
     """
     payload = {'ticker': ticker_sym}
     response = ses.get(base_url + '/securities/book', params=payload)
-    if response.ok:
-        sec_book = response.json()
-        if all_flag == 1:
-            return sec_book[side][0]
-        if all_flag == 2:
-            return sec_book[side]
-        if all_flag == 3:
-            return sec_book
-        # this returns only one attrb of the best bid/ask offer i.e. 'quantity'
-        return sec_book[side][0][param]
-    raise ApiException('Authorization Error: Please check API key.')
+    validate_response(response)
+
+    sec_book = response.json()
+    if all_flag == 1:
+        return sec_book[side][0]
+    if all_flag == 2:
+        return sec_book[side]
+    if all_flag == 3:
+        return sec_book
+    # this returns only one attrb of the best bid/ask offer i.e. 'quantity'
+    return sec_book[side][0][param]
 
 
 def get_security_info(ses, ticker_sym, side, param):

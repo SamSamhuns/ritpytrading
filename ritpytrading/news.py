@@ -16,16 +16,12 @@
 # - since     number        (query)
 # - limit     number        (query)
 
+from ._validate_response import validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
-
-
-class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
-    pass
 
 
 class News():
@@ -62,12 +58,11 @@ def _get_news_json(ses, since=None, limit=None):
         payload = {'limit': limit}
 
     response = ses.get(base_url + "/news", params=payload)
-    if response.ok:
-        news_json = response.json()
+    validate_response(response)
+    news_json = response.json()
 
-        # returns all attributes of the news json response object
-        return news_json
-    raise ApiException('Authorization Error: Please check API key.')
+    # returns all attributes of the news json response object
+    return news_json
 
 
 def _news_response_handle(news_json):

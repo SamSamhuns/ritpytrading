@@ -16,15 +16,12 @@
 #   }
 # ]
 
+from ._validate_response import validate_response
+
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
-
-
-class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
-    pass
 
 
 class Tender():
@@ -53,12 +50,12 @@ def _get_tender_json(ses):
     as the ses argument with a loaded API_KEY
     """
     response = ses.get(base_url + "/tenders")
-    if response.ok:
-        tenders_json = response.json()
 
-        # returns all attributes of the news json response object
-        return tenders_json
-    raise ApiException('Authorization Error: Please check API key.')
+    validate_response(response)
+    tenders_json = response.json()
+
+    # returns all attributes of the news json response object
+    return tenders_json
 
 
 def _tender_response_handle(tenders_json):
@@ -83,15 +80,14 @@ def _post_tender_response(ses, tender_id, price=None):
 
     response = ses.post(base_url + "/tenders/" +
                         str(tender_id_parm), params=payload)
-    if response.ok:
-        tenders_json = response.json()
-        tenders_return = tenders_json["success"]
-        if tenders_return:
-            print("Tender was successfully accepted.")
-        else:
-            print("Tender was not accepted.")
+
+    validate_response(response)
+    tenders_json = response.json()
+    tenders_return = tenders_json["success"]
+    if tenders_return:
+        print("Tender was successfully accepted.")
     else:
-        raise ApiException('Authorization Error: Please check API key.')
+        print("Tender was not accepted.")
 
 
 def _delete_tender_response(ses, tender_id):
@@ -101,15 +97,14 @@ def _delete_tender_response(ses, tender_id):
     tender_id_parm = tender_id
 
     response = ses.delete(base_url + "/tenders/{}").format(tender_id_parm)
-    if response.ok:
-        tenders_json = response.json()
-        tenders_return = tenders_json["success"]
-        if tenders_return:
-            print("Tender was successfully declined.")
-        else:
-            print("Tender was not declined.")
+
+    validate_response(response)
+    tenders_json = response.json()
+    tenders_return = tenders_json["success"]
+    if tenders_return:
+        print("Tender was successfully declined.")
     else:
-        raise ApiException('Authorization Error: Please check API key.')
+        print("Tender was not declined.")
 
 
 def tenders_dict(ses):

@@ -2,15 +2,13 @@
 # The API key can be found at lower right corner
 # in the API section of the RIT client
 
+from ._validate_response import validate_response
+
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
-
-class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
-    pass
 
 # IMPORTANT
 # A requests.Session() object must be passed as the ses argument for each order
@@ -27,15 +25,11 @@ def market_order(ses, ticker, side, quantity):
     mkt_order_params = {'ticker': ticker, 'type': 'MARKET',
                         'quantity': quantity, 'action': side}
     response = ses.post(base_url + '/orders', params=mkt_order_params)
-    if response.ok:
+    if validate_response(response):
         mkt_order = response.json()
         orderId = mkt_order['order_id']
         print('%s %s Market order was submitted and has ID %d' %
               (side, quantity, orderId))
-    if response.status_code == 429:
-        print('Error: Orders submitted too frequently.')
-    else:
-        raise ApiException('Authorization Error: Please check API key.')
 
 
 def limit_order(ses, ticker, side, quantity, price):
@@ -45,15 +39,11 @@ def limit_order(ses, ticker, side, quantity, price):
     lim_order_params = {'ticker': ticker, 'type': 'LIMIT',
                         'quantity': quantity, 'price': price, 'action': side}
     response = ses.post(base_url + '/orders', params=lim_order_params)
-    if response.ok:
+    if validate_response(response):
         lim_order = response.json()
         orderId = lim_order['order_id']
         print("%s %s Limit order was submitted and has ID %d " %
               (side, quantity, orderId))
-    elif response.status_code == 429:
-        print('Error: Orders submitted too frequently.')
-    else:
-        raise ApiException('Authorization Error: Please check API key.')
 
 
 def cancel_order(ses, order_id):
@@ -61,15 +51,15 @@ def cancel_order(ses, order_id):
     ses argument with a loaded API_KEY
     """
     response = ses.delete((base_url + '/orders/{}').format(order_id))
-    if response.ok:
-        status = response.json()
-        success = status['success']
-        if success:
-            print('Order ' + order_id + ' was successfully cancelled.')
-        else:
-            print('Order ' + order_id + ' was not successfully cancelled.')
+
+    validate_response(response)
+    status = response.json()
+    success = status['success']
+    if success:
+        print('Order ' + order_id + ' was successfully cancelled.')
     else:
-        raise ApiException('Authorization Error: Please check API key.')
+        print('Order ' + order_id + ' was not successfully cancelled.')
+
 
 # if all_flag = 1 then all open orders are cancelled
 # set all_flag = 0 to cancel only select orders
@@ -79,7 +69,13 @@ def cancel_order(ses, order_id):
 
 def cancel_all_open_orders(ses):
     """Cancels all open orders"""
-    cancel_order_bulk(ses, '', '', '', '', all_flag=1)
+    cancel_params = {'all': 1}
+    response = ses.post(base_url + '/commands/cancel', params=cancel_params)
+
+    validate_response(response)
+    status = response.json()
+    cancelled = status['cancelled_order_ids']
+    print('Cancelled orders:', cancelled)
 
 
 def cancel_order_bulk(
@@ -92,9 +88,8 @@ def cancel_order_bulk(
         ' AND ' + ' Volume ' + ' ' + volume_direc + ' ' + volume_lim
     cancel_params = {'all': all_flag, 'query': query_gen}
     response = ses.post(base_url + '/commands/cancel', params=cancel_params)
-    if response.ok:
-        status = response.json()
-        cancelled = status['cancelled_order_ids']
-        print('Cancelled orders:', cancelled)
-    else:
-        raise ApiException('Authorization Error: Please check API key.')
+
+    validate_response(response)
+    status = response.json()
+    cancelled = status['cancelled_order_ids']
+    print('Cancelled orders:', cancelled)
