@@ -1,4 +1,8 @@
-from __future__ import print_function
+"""
+WARNING: This test module will not guarantee success as all the modules will be
+tested and Trading Cases might not have all different features activated
+"""
+
 import sys
 import requests
 # import unittest
@@ -29,7 +33,7 @@ class ApiException(Exception):
 @contextlib.contextmanager
 def capture():
     """ function to capture std out"""
-    oldout,olderr = sys.stdout, sys.stderr
+    oldout, olderr = sys.stdout, sys.stderr
     try:
         out=[StringIO(), StringIO()]
         sys.stdout,sys.stderr = out
