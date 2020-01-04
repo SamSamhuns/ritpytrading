@@ -7,12 +7,12 @@ import sys
 import signal
 import requests
 from time import sleep
-# importing case related functions from case.py
-from ritpytrading import case
+# importing case related functions from cases.py
+from ritpytrading import cases
 # importing securities_book to get bis ask values
 from ritpytrading import securities_book as book
 # import submit_cancel_orders to submit orders
-from ritpytrading import submit_cancel_orders as order
+from ritpytrading import submit_cancel_orders as orders
 
 
 # use your unique API key here
@@ -20,9 +20,7 @@ API_KEY = {'X-API-Key': 'H8KDL3Q6'}
 shutdown = False
 
 # Make sure the RIT client uses the same 9999 port
-host_url = 'http://localhost:9999'
-base_path = '/v1'
-base_url = host_url + base_path
+# url is 'http://localhost:9999/v1'
 
 # to print error messages and stop the program when needed
 
@@ -41,7 +39,7 @@ def signal_handler(signum, frame):
 
 def main():
 
-    arbitrage_qty = 1000  # arbitrage qunatity for one order by default 1000
+    arbitrage_qty = 1000  # arbitrage qunatity for one orders by default 1000
 
     # checking for correct number of arguments entered
     if len(sys.argv) != 3:
@@ -53,10 +51,10 @@ def main():
 
     with requests.Session() as ses:
         ses.headers.update(API_KEY)
-        current_case = case.case(ses)
-        current_case_lim = case.case_limits(ses)
+        current_case = cases.case(ses)
+        current_case_lim = cases.case_limits(ses)
         tick = current_case.tick
-        # the order submission limits are a max of 10000 units per order
+        # the orders submission limits are a max of 10000 units per order
         max_arbitrage_qty = min(10000, current_case_lim.gross_limit)
         while tick > 5 and tick < 295 and not shutdown:
             # get best bid and ask for security in both exchanges
@@ -73,8 +71,8 @@ def main():
                 sec1_a_qty = book.get_security_info(
                     ses, sec1_a, 'asks', 'quantity')
                 arbitrage_qty = min(sec1_a_qty, sec1_b_qty) % max_arbitrage_qty
-                order.market_order(ses, sec1_b, 'BUY', arbitrage_qty)
-                order.market_order(ses, sec1_a, 'SELL', arbitrage_qty)
+                orders.market_order(ses, sec1_b, 'BUY', arbitrage_qty)
+                orders.market_order(ses, sec1_a, 'SELL', arbitrage_qty)
                 sleep(1)
             if sec1_b_bid > sec1_a_ask:             # if b_bid is higher than a_ask then buy at the lower a_ask and sell at the higher b_bid
                 # checking for the minumum qty between the two crossed orders not to prevent non-zero positions
@@ -83,12 +81,12 @@ def main():
                 sec1_a_qty = book.get_security_info(
                     ses, sec1_a, 'bids', 'quantity')
                 arbitrage_qty = min(sec1_a_qty, sec1_b_qty) % max_arbitrage_qty
-                order.market_order(ses, sec1_a, 'BUY', arbitrage_qty)
-                order.market_order(ses, sec1_b, 'SELL', arbitrage_qty)
+                orders.market_order(ses, sec1_a, 'BUY', arbitrage_qty)
+                orders.market_order(ses, sec1_b, 'SELL', arbitrage_qty)
                 sleep(1)
 
             # updating ticks to make sure the session is active
-            current_case = case.case(ses)
+            current_case = cases.case(ses)
             tick = current_case.tick
 
 
