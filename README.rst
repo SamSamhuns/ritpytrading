@@ -21,8 +21,8 @@ A GitHub markdown flavor documentation can be found at documentation/README.md.
     :height: 300px
     :alt: Image not displayed.
 
-Prerequisites
--------------
+Requirements
+------------
 
 -   Python 3.x
 
@@ -37,17 +37,39 @@ can be found at
 documentation is also present in a JSON format in the
 swagger_client_generated folder.
 
-Installing
-----------
+Usage (Only on Windows)
+---------------------------------------------
 
-RIT Client Software
-~~~~~~~~~~~~~~~~~~~
+**IMPORTANT:**
+
+* The RIT Trading client must also be running to make sure the REST RIT API Client requests can be made.
+
+* In each script your **RIT Client API key** must be entered and the **requests** module be imported to make API calls.
+
+* The **API** and **API Orders** mode must be enabled in the RIT Client for the python module to send order requests.
+
+To test out the ritpytrading package, install using pip inside a virtual environment:
+
+::
+
+   $ pip install ritpytrading
+
+Examples scripts are present inside the ``examples`` folder. Documentation available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_
+
+Developers Guide
+________________
+
+Setup
+~~~~~
+
+RIT Client
+~~~~~~~~~~
 
 The RIT Client for Windows can be downloaded at
 http://rit.rotman.utoronto.ca/software.asp.
 
 Instructions for setting up an RIT demonstration client account for the
-Liability Trading 3 case file can be found at RIT’s website at
+Liability Trading 3 case file can be found at
 http://rit.rotman.utoronto.ca/demo.asp.
 
 Virtual environment packages with ``virtualenv`` or ``anaconda`` should
@@ -113,20 +135,20 @@ Run the following command to get a list of all Makefile command options.
 
   $ make help
 
-To run tests
+To run tests.
 
 ::
 
   $ make test
   $ make test-all
 
-To ensure the README.rst will be rendered in PyPI [might be outdated. Check twine check below]
+To ensure the README.rst will be rendered in PyPi [If outdated use the twine command given below]
 
 ::
 
   $ python setup.py check --restructuredtext
 
-To report any problems rendering your README. If your markup renders fine, the command will output Checking distribution FILENAME: Passed. To run the check on sdist and wheel.
+To ensure the README.rst renders properly. If your markup renders fine, the command will output Checking distribution FILENAME: Passed. To run the check on sdist and wheel.
 
 ::
 
@@ -136,6 +158,11 @@ To build the source and wheel package.
 ::
 
   $ make dist
+
+To upload the distribution code to PyPi. The version number must be updated in ``setup.py`` and logged in ``HISTORY.rst``.
+::
+
+  $ twine upload dist/*
 
 Running tests with the python unittest module
 ---------------------------------------------
@@ -157,25 +184,6 @@ Verbose mode
 ::
 
    $ python -m unittest discover -v
-
-Usage (Only on Windows)
----------------------------------------------
-
-**IMPORTANT:**
-
-* The RIT Trading client must also be running to make sure the REST RIT API Client requests can be made.
-
-* In each script your **RIT Client API key** must be entered and the **requests** module be imported to make API calls.
-
-* The **API** and **API Orders** mode must be enabled in the RIT Client for the python module to send order requests.
-
-To test out the ritpytrading package, install using pip inside a virtual environment:
-
-::
-
-   $ pip install ritpytrading
-
-Examples scripts are present inside the ``examples`` folder. Documentation for usage available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_
 
 Built With
 ----------
