@@ -30,3 +30,8 @@ History
 ------------------
 
 * Sixth release with full documentation added.
+
+0.1.6 (2020-01-27)
+------------------
+
+* Seventh release with bugs fixed in submit_cancel_orders.py.

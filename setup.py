@@ -36,7 +36,7 @@ setup(
     ],
     description="Python trading library for the Rotman Interactive Software.",
     install_requires=requirements,
-    license="Apache Software License 2.0",
+    license='Apache Software License 2.0',
     long_description=readme + '\n\n' + history,
     include_package_data=True,
     keywords='ritpytrading',
@@ -46,6 +46,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/SamSamhuns/ritpytrading',
-    version='0.1.5',
+    version='0.1.6',
     zip_safe=False,
 )
