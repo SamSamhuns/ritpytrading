@@ -7,7 +7,7 @@ class ApiException(Exception):
     pass
 
 
-def validate_response(response):
+def _validate_response(response):
     status_code = response.status_code
 
     if status_code == 200:

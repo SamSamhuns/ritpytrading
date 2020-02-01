@@ -36,7 +36,7 @@
 # Parameters for the news GET HTTP request
 # - ticker    string(query)
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -81,7 +81,7 @@ def _get_assets_json(ses, ticker=None):
         payload = {'ticker': ticker}
 
     response = ses.get(base_url + "/assets", params=payload)
-    validate_response(response)
+    _validate_response(response)
     assets_json = response.json()
     return assets_json
 

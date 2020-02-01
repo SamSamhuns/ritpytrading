@@ -25,7 +25,7 @@
 #     }
 # ]
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -77,7 +77,7 @@ def _get_case_json(ses, url_end):
     as the ses argument with a loaded API_KEY
     """
     response = ses.get(base_url + url_end)
-    validate_response(response)
+    _validate_response(response)
     case_json = response.json()
 
     # returns all attributes of the case json response object

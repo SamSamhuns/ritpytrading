@@ -21,7 +21,7 @@
 # Result set limit, counting backwards from the most recent tick.
 # Defaults to retrieving the entire period.
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -64,7 +64,7 @@ def _get_sec_history_json(ses, ticker_sym, period_num=None, lim_num=None):
                    'limit number': lim_num, 'period number': period_num}
 
     response = ses.get(base_url + '/securities/history', params=payload)
-    validate_response(response)
+    _validate_response(response)
     # return all parameters in a JSON format
     # sec_history_json
     return response.json()

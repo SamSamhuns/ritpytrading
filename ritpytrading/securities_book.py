@@ -40,7 +40,7 @@
 # - ticker* required string   (query)
 # - period number             (query)
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -61,7 +61,7 @@ def _get_sec_book_response(ses, ticker_sym, side, param, all_flag=0):
     """
     payload = {'ticker': ticker_sym}
     response = ses.get(base_url + '/securities/book', params=payload)
-    validate_response(response)
+    _validate_response(response)
 
     sec_book = response.json()
     if all_flag == 1:

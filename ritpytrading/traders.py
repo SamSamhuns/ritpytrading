@@ -7,7 +7,7 @@
 #   "nlv": 0
 # }
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -45,7 +45,7 @@ def _get_trader_json(ses):
     """
     response = ses.get(base_url + '/trader')
 
-    validate_response(response)
+    _validate_response(response)
     trader_json = response.json()
     return trader_json
 

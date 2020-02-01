@@ -2,7 +2,7 @@
 # The API key can be found at lower right corner
 # in the API section of the RIT client
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -25,7 +25,7 @@ def market_order(ses, ticker, side, quantity):
     mkt_order_params = {'ticker': ticker, 'type': 'MARKET',
                         'quantity': quantity, 'action': side}
     response = ses.post(base_url + '/orders', params=mkt_order_params)
-    if validate_response(response):
+    if _validate_response(response):
         mkt_order = response.json()
         orderId = mkt_order['order_id']
         print('%s %s Market order was submitted and has ID %d' %
@@ -39,7 +39,7 @@ def limit_order(ses, ticker, side, quantity, price):
     lim_order_params = {'ticker': ticker, 'type': 'LIMIT',
                         'quantity': quantity, 'price': price, 'action': side}
     response = ses.post(base_url + '/orders', params=lim_order_params)
-    if validate_response(response):
+    if _validate_response(response):
         lim_order = response.json()
         orderId = lim_order['order_id']
         print("%s %s Limit order was submitted and has ID %d " %
@@ -52,7 +52,7 @@ def cancel_order(ses, order_id):
     """
     response = ses.delete((base_url + '/orders/{}').format(order_id))
 
-    validate_response(response)
+    _validate_response(response)
     status = response.json()
     success = status['success']
     if success:
@@ -72,7 +72,7 @@ def cancel_all_open_orders(ses):
     cancel_params = {'all': 1}
     response = ses.post(base_url + '/commands/cancel', params=cancel_params)
 
-    validate_response(response)
+    _validate_response(response)
     status = response.json()
     cancelled = status['cancelled_order_ids']
     print('Cancelled orders:', cancelled)
@@ -89,7 +89,7 @@ def cancel_order_bulk(
     cancel_params = {'all': all_flag, 'query': query_gen}
     response = ses.post(base_url + '/commands/cancel', params=cancel_params)
 
-    validate_response(response)
+    _validate_response(response)
     status = response.json()
     cancelled = status['cancelled_order_ids']
     print('Cancelled orders:', cancelled)

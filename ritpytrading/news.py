@@ -16,7 +16,7 @@
 # - since     number        (query)
 # - limit     number        (query)
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -58,7 +58,7 @@ def _get_news_json(ses, since=None, limit=None):
         payload = {'limit': limit}
 
     response = ses.get(base_url + "/news", params=payload)
-    validate_response(response)
+    _validate_response(response)
     news_json = response.json()
 
     # returns all attributes of the news json response object

@@ -16,7 +16,7 @@
 #   }
 # ]
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -51,7 +51,7 @@ def _get_tender_json(ses):
     """
     response = ses.get(base_url + "/tenders")
 
-    validate_response(response)
+    _validate_response(response)
     tenders_json = response.json()
 
     # returns all attributes of the news json response object
@@ -81,7 +81,7 @@ def _post_tender_response(ses, tender_id, price=None):
     response = ses.post(base_url + "/tenders/" +
                         str(tender_id_parm), params=payload)
 
-    validate_response(response)
+    _validate_response(response)
     tenders_json = response.json()
     tenders_return = tenders_json["success"]
     if tenders_return:
@@ -98,7 +98,7 @@ def _delete_tender_response(ses, tender_id):
 
     response = ses.delete(base_url + "/tenders/{}").format(tender_id_parm)
 
-    validate_response(response)
+    _validate_response(response)
     tenders_json = response.json()
     tenders_return = tenders_json["success"]
     if tenders_return:

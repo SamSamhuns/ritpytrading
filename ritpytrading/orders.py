@@ -16,7 +16,7 @@
 #     "status": "OPEN"
 # }
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -64,7 +64,7 @@ def _get_orders_json(ses, url_end, order_status='OPEN', order_id=None):
     elif url_end == '/orders/{}':
         response = ses.get((base_url + url_end).format(order_id))
 
-    validate_response(response)
+    _validate_response(response)
     orders_json = response.json()
     # Return orders json output unformatted
     return orders_json

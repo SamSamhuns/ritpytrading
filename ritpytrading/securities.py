@@ -37,7 +37,7 @@
 # Parameters for the securities GET HTTP request
 # - ticker* required string   (query)
 
-from ._validate_response import validate_response
+from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
@@ -92,7 +92,7 @@ def _get_security_json(ses, ticker):
     else:
         response = ses.get(base_url + '/securities')
 
-    validate_response(response)
+    _validate_response(response)
     # this sets a list of all available securities in a JSON format
     return response.json()
 
