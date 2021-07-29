@@ -7,14 +7,11 @@ from setuptools import setup, find_packages
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
-
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = ["requests==2.21.0"]
-
 setup_requirements = ["requests==2.21.0"]
-
 test_requirements = ["requests==2.21.0"]
 
 setup(
@@ -29,14 +26,13 @@ setup(
         "Operating System :: Microsoft :: Windows",
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
     description="Python trading library for the Rotman Interactive Software.",
     install_requires=requirements,
     license='Apache Software License 2.0',
+    long_description_content_type='text/x-rst',
     long_description=readme + '\n\n' + history,
     include_package_data=True,
     keywords='ritpytrading',
@@ -46,6 +42,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/SamSamhuns/ritpytrading',
-    version='0.1.6',
+    version='0.1.7',
     zip_safe=False,
 )

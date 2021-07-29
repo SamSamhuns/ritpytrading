@@ -20,35 +20,39 @@ from ritpytrading import securities_history as sh
 from ritpytrading import submit_cancel_orders as sco
 
 # THIS TEST IS DESIGNED FOR THE Liability Trading 3 Case File
-API_KEY = {'X-API-key': 'TY0Y1KE9'}           # use your RIT API key here
+# use your RIT API key here
+API_KEY = {'X-API-key': 'TY0Y1KE9'}
 # Make sure the RIT client uses the same 9999 port
 host_url = 'http://localhost:9999'
 base_path = '/v1'
 base_url = host_url + base_path
 
+
 class ApiException(Exception):
     """ to print error messages and stop the program when needed """
     pass
 
+
 @contextlib.contextmanager
 def capture():
-    """ function to capture std out"""
+    """ function to capture std out
+    Example usage:
+    with capture() as out:
+        print ('hi')
+`   `"""
     oldout, olderr = sys.stdout, sys.stderr
     try:
-        out=[StringIO(), StringIO()]
-        sys.stdout,sys.stderr = out
+        out = [StringIO(), StringIO()]
+        sys.stdout, sys.stderr = out
         yield out
     finally:
-        sys.stdout,sys.stderr = oldout, olderr
+        sys.stdout, sys.stderr = oldout, olderr
         out[0] = out[0].getvalue()
         out[1] = out[1].getvalue()
 
-# Example usage
-# with capture() as out:
-#     print ('hi')
 
 def test_assets(ses, ticker=None):
-    response = ses.get(base_url+'/assets')
+    response = ses.get(base_url + '/assets')
     if response.ok:
         assets_json = response.json()
         asset_list1 = assets.assets_list(ses)
@@ -59,7 +63,7 @@ def test_assets(ses, ticker=None):
             asset_dict1 = assets.assets_dict(ses)
             asset_dict2 = {
                 assets.Asset(asset_obj).ticker: assets.Asset(asset_obj)
-                           for asset_obj in assets_json}
+                for asset_obj in assets_json}
 
             if (asset_dict1 != asset_dict2):
                 raise AssertionError("Asset dicts not equal")
@@ -73,8 +77,9 @@ def test_assets(ses, ticker=None):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def test_cases(ses):
-    response = ses.get(base_url+'/case')
+    response = ses.get(base_url + '/case')
     if response.ok:
         case_obj1 = cases.case(ses)
         case_obj2 = cases.Case(response.json())
@@ -90,7 +95,7 @@ def test_cases(ses):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
-    response = ses.get(base_url+'/limits')
+    response = ses.get(base_url + '/limits')
     if response.ok and enforce:
         limits_json = response.json()
         case_limit_obj1 = cases.case_limits(ses)
@@ -105,13 +110,14 @@ def test_cases(ses):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def test_news(ses):
-    response = ses.get(base_url+'/news')
+    response = ses.get(base_url + '/news')
     if response.ok:
         news_json = response.json()
         news_dict1 = news.news_dict(ses)
         news_dict2 = {news.News(news_obj).news_id: news.News(news_obj)
-                     for news_obj in news_json}
+                      for news_obj in news_json}
         if (news_dict1 != news_dict2):
             raise AssertionError("News dict not equal")
 
@@ -122,8 +128,9 @@ def test_news(ses):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def test_traders(ses):
-    response = ses.get(base_url+'/trader')
+    response = ses.get(base_url + '/trader')
     if response.ok:
         trader_json = response.json()
         trader_obj1 = traders.trader(ses)
@@ -134,13 +141,14 @@ def test_traders(ses):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def test_tenders(ses):
-    response = ses.get(base_url+'/tenders')
+    response = ses.get(base_url + '/tenders')
     if response.ok:
         tenders_json = response.json()
         tenders_dict1 = tenders.tenders_dict(ses)
         tenders_dict2 = {tenders.Tender(tender_obj).tender_id:
-            tenders.Tender(tender_obj) for tender_obj in tenders_json}
+                         tenders.Tender(tender_obj) for tender_obj in tenders_json}
         if (tenders_dict1 != tenders_dict2):
             raise AssertionError("Tenders dict not equal")
 
@@ -148,9 +156,10 @@ def test_tenders(ses):
         tenders_list2 = tenders_json
         if (tenders_list1 != tenders_list2):
             raise AssertionError("Tenders list not equal")
-    ### IMPORTANT NEEDS ADDITIONAL TENDER ACCEPT TESTS
+    # IMPORTANT NEEDS ADDITIONAL TENDER ACCEPT TESTS
     else:
         raise ApiException('Authorization Error: Please check API key.')
+
 
 def test_submit_cancel_orders(ses):
     ticker = 'CRZY'
@@ -171,7 +180,7 @@ def test_submit_cancel_orders(ses):
     with capture() as market_msg1:
         sco.market_order(ses, ticker, side, quantity)
     market_msg2 = ('%s %s Market order was submitted and has ID %d' %
-          (side, quantity, orderId))
+                   (side, quantity, orderId))
     if (market_msg1 != market_msg2):
         raise AssertionError("Market order msg not equal")
 
@@ -192,9 +201,9 @@ def test_submit_cancel_orders(ses):
     if (limit_msg1 != limit_msg2):
         raise AssertionError("Limit order msg not equal")
 
-    #Make sure there are unfufilled orders present in the book first
-    #CANCEL ORDER TEST
-    response = ses.get(base_url+'/orders')
+    # Make sure there are unfufilled orders present in the book first
+    # CANCEL ORDER TEST
+    response = ses.get(base_url + '/orders')
     if response.ok:
         orders_dict = orders.orders_dict(ses)
         for ord_id in orders_dict:
@@ -207,8 +216,9 @@ def test_submit_cancel_orders(ses):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def test_orders(ses):
-    response = ses.get(base_url+'/orders')
+    response = ses.get(base_url + '/orders')
     if response.ok:
         order_json = response.json()
         orders_json1 = orders.orders_json(ses)
@@ -218,7 +228,7 @@ def test_orders(ses):
 
         orders_dict1 = orders.orders_dict(ses)
         orders_dict2 = {(orders.Order(ord)).order_id: orders.Order(ord)
-                       for ord in order_json}
+                        for ord in order_json}
         if (orders_dict1 != orders_dict2):
             raise AssertionError("Orders dict not equal")
 
@@ -230,8 +240,9 @@ def test_orders(ses):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def test_securities_history(ses):
-    response = ses.get(base_url+'/orders')
+    response = ses.get(base_url + '/orders')
     ticker_sym = ''
     if response.ok:
         orders_dict1 = orders.orders_dict(ses)
@@ -243,7 +254,7 @@ def test_securities_history(ses):
 
     payload = {'ticker': ticker_sym}
     response = ses.get(
-        base_url+'/history', params=payload)
+        base_url + '/history', params=payload)
     if response.ok:
         sec_history_json = response.json()
         sec_history_json1 = sh.security_history_json(ses, ticker_sym)
@@ -260,8 +271,9 @@ def test_securities_history(ses):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def test_securites(ses):
-    response = ses.get(base_url+'/securities')
+    response = ses.get(base_url + '/securities')
     if response.ok:
         sec_info_json = response.json()
         sec_json1 = securities.security_json(ses)
@@ -272,14 +284,15 @@ def test_securites(ses):
         sec_dict1 = securities.security_dict(ses)
         sec_dict2 = {
             (securities.Security(order)).ticker: securities.Security(order)
-                      for order in sec_info_json}
+            for order in sec_info_json}
         if (sec_dict1 != sec_dict2):
             raise AssertionError("Security dict not equal")
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def test_securities_book(ses):
-    response = ses.get(base_url+'/orders')
+    response = ses.get(base_url + '/orders')
     ticker_sym = ''
     if response.ok:
         orders_dict1 = orders.orders_dict(ses)
@@ -290,7 +303,7 @@ def test_securities_book(ses):
         raise ApiException('Authorization Error: Please check API key.')
 
     payload = {'ticker': ticker_sym}
-    response = ses.get(base_url+'/securities/book', params=payload)
+    response = ses.get(base_url + '/securities/book', params=payload)
     if response.ok:
         sec_book = response.json()
         _side = 'bids'
@@ -332,6 +345,7 @@ def test_securities_book(ses):
     else:
         raise ApiException('Authorization Error: Please check API key.')
 
+
 def main():
     with requests.Session() as ses:
         ses.headers.update(API_KEY)
@@ -345,6 +359,7 @@ def main():
         test_securities_book(ses)
         test_securities_history(ses)
         test_submit_cancel_orders(ses)
+
 
 if __name__ == "__main__":
     main()

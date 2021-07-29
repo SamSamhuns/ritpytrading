@@ -9,46 +9,41 @@ RIT-trading-python
 Python trading module for the Rotman Interactive Trader trading
 software. `PyPI`_ page.
 
-Installation with pip: ``pip install ritpytrading``
+Install with pip: ``pip install ritpytrading``
 
 Full documentation available `online.  <https://samsamhuns.github.io/docs/html/index.html>`_
 
-A GitHub markdown flavor documentation can be found at documentation/README.md.
+A GitHub markdown flavor documentation can be found in ``documentation/README.md``.
 
 .. image:: https://github.com/SamSamhuns/ritpytrading/blob/master/images/rit_image.PNG
     :width: 400px
     :align: left
     :height: 300px
-    :alt: Image not displayed.
+    :alt: Image not available.
 
 Requirements
 ------------
 
--   Python 3.x
+-   Python 3.6+
 
 -   `The Rotman Interactive Trading Client <http://rit.rotman.utoronto.ca/software.asp>`_
 
 The RIT Client only supports **Windows OS**. However, development of the PyPI ritpytrading package
 can be in done in Linux/BSD environments as well.
 
-The full documentation for the RIT Client REST API
-can be found at
-`Swaggerhub <https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0>`_. The
-documentation is also present in a JSON format in the
-swagger_client_generated folder.
+The full documentation for the RIT Client REST API can be found at `Swaggerhub <https://app.swaggerhub.com/apis/306w/rit-client-api/1.0.0>`_.
+The swagger API documentation is also provided in the ``swagger_client_generated`` folder.
 
 Usage (Only on Windows)
 ---------------------------------------------
 
 **IMPORTANT:**
 
-* The RIT Trading client must also be running to make sure the REST RIT API Client requests can be made.
+* The RIT Trading Client must also be running to make sure the REST RIT API Client requests can be made.
 
 * In each script your **RIT Client API key** must be entered and the **requests** module be imported to make API calls.
 
 * The **API** and **API Orders** mode must be enabled in the RIT Client for the python module to send order requests.
-
-To test out the ritpytrading package, install using pip inside a virtual environment:
 
 ::
 
@@ -72,8 +67,6 @@ Instructions for setting up an RIT demonstration client account for the
 Liability Trading 3 case file can be found at
 http://rit.rotman.utoronto.ca/demo.asp.
 
-Virtual environment packages with ``virtualenv`` or ``anaconda`` should
-be used for both Windows and Linux/BSD based systems.
 
 Windows
 ~~~~~~~
@@ -97,8 +90,7 @@ Two options are available after this:
 
 ::
 
-   $ pip install virtualenv
-   $ virtualenv venv
+   $ python -m venv venv
    $ .\venv\Scripts\activate
    $ pip install -r requirements.txt
 
@@ -107,14 +99,12 @@ Note: When using **PowerShell** in Windows, the virtual environment has to be ac
 Linux/BSD
 ~~~~~~~~~
 
-After cloning the repository, install the required python packages using
-pip.
+After cloning the repository, install packages using pip.
 
 ::
 
    $ git clone https://github.com/SamSamhuns/RIT-trading-python
-   $ pip install virtualenv
-   $ virtualenv venv
+   $ python -m venv venv
    $ source venv/bin/activate
    $ pip install -r requirements.txt
 
@@ -142,13 +132,13 @@ To run tests.
   $ make test
   $ make test-all
 
-To ensure the README.rst will be rendered in PyPi [If outdated use the twine command given below]
+To ensure the README.rst will be rendered in PyPi [If deprecated use the twine command given below]
 
 ::
 
   $ python setup.py check --restructuredtext
 
-To ensure the README.rst renders properly. If your markup renders fine, the command will output Checking distribution FILENAME: Passed. To run the check on sdist and wheel.
+To ensure the README.rst renders properly. After building with ``make dist``, check the rendering with:
 
 ::
 
@@ -184,17 +174,6 @@ Verbose mode
 ::
 
    $ python -m unittest discover -v
-
-Built With
-----------
-
--  `Python 3 <https://www.python.org/downloads/release/python-360/>`__
-   - The Programming tool used
-
-Versioning
-----------
-
-Version tracked with Git
 
 Authors
 -------
