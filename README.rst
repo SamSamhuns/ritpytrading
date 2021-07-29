@@ -211,7 +211,7 @@ All RIT software and external RIT links are provided by the Rotman
 School of Management and are their exclusive property.
 
 .. |Build Status| image:: https://travis-ci.org/SamSamhuns/ritpytrading.svg?branch=master
-   :target: https://travis-ci.org/SamSamhuns/ritpytrading
+   :target: https://travis-ci.com/SamSamhuns/ritpytrading
 .. |Updates| image:: https://pyup.io/repos/github/SamSamhuns/ritpytrading/shield.svg
    :target: https://pyup.io/repos/github/SamSamhuns/ritpytrading/
 .. |Python 3| image:: https://pyup.io/repos/github/SamSamhuns/ritpytrading/python-3-shield.svg
