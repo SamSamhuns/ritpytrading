@@ -1,6 +1,10 @@
 ritpytrading
 ============
 
+.. image:: https://api.codacy.com/project/badge/Grade/6a873df3e02c4950add070885d3a4e8b
+   :alt: Codacy Badge
+   :target: https://app.codacy.com/gh/SamSamhuns/ritpytrading?utm_source=github.com&utm_medium=referral&utm_content=SamSamhuns/ritpytrading&utm_campaign=Badge_Grade_Settings
+
 RIT-trading-python
 ------------------
 
