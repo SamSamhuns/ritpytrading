@@ -6,6 +6,8 @@ RIT-trading-python
 
 |PyPI pyversions| |Build Status| |Updates| |PyPI version fury.io| |Python 3| |Codacy Badge| |License|
 
+Disclaimer: The providers of the RIT software have refused to make the RestAPI public and I do not have access to the RIT server platform, therefore this repository might be out of date with the current version of RIT. It would be useful as a reference to create a more advanced automated trading API.
+
 Python trading module for the Rotman Interactive Trader trading
 software. `PyPI`_ page.
 
