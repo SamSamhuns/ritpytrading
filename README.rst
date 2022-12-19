@@ -210,14 +210,15 @@ Disclaimer
 All RIT software and external RIT links are provided by the Rotman
 School of Management and are their exclusive property.
 
-.. |Build Status| image:: https://travis-ci.org/SamSamhuns/ritpytrading.svg?branch=master
-   :target: https://travis-ci.com/SamSamhuns/ritpytrading
+.. |Build Status| image:: https://app.travis-ci.com/SamSamhuns/ritpytrading.svg?branch=master
+    :target: https://app.travis-ci.com/SamSamhuns/ritpytrading
 .. |Updates| image:: https://pyup.io/repos/github/SamSamhuns/ritpytrading/shield.svg
    :target: https://pyup.io/repos/github/SamSamhuns/ritpytrading/
 .. |Python 3| image:: https://pyup.io/repos/github/SamSamhuns/ritpytrading/python-3-shield.svg
    :target: https://pyup.io/repos/github/SamSamhuns/ritpytrading/
-.. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/5412099a50854132801b34e4e65bb327
-   :target: https://www.codacy.com/app/samhunsadamant/RIT-trading-python?utm_source=github.com&utm_medium=referral&utm_content=SamSamhuns/RIT-trading-python&utm_campaign=Badge_Grade
+.. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/6a873df3e02c4950add070885d3a4e8b
+   :alt: Codacy Badge
+   :target: https://app.codacy.com/gh/SamSamhuns/ritpytrading?utm_source=github.com&utm_medium=referral&utm_content=SamSamhuns/ritpytrading&utm_campaign=Badge_Grade_Settings
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
 .. |contributions welcome| image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
