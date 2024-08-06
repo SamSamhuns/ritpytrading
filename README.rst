@@ -4,7 +4,7 @@ ritpytrading
 RIT-trading-python
 ------------------
 
-|PyPI pyversions| |Build Status| |Updates| |PyPI version fury.io| |Python 3| |Codacy Badge| |License|
+|PyPI pyversions| |Build Status| |PyPI version fury.io| |Codacy Badge| |License|
 
 Disclaimer: The providers of the RIT software have refused to make the RestAPI public and I do not have access to the RIT server platform, therefore this repository might be out of date with the current version of RIT. It would be useful as a reference to create a more advanced automated trading API.
 
@@ -214,10 +214,6 @@ School of Management and are their exclusive property.
 
 .. |Build Status| image:: https://app.travis-ci.com/SamSamhuns/ritpytrading.svg?branch=master
     :target: https://app.travis-ci.com/SamSamhuns/ritpytrading
-.. |Updates| image:: https://pyup.io/repos/github/SamSamhuns/ritpytrading/shield.svg
-   :target: https://pyup.io/repos/github/SamSamhuns/ritpytrading/
-.. |Python 3| image:: https://pyup.io/repos/github/SamSamhuns/ritpytrading/python-3-shield.svg
-   :target: https://pyup.io/repos/github/SamSamhuns/ritpytrading/
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/6a873df3e02c4950add070885d3a4e8b
    :alt: Codacy Badge
    :target: https://app.codacy.com/gh/SamSamhuns/ritpytrading?utm_source=github.com&utm_medium=referral&utm_content=SamSamhuns/ritpytrading&utm_campaign=Badge_Grade_Settings
