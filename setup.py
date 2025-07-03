@@ -10,9 +10,9 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ["requests==2.32.2"]
-setup_requirements = ["requests==2.32.2"]
-test_requirements = ["requests==2.32.2"]
+requirements = ["requests==2.32.4"]
+setup_requirements = ["requests==2.32.4"]
+test_requirements = ["requests==2.32.4"]
 
 setup(
     author="Samridha Man Shrestha",
