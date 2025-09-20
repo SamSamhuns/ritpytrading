@@ -3,7 +3,8 @@
 
 
 class ApiException(Exception):
-    """ to print error messages and stop the program when needed """
+    """to print error messages and stop the program when needed"""
+
     pass
 
 
@@ -13,13 +14,15 @@ def _validate_response(response):
     if status_code == 200:
         return True
     elif status_code == 401:
-        raise ApiException('Authorization Error: Please check API key.')
+        raise ApiException("Authorization Error: Please check API key.")
     elif status_code == 403:
-        raise ConnectionRefusedError('Connection refused by server: ' +
-                                     'Please check if API and API order mode' +
-                                     'is enabled in RIT Client')
+        raise ConnectionRefusedError(
+            "Connection refused by server: "
+            + "Please check if API and API order mode"
+            + "is enabled in RIT Client"
+        )
     elif status_code == 429:
-        print('Error submitting orders: Orders submitted too frequently.')
+        print("Error submitting orders: Orders submitted too frequently.")
         return False
 
     raise ConnectionError()

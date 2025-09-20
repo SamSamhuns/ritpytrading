@@ -8,7 +8,7 @@ class TestTraderMethods(unittest.TestCase):
             "trader_id": "string",
             "first_name": "string",
             "last_name": "string",
-            "nlv": 0
+            "nlv": 0,
         }
 
     def test_trader(self):

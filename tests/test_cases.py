@@ -11,7 +11,7 @@ class TestCaseMethods(unittest.TestCase):
             "ticks_per_period": 0,
             "total_periods": 0,
             "status": "ACTIVE",
-            "is_enforce_trading_limits": True
+            "is_enforce_trading_limits": True,
         }
 
         self._sample_limits_resp = [
@@ -22,22 +22,20 @@ class TestCaseMethods(unittest.TestCase):
                 "gross_limit": 0,
                 "net_limit": 0,
                 "gross_fine": 0,
-                "net_fine": 0
+                "net_fine": 0,
             }
         ]
 
     def test_case(self):
-        method_obj = cases._case_response_handle(
-            self._sample_case_resp, '/case')
+        method_obj = cases._case_response_handle(self._sample_case_resp, "/case")
         class_obj = cases.Case(self._sample_case_resp)
         self.assertEqual(method_obj, class_obj)
 
     def test_case_limits(self):
-        method_obj = cases._case_response_handle(
-            self._sample_limits_resp, '/limits')
+        method_obj = cases._case_response_handle(self._sample_limits_resp, "/limits")
         class_obj = cases.CaseLimits(self._sample_limits_resp[0])
         self.assertEqual(method_obj, class_obj)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

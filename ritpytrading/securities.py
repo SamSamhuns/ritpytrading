@@ -40,13 +40,13 @@
 from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
-host_url = 'http://localhost:9999'
-base_path = '/v1'
+host_url = "http://localhost:9999"
+base_path = "/v1"
 base_url = host_url + base_path
 
 
-class Security():
-    """ Security class takes a security_response object ( a list of json objects )
+class Security:
+    """Security class takes a security_response object ( a list of json objects )
     as its initializing paramenter to extract all relevant information
     security_response is a json obj returned from the API get request
     """
@@ -83,14 +83,14 @@ class Security():
 
 
 def _get_security_json(ses, ticker):
-    """ gets the list of all available securities or of a particular
+    """gets the list of all available securities or of a particular
     security if its ticker is supplied
     """
     if ticker is not None:
-        payload = {'ticker': ticker}
-        response = ses.get(base_url + '/securities', params=payload)
+        payload = {"ticker": ticker}
+        response = ses.get(base_url + "/securities", params=payload)
     else:
-        response = ses.get(base_url + '/securities')
+        response = ses.get(base_url + "/securities")
 
     _validate_response(response)
     # this sets a list of all available securities in a JSON format
@@ -98,16 +98,15 @@ def _get_security_json(ses, ticker):
 
 
 def _security_response_handle(sec_info_json):
-    """ return a order_dict dict of Security class objects """
-    order_dict = {(Security(order)).ticker: Security(order)
-                  for order in sec_info_json}
+    """return a order_dict dict of Security class objects"""
+    order_dict = {(Security(order)).ticker: Security(order) for order in sec_info_json}
     # returns a dict of security obj of the security class
     # with ticker ticker names as keys
     return order_dict
 
 
 def security_dict(ses, ticker_sym=None):
-    """ By default no specific ticker_sym is None
+    """By default no specific ticker_sym is None
     returns the list of available securities as a
     dict of security objects with ticker name as keys
     """
@@ -115,7 +114,7 @@ def security_dict(ses, ticker_sym=None):
 
 
 def security_json(ses, ticker_sym=None):
-    """ returns the list of available securities
+    """returns the list of available securities
     with all info in a json format
     """
     return _get_security_json(ses, ticker_sym)

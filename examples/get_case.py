@@ -1,10 +1,7 @@
-import sys
 import requests
-from time import sleep
 # importing case related functions from case.py
 from ritpytrading import cases
 # import submit_cancel_orders to submit orders
-from ritpytrading import submit_cancel_orders as orders
 
 API_KEY = {'X-API-key': 'TY0Y1KE9'}           # use your RIT API key here
 # Make sure the RIT client uses the same 9999 port

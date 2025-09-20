@@ -22,26 +22,22 @@ class TestSecuritiesMethods(unittest.TestCase):
                 "realized": 0,
                 "currency": "string",
                 "total_volume": 0,
-                "limits": [
-                    {
-                        "name": "string",
-                        "units": 0
-                    }
-                ],
+                "limits": [{"name": "string", "units": 0}],
                 "interest_rate": 0,
                 "is_tradeable": True,
                 "is_shortable": True,
                 "start_period": 0,
-                "stop_period": 0
+                "stop_period": 0,
             }
         ]
 
     def test_security_dict(self):
-        method_dict = securities._security_response_handle(
-            self._sample_securities_resp)
-        class_dict = {self._sample_securities_resp[0]["ticker"]:
-                      securities.Security(
-            self._sample_securities_resp[0])}
+        method_dict = securities._security_response_handle(self._sample_securities_resp)
+        class_dict = {
+            self._sample_securities_resp[0]["ticker"]: securities.Security(
+                self._sample_securities_resp[0]
+            )
+        }
         self.assertEqual(method_dict, class_dict)
 
 

@@ -8,8 +8,7 @@ RIT-trading-python
 
 Disclaimer: The providers of the RIT software have refused to make the RestAPI public and I do not have access to the RIT server platform, therefore this repository might be out of date with the current version of RIT. It would be useful as a reference to create a more advanced automated trading API.
 
-Python trading module for the Rotman Interactive Trader trading
-software. `PyPI`_ page.
+Python trading module for the Rotman Interactive Trader trading software. `PyPI`_ page.
 
 Install with pip: ``pip install ritpytrading``
 
@@ -49,7 +48,7 @@ Usage (Only on Windows)
 
 ::
 
-   $ pip install ritpytrading
+   pip install ritpytrading
 
 Examples scripts are present inside the ``examples`` folder. Documentation available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_
 
@@ -78,7 +77,7 @@ Detailed instructions to download git for windows can be found at `atlassian <ht
 
 ::
 
-   $ git clone https://github.com/SamSamhuns/RIT-trading-python
+   git clone https://github.com/SamSamhuns/RIT-trading-python
 
 Two options are available after this:
 
@@ -92,9 +91,9 @@ Two options are available after this:
 
 ::
 
-   $ python -m venv venv
-   $ .\venv\Scripts\activate
-   $ pip install -r requirements.txt
+   python -m venv venv
+   .\venv\Scripts\activate
+   pip install -r requirements.txt
 
 Note: When using **PowerShell** in Windows, the virtual environment has to be activated with ``.\venv\Scripts\activate.ps1``
 
@@ -105,10 +104,10 @@ After cloning the repository, install packages using pip.
 
 ::
 
-   $ git clone https://github.com/SamSamhuns/RIT-trading-python
-   $ python -m venv venv
-   $ source venv/bin/activate
-   $ pip install -r requirements.txt
+   git clone https://github.com/SamSamhuns/RIT-trading-python
+   python -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
 
 Building dists and running tests using makefile
 -----------------------------------------------
@@ -116,7 +115,7 @@ Building dists and running tests using makefile
 For **Windows**, different options are available for using makefile. `GnuWin's make`_
 provides a native port for Windows (without requiring a full runtime environment like Cygwin).
 After installing GnuWin, add ``C:\Program Files (x86)\GnuWin32\bin``
-to your system ``PATH`` variable to run makefiles from any directory.
+to your system ``PATH`` variable to run `Makefiles` from any directory.
 
 -  For **Windows**, run makefile commands with ``make -f Makefile.win <directive>``. Example ``make -f Makefile.win help``
 -  For **Linux/BSD**, run makefile commands with ``make <directive>``.
@@ -125,36 +124,36 @@ Run the following command to get a list of all Makefile command options.
 
 ::
 
-  $ make help
+  make help
 
 To run tests.
 
 ::
 
-  $ make test
-  $ make test-all
+  make test
+  make test-all
 
 To ensure the README.rst will be rendered in PyPi [If deprecated use the twine command given below]
 
 ::
 
-  $ python setup.py check --restructuredtext
+  python setup.py check --restructuredtext
 
 To ensure the README.rst renders properly. After building with ``make dist``, check the rendering with:
 
 ::
 
-  $ twine check dist/*
+  twine check dist/*
 
 To build the source and wheel package.
 ::
 
-  $ make dist
+  make dist
 
 To upload the distribution code to PyPi. The version number must be updated in ``setup.py`` and logged in ``HISTORY.rst``.
 ::
 
-  $ twine upload dist/*
+  twine upload dist/*
 
 Running tests with the python unittest module
 ---------------------------------------------
@@ -167,7 +166,7 @@ From the main directory, run:
 
 ::
 
-   $ python -m unittest
+   python -m unittest
 
 If no tests are run from the command above, run the verbose mode.
 
@@ -175,7 +174,7 @@ Verbose mode
 
 ::
 
-   $ python -m unittest discover -v
+   python -m unittest discover -v
 
 Authors
 -------
@@ -185,13 +184,13 @@ Authors
 License
 -------
 
-This project is licensed under the Apahce 2.0 License - see the
+This project is licensed under the `Apache 2.0` License - see the
 `LICENSE.md <LICENSE.md>`__ file for details
 
 Acknowledgments
 ---------------
 
--  Rotman School of Manangement, University of Toronto
+-  Rotman School of Management, University of Toronto
    http://www.rotman.utoronto.ca/
 -  Rotman Interactive Trader http://rit.rotman.utoronto.ca/
 -  Python open source libraries
@@ -209,8 +208,7 @@ Contributions
 Disclaimer
 ----------
 
-All RIT software and external RIT links are provided by the Rotman
-School of Management and are their exclusive property.
+All RIT software and external RIT links are provided by the Rotman School of Management and are their exclusive property.
 
 .. |Build Status| image:: https://app.travis-ci.com/SamSamhuns/ritpytrading.svg?branch=master
     :target: https://app.travis-ci.com/SamSamhuns/ritpytrading

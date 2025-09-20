@@ -19,13 +19,13 @@
 from ._response_validation import _validate_response
 
 # Make sure the RIT client uses the same 9999 port
-host_url = 'http://localhost:9999'
-base_path = '/v1'
+host_url = "http://localhost:9999"
+base_path = "/v1"
 base_url = host_url + base_path
 
 
-class Tender():
-    """ case_response is a json obj returned from the API get request """
+class Tender:
+    """case_response is a json obj returned from the API get request"""
 
     def __init__(self, tender_response):
         self.tender_id = tender_response["tender_id"]
@@ -39,14 +39,14 @@ class Tender():
         self.price = tender_response["price"]
 
     def __repr__(self):
-        return self.tender_id + ' ' + self.caption
+        return self.tender_id + " " + self.caption
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
 
 def _get_tender_json(ses):
-    """ function requires a requests.Session() object
+    """function requires a requests.Session() object
     as the ses argument with a loaded API_KEY
     """
     response = ses.get(base_url + "/tenders")
@@ -59,16 +59,16 @@ def _get_tender_json(ses):
 
 
 def _tender_response_handle(tenders_json):
-    """ function to return a tenders_dict dict with Tender objects as values
-    """
-    tenders_dict = {Tender(tender_obj).tender_id: Tender(tender_obj)
-                    for tender_obj in tenders_json}
+    """function to return a tenders_dict dict with Tender objects as values"""
+    tenders_dict = {
+        Tender(tender_obj).tender_id: Tender(tender_obj) for tender_obj in tenders_json
+    }
 
     return tenders_dict
 
 
 def _post_tender_response(ses, tender_id, price=None):
-    """ function requires a requests.Session() object
+    """function requires a requests.Session() object
     as the ses argument with a loaded API_KEY
     price Required if the tender is not fixed-bid.
     """
@@ -78,8 +78,7 @@ def _post_tender_response(ses, tender_id, price=None):
     if price is not None:
         payload = {"price": price}
 
-    response = ses.post(base_url + "/tenders/" +
-                        str(tender_id_parm), params=payload)
+    response = ses.post(base_url + "/tenders/" + str(tender_id_parm), params=payload)
 
     _validate_response(response)
     tenders_json = response.json()
@@ -91,7 +90,7 @@ def _post_tender_response(ses, tender_id, price=None):
 
 
 def _delete_tender_response(ses, tender_id):
-    """ function requires a requests.Session() object
+    """function requires a requests.Session() object
     as the ses argument with a loaded API_KEY
     """
     tender_id_parm = tender_id
@@ -108,17 +107,17 @@ def _delete_tender_response(ses, tender_id):
 
 
 def tenders_dict(ses):
-    """ function that returns the tender object """
+    """function that returns the tender object"""
     return _tender_response_handle(_get_tender_json(ses))
 
 
 def tenders_json(ses):
-    """ returns a list of JSON fomratted output for tender object """
+    """returns a list of JSON fomratted output for tender object"""
     return _get_tender_json(ses)
 
 
 def is_tender_fixed_bid(ses, tender_iden):
-    """ check if the given tender is fixed bid """
+    """check if the given tender is fixed bid"""
     tender_dict = tenders_dict(ses)
     if tender_dict[tender_iden].is_fixed_bid:
         return True
