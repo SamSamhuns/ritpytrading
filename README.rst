@@ -2,7 +2,7 @@ ritpytrading
 ============
 
 RIT-trading-python
-------------------
+
 
 |PyPI pyversions| |Build Status| |PyPI version fury.io| |Codacy Badge| |License|
 
@@ -23,7 +23,7 @@ A GitHub markdown flavor documentation can be found in ``documentation/README.md
     :alt: Image not available.
 
 Requirements
-------------
+
 
 -   Python 3.6+
 
@@ -36,7 +36,7 @@ The full documentation for the RIT Client REST API can be found at `Swaggerhub <
 The swagger API documentation is also provided in the ``swagger_client_generated`` folder.
 
 Usage (Only on Windows)
----------------------------------------------
+
 
 **IMPORTANT:**
 
@@ -53,13 +53,13 @@ Usage (Only on Windows)
 Examples scripts are present inside the ``examples`` folder. Documentation available `here.  <https://samsamhuns.github.io/docs/html/index.html>`_
 
 Developers Guide
-________________
+
 
 Setup
-~~~~~
+
 
 RIT Client
-~~~~~~~~~~
+
 
 The RIT Client for Windows can be downloaded at
 http://rit.rotman.utoronto.ca/software.asp.
@@ -70,7 +70,7 @@ http://rit.rotman.utoronto.ca/demo.asp.
 
 
 Windows
-~~~~~~~
+
 
 Initialize the repository with git.
 Detailed instructions to download git for windows can be found at `atlassian <https://www.atlassian.com/git/tutorials/install-git#windows>`_.  The repository can then be initialized with git using:
@@ -98,19 +98,18 @@ Two options are available after this:
 Note: When using **PowerShell** in Windows, the virtual environment has to be activated with ``.\venv\Scripts\activate.ps1``
 
 Linux/BSD
-~~~~~~~~~
+
 
 After cloning the repository, install packages using pip.
 
 ::
 
    git clone https://github.com/SamSamhuns/RIT-trading-python
-   python -m venv venv
-   source venv/bin/activate
+   python -m venv venv; source venv/bin/activate
    pip install -r requirements.txt
 
 Building dists and running tests using makefile
------------------------------------------------
+
 
 For **Windows**, different options are available for using makefile. `GnuWin's make`_
 provides a native port for Windows (without requiring a full runtime environment like Cygwin).
@@ -156,7 +155,7 @@ To upload the distribution code to PyPi. The version number must be updated in `
   twine upload dist/*
 
 Running tests with the python unittest module
----------------------------------------------
+
 
 Once python has been added to the ``PATH`` system variable in Windows,
 the code for running the scripts on Windows and Linux/BSD based systems
@@ -177,18 +176,18 @@ Verbose mode
    python -m unittest discover -v
 
 Authors
--------
+
 
 -  **Samridha Shrestha**
 
 License
--------
+
 
 This project is licensed under the `Apache 2.0` License - see the
 `LICENSE.md <LICENSE.md>`__ file for details
 
 Acknowledgments
----------------
+
 
 -  Rotman School of Management, University of Toronto
    http://www.rotman.utoronto.ca/
@@ -201,17 +200,17 @@ Acknowledgments
 -  README conversion for PyPI. `Pandoc.org`_.
 
 Contributions
--------------
+
 
 |contributions welcome|
 
 Disclaimer
-----------
+
 
 All RIT software and external RIT links are provided by the Rotman School of Management and are their exclusive property.
 
-.. |Build Status| image:: https://app.travis-ci.com/SamSamhuns/ritpytrading.svg?branch=master
-    :target: https://app.travis-ci.com/SamSamhuns/ritpytrading
+.. |Build Status| image:: https://github.com/SamSamhuns/ritpytrading/actions/workflows/main.yaml/badge.svg
+    :target: https://github.com/SamSamhuns/ritpytrading/actions/workflows/main.yaml
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/6a873df3e02c4950add070885d3a4e8b
    :alt: Codacy Badge
    :target: https://app.codacy.com/gh/SamSamhuns/ritpytrading?utm_source=github.com&utm_medium=referral&utm_content=SamSamhuns/ritpytrading&utm_campaign=Badge_Grade_Settings
